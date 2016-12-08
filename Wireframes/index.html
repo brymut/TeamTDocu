@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="indexStyles.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.20/themes/base/jquery-ui.css" />
+		<link rel="stylesheet" href="indexStyles.css" />
         <script src="indexScripts.js"></script>
 		<title>Avaloq Search Main Page</title>
 	</head>
@@ -18,48 +19,85 @@
 		</div>
 		<div id="advanced">
 			<button id="backtosimple"></button><br/><br/><br/>
+			<form id="advancedsearch" autocomplete="off">
 			<div id="1">
 				<label class="floatleft" for="titleboxtext">Title / Subtitle / Keywords</label>
-				<form id="titleform" autocomplete="off">
-					<input class="floatleft" id="titleboxtext" type="text"><label><input type="checkbox" id="titlecheckbox">only title</label>
-				</form>
+				<input class="floatleft" id="titleboxtext" type="text"><label><input type="checkbox" id="titlecheckbox">only title</label>
 			</div>
 			<div id="2">
 				<label class="floatleft"  for="docuidboxtext">Docu ID</label>
-				<form id="docuidform" autocomplete="off">
-					<input class="floatleft" id="docuidboxtext" type="text"><p>(...)</p>
-				</form>
+				<input class="floatleft" id="docuidboxtext" type="text"><p>(...)</p>
 			</div>
 			<div id="3">
-				<label class="floatleft" for="releaseform">Release</label>
-				<form id="releaseform" action="releaseselect">
-					<select id="releasedd" name="release">
-						<option value="0">-----------------------</option>
-						<option value="4">4.0</option>
-						<option value="3">3.0</option>
-						<option value="2">2.0</option>
-						<option value="1">1.0</option>
-					</select><span></span>
-				</form>
+				<label class="floatleft" for="releasedd">Release</label>
+				<select id="releasedd" name="release">
+					<option value="0">-----------------------</option>
+					<option value="4">4.0</option>
+					<option value="3">3.0</option>
+					<option value="2">2.0</option>
+					<option value="1">1.0</option>
+				</select>
+			</div><p></p>
+			<div id="4">
+				<label class="floatleft" for="funcareamultiple">Functional Area</label>
+				<select id="funcareamultiple" name="funcarea" multiple>
+					<option value="0">.......Avaloq Banking System.......</option>
+					<option value="1">Accounting and Position Keeping</option>
+					<option value="2">AFP Front Office</option>
+					<option value="3">AFP Mobile</option>
+				</select>
 			</div><p></p>
 			<div id="5">
 				<label class="floatleft" for="docutypeform">Docu Type</label>
-				<form id="docutypeform" action="docutypeselect">
-					<select class="floatleft" id="docutypedd" name="docutype">
-						<option value="0">-----------------------</option>
-						<option value="1">PDF</option>
-						<option value="2">HTML</option>
-					</select>
-				</form>
-				<label class="floatleft" for="subtypeform">Subtype</label>
-				<form id="subtypeform" action="subtypeselect">
-					<select class="floatleft" id="subtypedd" name="subtype">
-						<option value="0">-----------------------</option>
-						<option value="1">Team 1</option>
-						<option value="2">Team 2</option>
-					</select>
-				</form>
+				<select id="docutypedd" name="docutype">
+					<option value="0">-----------------------</option>
+					<option value="1">PDF</option>
+					<option value="2">HTML</option>
+				</select>
+				<label for="subtypeform">Subtype</label>
+				<select id="subtypedd" name="subtype">
+					<option value="0">-----------------------</option>
+					<option value="1">Team 1</option>
+					<option value="2">Team 2</option>
+				</select>
+			</div><p></p>
+			<div id="6">
+				<label class="floatleft" for="clientdd">Client</label>
+				<select id="clientdd" name="client">
+					<option value="0">Client Independent</option>
+					<option value="1">Client 2</option>
+					<option value="2">Client 3</option>
+					<option value="3">Client 4</option>
+				</select>
+			</div><p></p>
+			<div id="7">
+				<label class="floatleft" for="docustatusmultiple">Docu Status</label>
+				<select id="docustatusmultiple" name="docustatus" multiple>
+					<option value="0">Dereleased</option>
+					<option value="1">Planned</option>
+					<option value="2">Published</option>
+				</select>	
+			</div><p></p>
+			<div id="8">
+				<label for="lastmodified">Last Modified</label>
+			</div><p></p>
+			<div id="9">
+				<label class="floatleft" for="languagemultiple">Language</label>
+				<select id="languagemultiple" name="language" multiple>
+					<option value="0">English</option>
+					<option value="1">German</option>
+				</select>
+			</div><p></p>
+			<div id="10">
+				<label class="floatleft" for="releasedd">Release</label>
+				<select id="releasedd" name="release">
+					<option value="0">Title</option>
+					<option value="1">Date Added</option>
+					<option value="2">Date Updated</option>
+				</select>
+				<label><input type="checkbox" id="orderbycheckbox">desc.</label>
 			</div>
 		</div>
+		</form>
 	</body>
 </html>

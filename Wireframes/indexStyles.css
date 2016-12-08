@@ -91,7 +91,7 @@ body {
   width: 38px;
   height: 45px;
   background-image: url('downicon.ico');
-  background-position: 2px 6px; 
+  background-position: 1px 6px; 
   background-repeat: no-repeat;
   background-color: #ffffff;
   border-radius: 15px;
@@ -108,6 +108,13 @@ body {
   transition: all 0.1s ease;
 }
 
+#advancedsearch{
+	width: 40%;
+	background-color: white;
+	border-radius: 7px;
+	padding: 5px 5px 5px 5px;
+}
+
 .floatleft {
 	display: block;
 	float: left;
@@ -115,6 +122,7 @@ body {
 
 #titleboxtext {
 	margin-left: 3px;
+	margin-right: 3px;
 }
 
 #releasedd {
@@ -126,11 +134,35 @@ body {
 	margin-right: 3px;
 }
 
+#funcareamultiple {
+	margin-left: 3px;
+}
+
 #docutypedd {
 	margin-left: 3px;
 	margin-right: 3px;
 }
 
 #subtypedd {
+	margin-left: 3px;
+}
+
+#clientdd {
+	margin-left: 3px;
+}
+
+#orderbydd {
+	margin-left: 3px;
+}
+
+#docustatusmultiple {
+	margin-left: 3px;
+}
+
+#languagemultiple {
+	margin-left: 3px;
+}
+
+#releasedd {
 	margin-left: 3px;
 }
