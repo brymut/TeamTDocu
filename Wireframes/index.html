@@ -3,6 +3,8 @@
 	<head>
 		<link rel="stylesheet" href="indexStyles.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.20/themes/base/jquery-ui.css" />
         <script src="indexScripts.js"></script>
 		<title>Avaloq Search Main Page</title>
 	</head>
@@ -13,6 +15,51 @@
   				<input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search.."><input type="submit" id="submitbutton" value="">
 			</form>
 			<button id="advancedsearchbutton">Advanced Search</button>
+		</div>
+		<div id="advanced">
+			<button id="backtosimple"></button><br/><br/><br/>
+			<div id="1">
+				<label class="floatleft" for="titleboxtext">Title / Subtitle / Keywords</label>
+				<form id="titleform" autocomplete="off">
+					<input class="floatleft" id="titleboxtext" type="text"><label><input type="checkbox" id="titlecheckbox">only title</label>
+				</form>
+			</div>
+			<div id="2">
+				<label class="floatleft"  for="docuidboxtext">Docu ID</label>
+				<form id="docuidform" autocomplete="off">
+					<input class="floatleft" id="docuidboxtext" type="text"><p>(...)</p>
+				</form>
+			</div>
+			<div id="3">
+				<label class="floatleft" for="releaseform">Release</label>
+				<form id="releaseform" action="releaseselect">
+					<select id="releasedd" name="release">
+						<option value="0">-----------------------</option>
+						<option value="4">4.0</option>
+						<option value="3">3.0</option>
+						<option value="2">2.0</option>
+						<option value="1">1.0</option>
+					</select><span></span>
+				</form>
+			</div><p></p>
+			<div id="5">
+				<label class="floatleft" for="docutypeform">Docu Type</label>
+				<form id="docutypeform" action="docutypeselect">
+					<select class="floatleft" id="docutypedd" name="docutype">
+						<option value="0">-----------------------</option>
+						<option value="1">PDF</option>
+						<option value="2">HTML</option>
+					</select>
+				</form>
+				<label class="floatleft" for="subtypeform">Subtype</label>
+				<form id="subtypeform" action="subtypeselect">
+					<select class="floatleft" id="subtypedd" name="subtype">
+						<option value="0">-----------------------</option>
+						<option value="1">Team 1</option>
+						<option value="2">Team 2</option>
+					</select>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

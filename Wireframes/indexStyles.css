@@ -75,3 +75,62 @@ body {
   box-shadow: inset 0px 2px 2px #000000;
   transition: all 0.1s ease;
 }
+
+#advanced {
+	display:none;
+}
+
+#backtosimple {
+	display: block;
+	float: left;
+  margin-left: 2px;
+  -webkit-padding-before: 25px;
+  -webkit-padding-end: 20px;
+  -webkit-padding-start: 12px;
+  -webkit-padding-after: 15px;  
+  width: 38px;
+  height: 45px;
+  background-image: url('downicon.ico');
+  background-position: 2px 6px; 
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+#backtosimple:hover {
+  background-color: #1F559F;
+}
+
+#backtosimple:active {
+  box-shadow: inset 0px 2px 2px #000000;
+  transition: all 0.1s ease;
+}
+
+.floatleft {
+	display: block;
+	float: left;
+}
+
+#titleboxtext {
+	margin-left: 3px;
+}
+
+#releasedd {
+	margin-left: 3px;
+}
+
+#docuidboxtext {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+#docutypedd {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+#subtypedd {
+	margin-left: 3px;
+}
