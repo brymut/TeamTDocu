@@ -6,12 +6,18 @@ function onLoad(){
 	$( "#submitbutton" ).mousedown(function() {$( "#searchboxform" ).submit();});
 	$('.options').buttonset();
 	$('#advancedsearchbutton').click(function() {
-		$( "#searchbox" ).slideUp();
+		$("body").css("background-color", "white");
+		$("#searchbox").slideUp();
 		$('#advanced').fadeIn();
+		$('#avaloqinverted').show("slide", { direction: "left" }, 1000);
+		$('.adv').fadeIn();
 		$('#advanced').css("display", "unset");
+		$('.adv').css("display", "unset");
 	});
 	$('#backtosimple').click(function() {
+		$("body").css("background-color", "#1F559F");
 		$('#advanced').hide();
+		$('.adv').hide();
 		$( "#searchbox" ).slideDown();
 	});
 }
