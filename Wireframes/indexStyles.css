@@ -1,6 +1,40 @@
 body {
-    background-color: #1F559F;
+	background-color: #1F559F;
 	transition: all 0.3s ease;
+}
+
+input, select {
+	color: black;
+}
+
+label, p {
+	margin-bottom: 0px;
+}
+
+.adv-s-hide {
+	display: none;
+}
+
+.w90 {
+	width: 90%;
+}
+
+.col-md-4, .col-md-5, .col-md-6 {
+	padding-left: 0px;
+}
+
+.col-lg-4, .col-lg-5, .col-lg-6 {
+	padding-left: 0px;
+}
+
+.m-top-20 {
+	margin-top: 10px;
+}
+
+.glyphicon-repeat {
+	margin-top: 5px;
+	font-size: 20px;
+	transform: scaleX(-1);
 }
 
 #avaloqlogo {
@@ -12,19 +46,19 @@ body {
 }
 
 #searchboxtext {
-    margin-left: 44%;
-    width: 300px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-image: url('searchicon.ico');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    transition: width 0.4s ease-in-out;
-    transition: margin-left 0.2s ease-in-out;
+	margin-left: 44%;
+	width: 300px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-image: url('searchicon.ico');
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	transition: width 0.4s ease-in-out;
+	transition: margin-left 0.2s ease-in-out;
 }
 
 #searchboxtext:focus {
@@ -33,154 +67,139 @@ body {
 }
 
 #submitbutton {
-  margin-left: 2px;
-  -webkit-padding-before: 25px;
-  -webkit-padding-end: 20px;
-  -webkit-padding-start: 12px;
-  -webkit-padding-after: 15px;  
-  width: 38px;
-  height: 45px;
-  background-image: url('submiticon.ico');
-  background-position: 6px 8px; 
-  background-repeat: no-repeat;
-  background-color: #ffffff;
-  border-radius: 15px;
-  color: white;
-  cursor: pointer;
+	margin-left: 2px;
+	-webkit-padding-before: 25px;
+	-webkit-padding-end: 20px;
+	-webkit-padding-start: 12px;
+	-webkit-padding-after: 15px;
+	width: 38px;
+	height: 45px;
+	background-image: url('submiticon.ico');
+	background-position: 6px 8px;
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
 }
 
-#submitbutton:hover {
-  background-color: #1F559F;
+#submitbutton:hover, #backtosimple:hover {
+	background-color: #1F559F;
 }
 
-#submitbutton:active {
-  box-shadow: inset 0px 2px 2px #000000;
-  transition: all 0.1s ease;
+#submitbutton:active, #advancedsearchbutton:active, #backtosimple:active, #submit-adv-b:active {
+	box-shadow: inset 0px 2px 2px #000000;
+	transition: all 0.1s ease;
 }
 
 #advancedsearchbutton {
-  margin-top: 10px;
-  margin-left: 55%;
-  height: 35px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  cursor: pointer;
+	margin-top: 10px;
+	margin-left: 55%;
+	height: 35px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
 }
 
 #advancedsearchbutton:hover {
-  color: white;
-  background-color: #1F559F;
+	color: white;
+	background-color: #1F559F;
 }
 
-#advancedsearchbutton:active {
-  box-shadow: inset 0px 2px 2px #000000;
-  transition: all 0.1s ease;
-}
-
-#advanced {
-	display:none;
-}
-
-.adv {
-	  display: none;
-}
-
-#backtosimple {
-  float:left;
-  margin-top: 5%;
-  margin-left: 2px;
-  -webkit-padding-before: 25px;
-  -webkit-padding-end: 20px;
-  -webkit-padding-start: 12px;
-  -webkit-padding-after: 15px;  
-  width: 38px;
-  height: 45px;
-  background-image: url('downicon.ico');
-  background-position: 1px 6px; 
-  background-repeat: no-repeat;
-  background-color: #ffffff;
-  border-radius: 15px;
-  color: white;
-  cursor: pointer;
-}
-
-#backtosimple:hover {
-  background-color: #1F559F;
-}
-
-#backtosimple:active {
-  box-shadow: inset 0px 2px 2px #000000;
-  transition: all 0.1s ease;
-}
-
-#advanced{
+#advanced-container {
+	display: none;
 	float: left;
-	margin-top: 5%;
+	margin-top: 1%;
 	margin-left: 32%;
-	width:30%;
+	width: 30%;
 }
 
-#advancedsearch{
+#advancedsearchform {
 	width: 100%;
 	color: #1F559F;
 	border-radius: 7px;
 	padding: 5px 5px 5px 5px;
 }
 
-.floatleft {
-	display: block;
+#backtosimple {
 	float: left;
+	margin-top: 1%;
+	margin-left: 2px;
+	-webkit-padding-before: 25px;
+	-webkit-padding-end: 20px;
+	-webkit-padding-start: 12px;
+	-webkit-padding-after: 15px;
+	width: 38px;
+	height: 45px;
+	background-image: url('downicon.ico');
+	background-position: 1px 6px;
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
 }
 
-#titleboxtext {
-	margin-left: 3px;
-	margin-right: 3px;
+
+#titleonly {
+	position: relative;
+	left: 80%;
 }
 
-#releasedd {
-	margin-left: 3px;
+#desc {
+	position: relative;
+	left: 82%;
 }
 
-#docuidboxtext {
-	margin-left: 3px;
-	margin-right: 3px;
-}
-
-#funcareamultiple {
-	margin-left: 3px;
-}
-
-#docutypedd {
-	margin-left: 3px;
-	margin-right: 3px;
-}
-
-#subtypedd {
-	margin-left: 3px;
-}
-
-#clientdd {
-	margin-left: 3px;
-}
-
-#orderbydd {
-	margin-left: 3px;
-}
-
-#docustatusmultiple {
-	margin-left: 3px;
+#dots {
+	float: right;
+	margin-bottom: 0px;
 }
 
 #languagemultiple {
-	margin-left: 3px;
+	width: 100%;
 }
 
-#releasedd {
-	margin-left: 3px;
+#pad-l-5 {
+	padding-left: 5px;
+}
+
+#submit-reset {
+	float: left;
+	margin-top: 25%;
+	width: 40px;
+}
+
+#submit-adv-b {
+	background-image: url('submiticon.ico');
+	background-color: green;
+}
+
+#reset-adv-b {
+	background-color: #FFA07A;
+}
+
+#submit-adv-b, #reset-adv-b { 
+	margin-top: 1%;
+	margin-left: 2px;
+	width: 38px;
+	height: 45px;
+	background-position: 6px 8px;
+	background-repeat: no-repeat;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#submit-adv-b:hover {
+	background-color: greenyellow;
+}
+
+#reset-adv-b:hover {
+	background-color: orangered;
 }
 
 #avaloqinverted {
+	height: 15%;
+	width: 20%;
 	position: absolute;
-    bottom: 10px;
+	bottom: 10px;
 	right: 25px;
 }
