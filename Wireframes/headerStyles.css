@@ -1,13 +1,43 @@
 body {
 	margin: 0px;
-	
+	height: 1500px;
+}
+
+header {
+	text-align: center;
+	font-size: 72px;
+	line-height: 108px;
+	height: 108px;
+	background: #1F559F;
+	color: #white;
+	transition: all 0.4s ease;
+}
+
+header.sticky {
+	position: fixed;
+	z-index: 10;
+	font-size: 24px;
+	line-height: 48px;
+	height: 48px;
+	width: 100%;
+	background: #efc47D;
+	text-align: left;
+	padding-left: 20px;
 }
 
 #avaloqlogo {
-	display:block;
+	display: block;
 	float: left;
 	height: 100%;
 	width: 25%;
+}
+
+#avaloqicon {
+	display: none;
+	float: left;
+	margin-top: 1%;
+	height: 20px;
+	width: px;
 }
 
 #header {
@@ -66,4 +96,27 @@ body {
 	background-color: #ffffff;
 	border-radius: 15px;
 	cursor: pointer;
+}
+
+#results {
+	position: absolute;
+	margin-left: 20%;
+	width: 70%;
+	background-color: black;
+}
+
+#resultsinfo {
+	float:left;
+	width: 100%;
+	height: 100px;
+	background-color: grey;
+}
+
+.resultdiv {
+	float: left;
+	width: 100%;
+	height: 180px;
+	background-color: red;
+    border-bottom: thick dotted #ff0000;
+	border-bottom-color: white;
 }

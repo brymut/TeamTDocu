@@ -2,12 +2,25 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="headerStyles.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="headerPageScripts.js"></script>
 		<title>Example Avaloq Page with Header</title>
 	</head>
 	<body>
-		<div id="header"><img id="avaloqlogo" src="avaloqlogo.png"></img> <form id="searchboxform" autocomplete="off">
-  				<input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search.."><input type="submit" id="submitbuttonsearch" value="">
-			</form></div>
-		<div id="advancedsearchdiv"> <button id="advancedsearchbutton">Advanced Search</button></div>
+		<header>
+			<img id="avaloqlogo" src="avaloqlogo.png"></img> 
+			<img id="avaloqicon" src="logoicon.ico"></img> 
+			<form id="searchboxform" autocomplete="off">
+  				<input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search..">
+				<input type="submit" id="submitbuttonsearch" value="">
+			</form>
+		</header>
+		<div id="results">
+			<div id="resultsinfo"><p>Search metadata comes here.</p></div>
+			<div class="resultdiv"><p>This is result 1. All next results go into their separate divs separated by a thick dotted border.</p></div>
+			<div class="resultdiv"></div>
+			<div class="resultdiv"></div>
+			<div class="resultdiv"></div>
+		</div>
 	</body>
 </html>
