@@ -25,11 +25,95 @@ header.sticky {
 	padding-left: 20px;
 }
 
+.infop {
+	float: left;
+}
+
+#infospan {
+	position: absolute;
+	margin-left: 1%;
+	bottom: 0px;
+	float: left;
+}
+
+#resPage {
+	position: absolute;
+	bottom: 40px;
+	right: 5px;
+	
+}
+
+#resPrev {
+	position: absolute;
+	bottom: 2px;
+	right: 90px;
+	height: 35px;
+	width: 80px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#resNext {
+	position: absolute;
+	bottom: 2px;
+	right: 5px;
+	height: 35px;
+	width: 80px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+.resultdiv {
+	float: left;
+	width: 99.25%;
+	height: 180px;
+	border-right: thick dotted;
+	border-left: thick dotted;
+    border-bottom: thick dotted;
+	border-color: #1F559F;
+	transition: all 0.4s ease;
+}
+
+.resultcheckboxspan {
+	position: relative;
+	float: left;
+	margin-top: 7%;
+	margin-left: 2%;
+}
+
+.resultcheckbox {
+	height: 20px;
+	width: 20px;
+}
+
+.resultdivtitle {
+	margin-top: 3%;
+	margin-left: 7%;
+	margin-bottom: 5%;
+	font-weight: 900;
+	font-size: 25px;
+}
+
+.dateadded {
+	float: left;
+	margin-left: 7%;
+}
+
+.spaces {
+	float: left;
+}
+
+.metadata {
+	float: left;
+}
+
 #avaloqlogo {
 	display: block;
 	float: left;
 	height: 100%;
-	width: 25%;
+	width: 22%;
 }
 
 #avaloqicon {
@@ -106,6 +190,7 @@ header.sticky {
 }
 
 #resultsinfo {
+	position: relative;
 	float:left;
 	width: 99.25%;
 	height: 100px;
@@ -113,14 +198,30 @@ header.sticky {
 	border-left: thick dotted;
     border-bottom: thick dotted;
 	border-color: grey;
+	transition: all 0.4s ease;
 }
 
-.resultdiv {
-	float: left;
-	width: 99.25%;
-	height: 180px;
-	border-right: thick dotted;
-	border-left: thick dotted;
-    border-bottom: thick dotted;
-	border-color: black;
+#previewicon {
+	float: right;
+	height: 95px;
+	width: 95px;
+	margin-top: -7%;
+	margin-right: 9.2%;
+	-webkit-margin-end: 1.2%;
+}
+
+#downloadicon {
+	float: right;
+	height: 70px;
+	width: 70px;
+	margin-top: -6.6%;
+	margin-right: 2%;
+}
+
+#copylinkicon {
+	float: right;
+	height: 70px;
+	width: 70px;
+	margin-top: -6%;	
+	margin-right: 5%;
 }

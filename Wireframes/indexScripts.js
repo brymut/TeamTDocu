@@ -15,7 +15,7 @@ function onLoad(){
 	$('#to-date-input').datepicker({ dateFormat: 'yy-mm-dd'});
 	$('#advancedsearchbutton').click(function() {
 		$("body").css("background-color", "white");
-		$("#searchbox").slideUp();
+		$("#searchbox").slideUp(500);
 		$('#advanced-container').fadeIn();
 		$('#avaloqinverted').show("slide", { direction: "left" }, 1000);
 		$('.adv-s-hide').fadeIn();
