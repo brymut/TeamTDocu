@@ -65,6 +65,16 @@ header.sticky {
 	cursor: pointer;
 }
 
+#resPrev:hover, #resNext:hover{
+	color: white;
+	background-color: #1F559F;
+}
+
+#resPrev:active, #resNext:active{
+	box-shadow: inset 0px 2px 2px #000000;
+	transition: all 0.1s ease;
+}
+
 .resultdiv {
 	float: left;
 	width: 99.25%;
