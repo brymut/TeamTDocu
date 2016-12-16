@@ -17,7 +17,7 @@ function onLoad(){
 		$("body").css("background-color", "white");
 		$("#searchbox").slideUp(500);
 		$('#advanced-container').fadeIn();
-		$('#avaloqinverted').show("slide", { direction: "left" }, 1000);
+		$('#avaloqinverted').show("slide", { direction: "left" }, 500);
 		$('.adv-s-hide').fadeIn();
 		$('#advanced-container').css("display", "unset");
 		$('.adv-s-hide').css("display", "unset");
@@ -27,6 +27,7 @@ function onLoad(){
 		$('#advanced-container').hide();
 		$('.adv-s-hide').hide();
 		$( "#searchbox" ).slideDown();
+		$('#avaloqinverted').hide(20);;
 	});
 }
 function showButton(){ $( "#submitbutton" ).show(); }

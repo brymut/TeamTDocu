@@ -19,4 +19,17 @@ $(document).ready(function(){
 			$('#searchboxtext').css("margin-left", "0px");
 		}
 	});
+	$('.resultdiv').hover(function(){
+		if($(this).attr('id') == 'firstRes'){
+			$('#resultsinfo').css("border-bottom-color", "#efc47D");
+		}
+		$(this).prev().css("border-bottom-color", "#efc47D");
+		$(this).css("border-color", "#efc47D");
+	}, function(){
+		if($(this).attr('id') == 'firstRes'){
+			$('#resultsinfo').css("border-bottom-color", "grey");
+		}
+		$(this).css("border-color", "#1F559F");
+		$(this).prev().css("border-bottom-color", "#1F559F");
+	});
 });
