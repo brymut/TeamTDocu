@@ -1,0 +1,248 @@
+body {
+	background-color: #1F559F;
+	transition: all 0.3s ease;
+}
+
+input, select {
+	color: black;
+}
+
+label, p {
+	margin-bottom: 0px;
+}
+
+input[type='radio'] {
+	margin-left: 8px;
+	margin-right: 2px;
+}
+
+.adv-s-hide {
+	display: none;
+}
+
+.w90 {
+	width: 90%;
+}
+
+.col-md-4, .col-md-5, .col-md-6, .col-lg-4, .col-lg-5, .col-lg-6 {
+	padding-left: 0px;
+}
+
+.m-top-20 {
+	margin-top: 10px;
+}
+
+.pad-l-5 {
+	padding-left: 5px;
+}
+
+.glyphicon-repeat {
+	position: relative;
+	top: 3px;
+	left: 2px;
+	font-size: 20px;
+	transform: scaleX(-1);
+}
+
+.footer {
+    height: 15%;
+    width: 20%;
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    right: 0pt;
+}   
+
+.footer_contents {
+    height:24px; 
+    margin: auto;
+}
+
+#avaloqlogo {
+	margin-left: 25%;
+}
+
+#searchbox {
+	margin-top: 10%;
+}
+
+#searchboxtext {
+	margin-left: 44%;
+	width: 300px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-image: url('../static/icons/searchicon.ico');
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 20px 12px 40px;
+	transition: width 0.4s ease-in-out;
+	transition: margin-left 0.2s ease-in-out;
+}
+
+#searchboxtext:focus {
+	width: 60%;
+	margin-left: 20%;
+}
+
+#submitbutton {
+	margin-left: 2px;
+	-webkit-padding-before: 25px;
+	-webkit-padding-end: 20px;
+	-webkit-padding-start: 12px;
+	-webkit-padding-after: 15px;
+	width: 38px;
+	height: 45px;
+	background-image: url('../static/icons/submiticon.ico');
+	background-position: 6px 8px;
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#submitbutton:hover, #backtosimple:hover {
+	background-color: #1F559F;
+}
+
+#submitbutton:active, #advancedsearchbutton:active, #backtosimple:active, #submit-adv-b:active {
+	box-shadow: inset 0px 2px 2px #000000;
+	transition: all 0.1s ease;
+}
+
+#advancedsearchbutton {
+	margin-top: 10px;
+	margin-left: 55%;
+	height: 35px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#advancedsearchbutton:hover {
+	color: white;
+	background-color: #1F559F;
+}
+
+#advanced-container {
+	display: none;
+	float: left;
+	margin-top: 1%;
+	margin-left: 30%;
+	width: 40%;
+}
+
+#advancedsearchform {
+	width: 100%;
+	color: #1F559F;
+	border-radius: 7px;
+	padding: 5px 5px 5px 5px;
+}
+
+#backtosimple {
+	float: left;
+	margin-top: 1%;
+	margin-left: 2px;
+	-webkit-padding-before: 25px;
+	-webkit-padding-end: 20px;
+	-webkit-padding-start: 12px;
+	-webkit-padding-after: 15px;
+	width: 38px;
+	height: 45px;
+	background-image: url('../static/icons/downicon.ico');
+	background-position: 1px 6px;
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+
+#titleonly {
+	position: relative;
+	left: 80%;
+}
+
+#desc {
+	position: relative;
+	left: 82%;
+}
+
+#dots {
+	float: right;
+	margin-bottom: 0px;
+}
+
+#languagemultiple {
+	width: 100%;
+}
+
+#submit-reset {
+	float: left;
+	position: fixed;
+	bottom: 20%;
+	right: 28%;
+	width: 40px;
+}
+
+#submit-adv-b {
+	background-image: url('../static/icons/submiticon.ico');
+	background-color: green;
+}
+
+#reset-adv-b {
+	background-image: url('../static/icons/reseticon.png');
+	background-size: 25px 25px;
+	background-color: #FF0000;
+}
+
+#submit-adv-b, #reset-adv-b { 
+	margin-top: 1%;
+	margin-left: 2px;
+	width: 38px;
+	height: 45px;
+	background-position: 6px 8px;
+	background-repeat: no-repeat;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+#submit-adv-b:hover {
+	width: 100px;
+	background-position: 72px 8px;
+	padding-left: 12px;
+	font-size: 17px;
+	font-weight: 600;
+	text-align: left;
+	background-color: greenyellow;
+	transition: all 0.2s ease;
+}
+
+#reset-adv-b:hover {
+	width: 100px;
+	background-position: 65px 8px;
+	padding-left: 12px;
+	font-size: 17px;
+	font-weight: 600;
+	text-align: left;
+	background-color: #FF661A;
+	transition: width 0.2s ease;
+}
+
+#resetGlyph {
+	float: right; 
+}
+
+#avaloqinverted {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	bottom: 10px;
+	right: 25px;
+}
