@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="scripts/resultsScripts.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<link rel="stylesheet" href="styles/resultsStyles.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="scripts/resultsScripts.js"></script>
 		<title>Results - Avaloq Search</title>
 	</head>
 	<body>
 		<header>
 			<a href="index.html"><img id="avaloqlogo" src="static/logos/avaloqlogo.png"></img></a>
 			<a href="index.html"><img id="avaloqicon" src="static/icons/logoicon.ico"></img></a>
+			<div id="searchDiv">
 			<form id="searchboxform" autocomplete="off">
-  				<input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search..">
-				<input type="submit" id="submitbuttonsearch" value="">
+				<input id="searchbox" type="text" name="search" placeholder="Type in your Avaloq search..">
+				<input type="submit" id="searchsubmit" value="">
 			</form>
+			</div>
 		</header>
-		<div id="scrollable">
-			<div id="formcontain">
-				<form id="advancedsearchform" autocomplete="off">
-					<div id="advanced-container" class="container form-group">
-						<div class="col-md-12 col-lg-12">
+		<div id="side">
+		<div id="accordionPackage">
+			<h3 class="accordionHeader">Current document package</h3>
+			<div id="package">
+			</div>
+		</div>
+		<div id="sidebar">
+			<div id="accordionFilters">
+				<h3 id="h3Filters" class="accordionHeader">Filters</h3>
+				<div id="formcontain" class="container form-group">
+					<form id="advancedsearchform" autocomplete="off">
+						<div class="col-md-14 col-lg-14">
 							<div id="titleDIV" class="row">
 								<label class="" for="titleboxtext">Title / Subtitle / Keywords</label>
 								<div class="input-group">
@@ -145,8 +156,8 @@
 								<label id="desc" class="form-text text-muted" for="desccheckbox">desc.</label>
 							</div>
 						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 			<div id="submit-reset">
 				<div id="resetbuttondiv">
@@ -156,6 +167,7 @@
 					<button class="adv-s-hide" id="submit-adv-b"></button>
 				</div>
 			</div>
+		</div>
 		</div>
 		<div id="results">
 			<div id="resultsinfo">

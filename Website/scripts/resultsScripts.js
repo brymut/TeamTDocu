@@ -1,22 +1,26 @@
 $(document).ready(function(){
+	if ($(this).scrollTop() > 1){  
+		$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').addClass("sticky");
+		$('#avaloqicon').css("display", "");
+		$('#avaloqicon').show();
+		$('#avaloqlogo').hide();
+	}
+	else{
+		$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').removeClass("sticky");
+		$('#avaloqicon').hide();
+		$('#avaloqlogo').show();
+	}
 	$(window).scroll(function(){
 		if ($(this).scrollTop() > 1){  
-			$('header').addClass("sticky");
+			$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').addClass("sticky");
 			$('#avaloqicon').css("display", "");
 			$('#avaloqicon').show();
-			$('#submitbuttonsearch').css("margin-top", "0.7%");
-			$('#searchboxtext').css("margin-top", "0.7%");
-			var logowidth =  $('#avaloqlogo').css("width").match(/\d+/)[0] - $('#avaloqicon').css("width").match(/\d+/)[0] - 25;
-			$('#searchboxtext').css("margin-left", logowidth);
 			$('#avaloqlogo').hide();
 		}
 		else{
-			$('header').removeClass("sticky");
+			$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').removeClass("sticky");
 			$('#avaloqicon').hide();
-			$('#submitbuttonsearch').css("margin-top", "3%");
-			$('#searchboxtext').css("margin-top", "3%");
 			$('#avaloqlogo').show();
-			$('#searchboxtext').css("margin-left", "0px");
 		}
 	});
 	
@@ -54,10 +58,31 @@ $(document).ready(function(){
 		$('#reset-adv-b').text("");
 	});
 	
-	$('#searchboxtext').keyup(function(){
-		$('#titleboxtext').val($('#searchboxtext').val());
+	$('#searchbox').keyup(function(){
+		$('#titleboxtext').val($('#searchbox').val());
 	});
 	$('#titleboxtext').keyup(function(){
-		$('#searchboxtext').val($('#titleboxtext').val());
+		$('#searchbox').val($('#titleboxtext').val());
+	});
+	
+	$( "#accordionPackage" ).accordion({
+		collapsible: true,
+		active: false,
+		heightStyle: "content",
+		autoHeight: false,
+        clearStyle: true
+    });
+	
+	$( "#accordionFilters" ).accordion({
+		collapsible: true,
+		active: false,
+		heightStyle: "content",
+		autoHeight: false,
+        clearStyle: true
+    });
+	
+	$( "#submit-reset" ).hide();	
+	$( "#h3Filters" ).click(function(){
+		$( "#submit-reset" ).toggle();
 	});
 });
