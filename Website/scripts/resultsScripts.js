@@ -85,4 +85,48 @@ $(document).ready(function(){
 	$( "#h3Filters" ).click(function(){
 		$( "#submit-reset" ).toggle();
 	});
+	
+	var packaged = [];
+	var cboxID = [];
+	$( ".resultcheckbox" ).change(function(){
+		var index = packaged.indexOf($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text());
+		if(index == -1){
+			packaged.push($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text());
+			cboxID.push($($(this)[0]).attr('id'));
+		} else {
+			packaged.splice(index, index+1);
+			cboxID.splice(index, index+1);
+		}
+		updatePackage(packaged, cboxID);
+	});
 });
+
+
+function updatePackage(packaged, cboxID){
+	$('#packageUl').empty();
+	var packagedUL = $('#packageUl');
+	$.each(packaged, function(i){
+		var li = $('<li/>')
+			.addClass('ui-menu-item')
+			.attr('role', 'menuitem')
+			.appendTo(packagedUL);
+		var aaa = $('<a/>')
+			.addClass('ui-all')
+			.text(packaged[i])
+			.appendTo(li);
+		var chb = $('<input>')
+			.addClass('packagecheckbox')
+			.attr('type', 'checkbox')
+			.attr('value', 'package')
+			.attr('data-id', cboxID[i])
+			.attr('checked', 'checked')
+			.appendTo(li);
+	});
+	removeFromPackage();
+}
+
+function removeFromPackage(){
+	$( ".packagecheckbox" ).change(function(){
+		$('#'+$($(this)[0]).attr('data-id')).click();
+	});
+}
