@@ -1,5 +1,8 @@
 $(document).ready(function(){
-	if ($(this).scrollTop() > 1){  
+	$('#accordionPackage').css("left", $('#results').width() + $('#sidebar').width() - 6);
+	var accPckgLeft = $("#accordionPackage").css("left").slice(0,-2);
+	
+	if($(this).scrollTop() > 1){  
 		$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').addClass("sticky");
 		$('#avaloqicon').css("display", "");
 		$('#avaloqicon').show();
@@ -10,8 +13,14 @@ $(document).ready(function(){
 		$('#avaloqicon').hide();
 		$('#avaloqlogo').show();
 	}
+	
+	if($(this).scrollLeft() > 1){
+		$("#sidebar.sticky").css("left", 0-$(this).scrollLeft());
+		$("#accordionPackage.sticky").css("left", $('#results').width() + $('#sidebar').width() - 6 - $(this).scrollLeft());
+	}
+	
 	$(window).scroll(function(){
-		if ($(this).scrollTop() > 1){  
+		if($(this).scrollTop() > 1){  
 			$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').addClass("sticky");
 			$('#avaloqicon').css("display", "");
 			$('#avaloqicon').show();
@@ -19,9 +28,18 @@ $(document).ready(function(){
 		}
 		else{
 			$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').removeClass("sticky");
+			$("#sidebar").css("left", 0);
+			$("#accordionPackage").css("left", $('#results').width() + $('#sidebar').width() - 6);
 			$('#avaloqicon').hide();
 			$('#avaloqlogo').show();
 		}
+		
+		$("#sidebar.sticky").css("left", 0-$(this).scrollLeft());		
+		$("#accordionPackage.sticky").css("left", $('#results').width() + $('#sidebar').width() - 6 - $(this).scrollLeft());
+	});
+	
+	$(window).resize(function(){
+		$("#accordionPackage").css("left", $('#results').width() + $('#sidebar').width() - 6 - $(this).scrollLeft());
 	});
 	
 	$('.resultdiv').hover(function(){
@@ -88,6 +106,10 @@ $(document).ready(function(){
 	
 	var packaged = [];
 	var cboxID = [];
+	$( ".resultcheckbox" ).each(function(){
+		$(this).prop('checked', false);
+	});
+	
 	$( ".resultcheckbox" ).change(function(){
 		var index = packaged.indexOf($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text());
 		if(index == -1){
@@ -98,6 +120,7 @@ $(document).ready(function(){
 			cboxID.splice(index, index+1);
 		}
 		updatePackage(packaged, cboxID);
+		packageRedOnHover();
 	});
 });
 
@@ -112,21 +135,36 @@ function updatePackage(packaged, cboxID){
 			.appendTo(packagedUL);
 		var aaa = $('<a/>')
 			.addClass('ui-all')
+			.attr('data-id', cboxID[i])
 			.text(packaged[i])
 			.appendTo(li);
-		var chb = $('<input>')
-			.addClass('packagecheckbox')
-			.attr('type', 'checkbox')
-			.attr('value', 'package')
-			.attr('data-id', cboxID[i])
-			.attr('checked', 'checked')
-			.appendTo(li);
 	});
+	$('#packageCounter').text(packaged.length);
+	if(packaged.length == 0){
+		$('#package0Hidden').show();		
+	} else {
+		$('#package0Hidden').hide();		
+	}
+	if(packaged.length < 2){
+		$('#packageSHidden').hide();
+	} else {
+		$('#packageSHidden').show();		
+	}
 	removeFromPackage();
 }
 
 function removeFromPackage(){
-	$( ".packagecheckbox" ).change(function(){
-		$('#'+$($(this)[0]).attr('data-id')).click();
+	$( "li.ui-menu-item" ).mousedown(function(){
+		$('#'+$($($(this)[0]).children('a')).attr('data-id')).click();
+	});
+}
+
+function packageRedOnHover(){
+	$('li.ui-menu-item').hover(function(){
+		$($(this).children('a')[0]).css("color", "red");
+		$($(this).children('a')[0]).css("text-decoration", "line-through");
+	}, function(){
+		$($(this).children('a')[0]).css("color", "black");
+		$($(this).children('a')[0]).css("text-decoration", "none");		
 	});
 }

@@ -1,11 +1,13 @@
 body {
 	margin: 0px;
 	height: 1500px;
-	width: 2000px;
+	width: 1500px;
 }
 
 header {
+	position: fixed;
 	z-index: 10;
+	width: 100%;
 	height: 105px;
 	background: #1F559F;
 	transition: all 0.4s ease;
@@ -35,6 +37,23 @@ p {
 	margin: 0px;
 }
 
+a.ui-all {
+	cursor: pointer;
+}
+
+li.ui-menu-item:before {
+	content: "•";
+	padding-right: 5px;
+	cursor: pointer;
+}
+
+li.ui-menu-item:hover:before {
+	content: "×";
+	font-size: 12px;
+	color: red;
+	padding-right: 3.8px;
+}
+
 .ui-accordion .ui-accordion-header {
 	margin-top: 0px;
 }
@@ -47,6 +66,10 @@ p {
 	margin-bottom: 1px;
 }
 
+.packageText {
+	float: left;
+}
+
 .leftmostRadio {
 	margin-left: 0px !important;
 }
@@ -57,7 +80,7 @@ p {
 	height: 180px;
 	border-right: thick dotted;
 	border-left: thick dotted;
-    border-bottom: thick dotted;
+   	border-bottom: thick dotted;
 	border-color: #1F559F;
 	transition: all 0.4s ease;
 }
@@ -97,7 +120,10 @@ p {
 #avaloqlogo {
 	display: block;
 	float: left;
-	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 105px;
 	width: 300px;
 }
 
@@ -132,7 +158,8 @@ p {
 	background-size: 20px 20px;
     background-position: 5px 3px; 
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 4px 20px 12px 40px;
+	-webkit-padding-before: 12px;
     transition: width 0.4s ease-in-out;
 }
 
@@ -152,18 +179,14 @@ p {
 	cursor: pointer;
 }
 
-#side {
-	float: left;
-	position: absolute;
-	width: 300px;
-}
-
 #accordionPackage {
-	position: relative;
+	position: absolute;
+	top: 105px;
 	width: 300px;
 }
 
-#accordionPackage.sticky, #results.sticky {
+#accordionPackage.sticky {
+	position: fixed;
 	top: 48px;
 }
 
@@ -172,9 +195,31 @@ p {
 	border-top-width: 4px;
 }
 
+#packageUl {
+	list-style: none;
+}
+
+#packageDownload {
+	height: 35px;
+	width: 200px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;	
+}
+
+#packageDownload:hover {
+	background-color: #1F559F;	
+	color: white;
+}
+
+#packageDownload:active {
+	box-shadow: inset 0px 2px 2px #000000;
+	transition: all 0.1s ease;	
+}
+
 #sidebar {
-	position: relative;
-	height: 70%;
+	position: absolute;
+	top: 105px;
 	width: 300px;
 }
 
@@ -183,11 +228,16 @@ p {
 	top: 48px;
 }
 
+#accordionFilters.ui-accordion .ui-accordion-header {
+	border-top-color: #efc47D;
+	border-top-width: 4px;
+}
+
 #formcontain {
 	float: left;
 	position: relative;
 	width: 100%;
-	max-height: 400px;
+	max-height: 450px;
 	overflow: auto;
 }
 
@@ -255,14 +305,17 @@ p {
 }
 
 #results {
-	position: fixed;
-	margin-left: 300px;
-	width: 70%;
+	position: absolute;
+	top: 105px;
+	left: 300px;
+	width: 61%;
 	min-width: 680px;
+	margin-right: 2px;
 }
 
 #results.sticky {
-	position:absolute;
+	position: absolute;
+	top: 48px;
 }
 
 #resultsinfo {
@@ -353,7 +406,7 @@ p {
 	height: 100px;
 	border-right: thick dotted;
 	border-left: thick dotted;
-    border-bottom: thick dotted;
+   	border-bottom: thick dotted;
 	border-color: grey;
 	transition: all 0.4s ease;
 }
