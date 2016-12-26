@@ -85,7 +85,6 @@ $(document).ready(function(){
 	
 	$( "#accordionPackage" ).accordion({
 		collapsible: true,
-		active: false,
 		heightStyle: "content",
 		autoHeight: false,
         clearStyle: true
@@ -106,6 +105,7 @@ $(document).ready(function(){
 	
 	var packaged = [];
 	var cboxID = [];
+	$('#packageCounter').text(packaged.length);
 	$( ".resultcheckbox" ).each(function(){
 		$(this).prop('checked', false);
 	});
@@ -140,11 +140,6 @@ function updatePackage(packaged, cboxID){
 			.appendTo(li);
 	});
 	$('#packageCounter').text(packaged.length);
-	if(packaged.length == 0){
-		$('#package0Hidden').show();		
-	} else {
-		$('#package0Hidden').hide();		
-	}
 	if(packaged.length < 2){
 		$('#packageSHidden').hide();
 	} else {
