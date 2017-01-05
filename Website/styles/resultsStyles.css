@@ -87,10 +87,10 @@ li.ui-menu-item:hover:before {
 }
 
 .resultcheckboxspan {
-	position: relative;
+	position: absolute;
 	float: left;
-	margin-top: 7%;
-	margin-left: 2%;
+	top: 70px;
+	left: 15px;
 }
 
 .resultcheckbox {
@@ -99,7 +99,7 @@ li.ui-menu-item:hover:before {
 }
 
 .resultdivtitle {
-	margin-left: 7%;
+	margin-left: 60px;
 	font-weight: 900;
 	font-size: 35px;
 	width: 70%;
@@ -107,7 +107,7 @@ li.ui-menu-item:hover:before {
 
 .dateadded {
 	float: left;
-	margin-left: 7%;
+	margin-left: 60px;
 }
 
 .infop, .spaces, .metadata {
@@ -162,6 +162,53 @@ li.ui-menu-item:hover:before {
 .linkicon {
 	height: 30px;
 	width: 30px;
+}
+
+.clearfix {
+	position: relative;
+}
+
+.notifyjs-resetConfirm-base .no {
+	position: absolute;
+	top: 25px;
+	right: 65px;
+}
+
+.notifyjs-resetConfirm-base .yes {
+	position: absolute;
+	top: 25px;
+	right: 2px;
+}
+
+.notifyjs-resetConfirm-base {
+  height: 65px;
+  width: 200px;
+  background: #F5F5F5;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.notifyjs-resetConfirm-base .title {
+	position: absolute;
+	top: 1px;
+  width: 90px;
+  float: left;
+  margin: 0px 0 0 4px;
+  text-align: center;
+}
+
+.notifyjs-resetConfirm-base .buttons {
+  width: 70px;
+  font-size: 9px;
+  padding: 5px;
+  margin: 2px;
+}
+
+.notifyjs-resetConfirm-base button {
+  font-size: 9px;
+  padding: 5px;
+  margin: 2px;
+  width: 60px;
 }
 
 #avaloqlogo {

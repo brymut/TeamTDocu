@@ -60,7 +60,7 @@ $(document).ready(function(){
 		$( "#advancedsearchform" ).submit();
 	});	
 	$( "#reset-adv-b" ).click(function() { 
-		$("#advancedsearchform").trigger("reset");
+
 	});
 	
 	$('#submit-adv-b').mouseover(function () {
@@ -121,6 +121,45 @@ $(document).ready(function(){
 		}
 		updatePackage(packaged, cboxID);
 		packageRedOnHover();
+	});
+	
+	$.notify.addStyle('resetConfirm', {
+	  html: 
+		"<div>" +
+		  "<div class='clearfix'>" +
+			"<div class='title' data-notify-html='title'/>" +
+			"<div class='buttons'>" +
+			  "<button class='no'>Cancel</button>" +
+			  "<button class='yes' data-notify-text='button'></button>" +
+			"</div>" +
+		  "</div>" +
+		"</div>"
+	});
+	$(document).on('click', '.notifyjs-resetConfirm-base .no', function() {
+	  $(this).trigger('notify-hide');
+	});
+	$(document).on('click', '.notifyjs-resetConfirm-base .yes', function() {
+		$("#advancedsearchform").trigger("reset");
+		$(this).trigger('notify-hide');
+	});
+	$('#reset-adv-b').click(function() {
+		$('.notifyjs-resetConfirm-base').trigger('notify-hide');
+		$.notify({
+			title: '<font color="red"><b>Reset</b></font> form?',
+			button: 'Confirm'
+		}, { 
+			style: 'resetConfirm',
+			autoHide: 200,
+			clickToHide: false,
+			position: "left bottom",
+		});
+	});
+
+	$('.downloadicon').click(function() {
+		$.notify("Item has started downloading", { className: "success", autoHideDelay: 1000 });
+	});
+	$('.linkicon').click(function() {
+		$.notify("Link copied to clipboard", { className: "info", autoHideDelay: 1000 });
 	});
 });
 
