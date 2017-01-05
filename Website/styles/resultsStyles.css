@@ -75,6 +75,7 @@ li.ui-menu-item:hover:before {
 }
 
 .resultdiv {
+	position: relative;
 	float: left;
 	width: 99.25%;
 	height: 180px;
@@ -115,6 +116,52 @@ li.ui-menu-item:hover:before {
 
 .text-muted {
 	font-size: 12px;
+}
+
+.previewbutton {
+	position: absolute;
+	padding: 0px 0px 0px 0px;
+	border: 0px 0px 0px 0px;
+	right: 102px;
+	bottom: 12px;
+	height: 45px;
+	width: 45px;
+}
+
+.previewicon {
+	margin-top: 1px;
+	height: 40px;
+	width: 40px;
+}
+
+.downloadbutton {
+	position: absolute;
+	padding: 0px 0px 0px 0px;
+	border: 0px 0px 0px 0px;
+	right: 56px;
+	bottom: 12px;
+	height: 45px;
+	width: 45px;
+}
+
+.downloadicon {
+	height: 30px;
+	width: 30px;
+}
+
+.linkbutton {
+	position: absolute;
+	padding: 0px 0px 0px 0px;
+	border: 0px 0px 0px 0px;
+	right: 10px;
+	bottom: 12px;
+	height: 45px;
+	width: 45px;	
+}
+
+.linkicon {
+	height: 30px;
+	width: 30px;
 }
 
 #avaloqlogo {
@@ -369,34 +416,6 @@ li.ui-menu-item:hover:before {
 #resPrev:active, #resNext:active, #resPrevBot:active, #resNextBot:active {
 	box-shadow: inset 0px 2px 2px #000000;
 	transition: all 0.1s ease;
-}
-
-#previewicon {
-	float: right;
-	position: relative;
-	height: 95px;
-	width: 95px;
-	right: 1.8%;
-	top: 10%;
-}
-
-#downloadicon {
-	float: right;
-	position: relative;
-	height: 70px;
-	width: 70px;
-	right: 1.2%;
-	top: 10%;
-}
-
-#copylinkicon {
-	float: right;
-	position: relative;
-	height: 70px;
-	width: 70px;
-	right: 0%;
-	top: 12%;
-	margin-right: 2%;
 }
 
 #resultsinfobot {

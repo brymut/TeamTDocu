@@ -140,10 +140,10 @@ function updatePackage(packaged, cboxID){
 			.appendTo(li);
 	});
 	$('#packageCounter').text(packaged.length);
-	if(packaged.length < 2){
-		$('#packageSHidden').hide();
+	if(packaged.length == 0 || packaged.length > 1){
+		$('#packageSHidden').show();
 	} else {
-		$('#packageSHidden').show();		
+		$('#packageSHidden').hide();		
 	}
 	removeFromPackage();
 }
