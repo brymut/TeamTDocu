@@ -4,6 +4,10 @@ body {
 	width: 1500px;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
 header {
 	position: fixed;
 	z-index: 10;
@@ -20,6 +24,11 @@ header.sticky {
 	width: 100%;
 	background: #efc47D;
 	padding-left: 20px;
+}
+
+hr {
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 label {
@@ -209,6 +218,11 @@ li.ui-menu-item:hover:before {
   padding: 5px;
   margin: 2px;
   width: 60px;
+}
+
+.pagination {
+	margin-top: 0px; 
+	float: left;
 }
 
 #avaloqlogo {

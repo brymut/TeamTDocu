@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="styles/resultsStyles.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 		<script src="scripts/resultsScripts.js"></script>
 		<title>Results - Avaloq Search</title>
@@ -183,7 +184,7 @@
 					<h3 id="title1" class="resultdivtitle">Financial trends in 2017</h3>
 					<p id="date1" class="dateadded">Added: 01.03.2016</p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
 					<p id="metadata1" class="metadata">More metadata here...</p>
-					<button class="previewbutton btn btn-sq-sm btn-danger" type="button"><img class="previewicon" src="static/icons/previewicon.png"></button>
+					<button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="static/icons/previewicon.png"></button>
 					<button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="static/icons/downloadicon.png"></button>
 					<button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="static/icons/linkicon.png"></button>
 				</div>
@@ -192,7 +193,7 @@
 					<h3 id="resultdiv2" class="resultdivtitle">Stock year in summary</h3>
 					<p id="date2" class="dateadded">Added: 10.12.2013</p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
 					<p id="metadata2" class="metadata">More metadata here...</p>
-					<button class="previewbutton btn btn-sq-sm btn-danger" type="button"><img class="previewicon" src="static/icons/previewicon.png"></button>
+					<button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="static/icons/previewicon.png"></button>
 					<button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="static/icons/downloadicon.png"></button>
 					<button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="static/icons/linkicon.png"></button>
 				</div>
@@ -224,6 +225,37 @@
 				<p class="packageText" id="packageSHidden">s&nbsp;</p>
 				<p class="packageText">for download.</p>
 				<button id="packageDownload">Download as package</button>
+			</div>
+		</div>
+		<div class="modal fade" id="excerptModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Modal Header</h4>
+					</div>
+					<div>
+						<hr/><div id="modalBody1" class="modal-body">
+							<p>Excerpts go here.</p>
+						</div><hr/>
+						<div id="modalBody2" class="modal-body">
+							<p>Excerpts go here.</p>
+						</div><hr/>
+						<div id="modalBody3" class="modal-body">
+							<p>Excerpts go here.</p>
+						</div><hr/>
+					</div>
+					<div class="modal-footer">
+						<ul class="pagination">
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+						</ul>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

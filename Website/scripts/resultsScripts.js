@@ -1,4 +1,10 @@
 $(document).ready(function(){
+	
+	$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+	});
+	
 	$('#accordionPackage').css("left", $('#results').width() + $('#sidebar').width() - 6);
 	var accPckgLeft = $("#accordionPackage").css("left").slice(0,-2);
 	
@@ -155,11 +161,15 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.downloadicon').click(function() {
-		$.notify("Item has started downloading", { className: "success", autoHideDelay: 1000 });
+	$('.downloadbutton').click(function() {
+		$.notify("Item has started downloading", { className: "success", autoHideDelay: 1000, position: "right bottom" });
 	});
-	$('.linkicon').click(function() {
-		$.notify("Link copied to clipboard", { className: "info", autoHideDelay: 1000 });
+	$('.linkbutton').click(function() {
+		$.notify("Link copied to clipboard", { className: "info", autoHideDelay: 1000, position: "right bottom" });
+	});
+	
+	$('.previewbutton').click(function () { 
+		$('.modal-title').text($($(this).closest("div").children("h3")[0]).text());
 	});
 });
 
