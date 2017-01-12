@@ -12,6 +12,7 @@ namespace AvaloqDocu.Models
         public int DocumentId { get; set; }
         public string Title { get; set; }
         public string FilePath { get; set; }
+        public string Description { get; set; }
         public DateTime UploadDate { get; set; }
     }
 }
