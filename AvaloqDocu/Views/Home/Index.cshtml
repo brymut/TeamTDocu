@@ -1,35 +1,183 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Avaloq Search - Welcome";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div id="mainsearch">
+    <img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></img>
+    <form id="searchboxform" autocomplete="off">
+        <input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search.."><input type="submit" id="submitbutton" value="">
+    </form>
+    <button id="advancedsearchbutton">Advanced Search</button>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<form id="advancedsearchform" autocomplete="off">
+    <div id="advanced-container" class="hideme container form-group">
+        <div class="row">
+            <label for="titleboxtext">Title / Subtitle / Keywords</label>
+        </div>
+        <div id="1" class="row">
+            <div class="input-group w90">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <input class="form-control" id="titleboxtext" type="text">
+                </div>
+                <span class="input-group-addon"><input type="checkbox" id="titlecheckbox"></span>
+            </div>
+            <label id="titleonly" class="form-text text-muted" for="titlecheckbox">title only</label>
+        </div>
+        <div id="2" class="row">
+            <div class="input-group w90">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="" for="docuidboxtext">Docu ID</label><p id="dots">(...)</p>
+                    <input class="form-control" id="docuidboxtext" type="text">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="" for="releasedd">Release</label>
+                    <select class="form-control" id="releasedd" name="release">
+                        <option value="0">-------------------------------</option>
+                        <option value="4">4.0</option>
+                        <option value="3">3.0</option>
+                        <option value="2">2.0</option>
+                        <option value="1">1.0</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="3" class="row m-top-10">
+            <div class="input-group w90">
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <label class="" for="funcareamultiple">Functional Area</label>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <label for="languagemultiple">Language</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group w90">
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <select class="form-control" id="funcareamultiple" name="funcarea" multiple>
+                        <option value="0">.......Avaloq Banking System.......</option>
+                        <option value="1">Accounting and Position Keeping</option>
+                        <option value="2">AFP Front Office</option>
+                        <option value="3">AFP Mobile</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <select class="form-control" id="languagemultiple" name="language" multiple>
+                        <option value="0">English</option>
+                        <option value="1">German</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="4" class="row m-top-10">
+            <div class="input-group w90">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="" for="docutypeform">Docu Type</label>
+                    <select class="form-control" id="docutypedd" name="docutype">
+                        <option value="0">-------------------------------</option>
+                        <option value="1">PDF</option>
+                        <option value="2">HTML</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label for="subtypeform">Subtype</label>
+                    <select class="form-control" id="subtypedd" name="subtype">
+                        <option value="0">-------------------------------</option>
+                        <option value="1">Team 1</option>
+                        <option value="2">Team 2</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="5" class="row m-top-10">
+            <div class="input-group w90">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="" for="clientdd">Client</label>
+                    <select class="form-control" id="clientdd" name="client">
+                        <option value="0">Client Independent</option>
+                        <option value="1">Client 2</option>
+                        <option value="2">Client 3</option>
+                        <option value="3">Client 4</option>
+                    </select>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label class="" for="docustatusmultiple">Docu Status</label>
+                    <select class="form-control" id="docustatusmultiple" name="docustatus" multiple>
+                        <option value="0">Dereleased</option>
+                        <option value="1">Planned</option>
+                        <option value="2">Published</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="6" class="row m-top-10">
+            <div class="input-group w90">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <label for="lastmodified">Last Modified</label>
+                    <p>From</p>
+                    <input class="form-control" type="text" id="from-date-input">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <p>&nbsp;</p>
+                    <p>To</p>
+                    <input class="form-control" type="text" id="to-date-input">
+                </div>
+            </div>
+        </div>
+        <div class="row m-top-10">
+            <label class="" for="titleboxtext">Order by</label>
+        </div>
+        <div id="7" class="row">
+            <div class="input-group w90">
+                <select class="form-control" id="orderbydd" name="orderby">
+                    <option value="0">Title</option>
+                    <option value="1">User Added</option>
+                    <option value="2">Date Added</option>
+                    <option value="3">Last Edited</option>
+                </select>
+                <span class="input-group-addon"><input type="checkbox" id="desccheckbox"></span>
+            </div>
+            <label id="desc" class="form-text text-muted" for="desccheckbox">desc.</label>
+        </div>
+        <div id="8" class="row">
+            <div class="input-group w90">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <br />
+                    <input class="form-check-input" type="radio" name="source"><label>External</label><br />
+                    <input class="form-check-input" type="radio" name="source"><label>Internal</label><br />
+                    <input class="form-check-input" type="radio" name="source"><label>All</label>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pad-l-5">
+                    <br />
+                    <input class="form-check-input" type="radio" name="draft"><label>Draft Only</label><br />
+                    <input class="form-check-input" type="radio" name="draft"><label>All</label>
+                </div>
+                <div id="resetDiv" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <button class="hideme" id="reset-adv-b" type="button"></button>
+                </div>
+                <div id="submitDiv" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <button class="hideme" id="submit-adv-b" type="submit"></button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+</form>
+<div>
+    <button class="hideme" id="backToSimple"></button>
+</div>
+<div id="footer">
+    <img class="hideme" id="avaloqinverted" src="~/Content/Logos/avaloqinverted.jpg"></img>
 </div>
 
 @section scripts{
-    @Scripts.Render("~/Content/scripts/TestApi.js")
+    @Scripts.Render("~/Content/Scripts/jquery.min.js")
+    @Scripts.Render("~/Content/Scripts/jquery-ui.min.js")
+    @Scripts.Render("~/Content/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Content/Scripts/indexScripts.js")
+}
+
+@section styles{
+    @Styles.Render("~/Content/Styles/bootstrap.min.css")
+    @Styles.Render("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
+    @Styles.Render("~/Content/Styles/indexStyles.css")    
 }
