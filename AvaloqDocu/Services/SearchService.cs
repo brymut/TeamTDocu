@@ -13,14 +13,14 @@ namespace AvaloqDocu.Services
 
         private IElasticClient client;
 
-        public SearchResult FullTextSearch(string query) ///*int page, int pageSize*/)
+        public SearchResultPTO FullTextSearch(string query) ///*int page, int pageSize*/)
         {
 
             // client to interact with elasticSearch
             client = ElasticSearchConfig.GetClient();
 
             // query to run against the Author, Title and name field
-            var result = client.Search<Document>(x => x
+            var result = client.Search<ResultPTO>(x => x
                             .Query(q => q
                             .MultiMatch(mp => mp
                             .Query(query)
@@ -31,7 +31,7 @@ namespace AvaloqDocu.Services
 
             // return a result object containing resulting documents from Query along with some more
             // information about the query
-            return new SearchResult
+            return new SearchResultPTO
             {
                 Total = (int)result.Total,
                 //Page = Page,

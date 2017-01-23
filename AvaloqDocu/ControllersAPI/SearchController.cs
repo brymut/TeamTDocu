@@ -15,7 +15,7 @@ namespace AvaloqDocu.ControllersAPI
     {
         [HttpGet]
         [Route("GetFreeTextSearch")]
-        public SearchResult GetFreeTextSearchResults(string query)
+        public SearchResultPTO GetFreeTextSearchResults(string query)
         {
             var ss = new SearchService();
             return ss.FullTextSearch(query);
