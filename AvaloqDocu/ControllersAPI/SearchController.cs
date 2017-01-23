@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using AvaloqDocu.PresentationTransferObjects;
 using AvaloqDocu.Services;
+using AvaloqDocu.Models;
 
 namespace AvaloqDocu.ControllersAPI
 {
@@ -14,7 +15,7 @@ namespace AvaloqDocu.ControllersAPI
     {
         [HttpGet]
         [Route("GetFreeTextSearch")]
-        public IEnumerable<ResultPTO> GetFreeTextSearchResults(string query)
+        public SearchResult GetFreeTextSearchResults(string query)
         {
             var ss = new SearchService();
             return ss.FullTextSearch(query);
