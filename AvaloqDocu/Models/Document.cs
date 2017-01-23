@@ -16,6 +16,6 @@ namespace AvaloqDocu.Models
         //public string  FileName { get; set; }
         //public string Description { get; set; }
         //public DateTime UploadDate { get; set; }
-        public DateTime creation_date { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }
