@@ -15,10 +15,10 @@ namespace AvaloqDocu.ControllersAPI
     {
         [HttpGet]
         [Route("GetFreeTextSearch")]
-        public SearchResultPTO GetFreeTextSearchResults(string query)
+        public SearchResultPTO GetFreeTextSearchResults(string query, int page = 10, int pageSize = 10)
         {
             var ss = new SearchService();
-            return ss.FullTextSearch(query);
+            return ss.FullTextSearch(query, page, pageSize);
         }
 
         [HttpGet]

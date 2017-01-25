@@ -14,6 +14,8 @@ namespace AvaloqDocu.Models
         // switch back to using ResultPTO later on..
         public IEnumerable<Document> Results { get; set; }
         public long QueryTime { get; set; }
+        // current page, used for pagination
+        public int Page { get; set; }
 
     }
 }
