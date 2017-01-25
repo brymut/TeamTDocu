@@ -20,7 +20,7 @@ namespace AvaloqDocu.Services
             client = ElasticSearchConfig.GetClient();
 
             // query to run against the Author, Title and name field
-            var result = client.Search<ResultPTO>(x => x
+            var result = client.Search<Document>(x => x
                             .Query(q => q
                             .MultiMatch(mp => mp
                             .Query(query)
