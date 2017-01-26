@@ -83,10 +83,32 @@ label, p {
   width: 60px;
 }
 
-#avaloqlogo {
-	position: relative;
-	width: 581px;
-	height: 203px;
+.container { 
+  width: 100%;
+  height: 100%;
+  perspective: 800px;
+}
+
+#card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+#card div {
+  backface-visibility: hidden;
+}
+
+#card .front {
+}
+
+#card .back {
+  transform: rotateY( 180deg );
+}
+
+#card.flipped {
+  transform: rotateY( 180deg );
 }
 
 #mainsearch {
@@ -94,6 +116,37 @@ label, p {
 	top: 25vh;
 	left: 25vw;
 	width: 800px;
+}
+
+#toUpload {
+	position: fixed;
+    top: 50px;
+    right: 2px;
+	width: 110px;
+	height: 35px;
+    padding-left: 20px;
+	background-image: url('../Icons/submiticon.ico');
+	background-position: 2px 3px;
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+#submitbutton:hover, #backToSimple:hover {
+	background-color: #1F559F;
+}
+
+#submitbutton:active, #advancedsearchbutton:active, #backToSimple:active, #submit-adv-b:active {
+	box-shadow: inset 0px 2px 2px #000000;
+	transition: all 0.1s ease;
+}
+
+#avaloqlogo {
+	position: relative;
+	width: 581px;
+	height: 203px;
 }
 
 #searchboxtext {

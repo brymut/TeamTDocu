@@ -1,4 +1,14 @@
 ﻿$(document).ready(function () {
+    $('.cardFlip').click(function () {
+        $('#card').toggleClass('flipped');
+    });
+
+    $('#toUpload').hover(function () {
+        $('#toUpload').css('background-color', '#ffffff');
+    }, function () {
+        $('#toUpload').css('background-color', 'rgba(255, 255, 255, 0.9)');
+    });
+
     // Code to center main search div on load
     var newWidthMain = ($(window).width() - $('#mainsearch').width()) / 2;
     if (newWidthMain <= 0) {

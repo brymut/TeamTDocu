@@ -1,14 +1,19 @@
 ﻿@{
     ViewBag.Title = "Avaloq Search - Welcome";
 }
-
-<div id="mainsearch">
-    <img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></img>
-    <form id="searchboxform" action="/Search" autocomplete="off">
-        <input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search.."><button id="submitbutton" type="submit" form="searchboxform"></button>
-    </form>
-    <button id="advancedsearchbutton">Advanced Search</button>
-</div>
+<section class="flipContain">
+    <div id="card">
+        <div id="mainsearch" class="front">
+            <button id="toUpload" class="cardFlip">Upload files</button>
+            <img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></img>
+            <form id="searchboxform" action="/Search" autocomplete="off">
+                <input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search.."><button id="submitbutton" type="submit" form="searchboxform"></button>
+            </form>
+            <button id="advancedsearchbutton">Advanced Search</button>
+        </div>
+        <div class="back"><button id="uploadToSearch" class="cardFlip">Back to search</button></div>
+    </div>
+</section>
 <form id="advancedsearchform" action="/Search" autocomplete="off">
     <div id="advanced-container" class="hideme container form-group">
         <div class="row">
