@@ -4,12 +4,12 @@
 
 <div id="mainsearch">
     <img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></img>
-    <form id="searchboxform" autocomplete="off">
-        <input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search.."><input type="submit" id="submitbutton" value="">
+    <form id="searchboxform" action="/Search" autocomplete="off">
+        <input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search.."><button id="submitbutton" type="submit" form="searchboxform"></button>
     </form>
     <button id="advancedsearchbutton">Advanced Search</button>
 </div>
-<form id="advancedsearchform" autocomplete="off">
+<form id="advancedsearchform" action="/Search" autocomplete="off">
     <div id="advanced-container" class="hideme container form-group">
         <div class="row">
             <label for="titleboxtext">Title / Subtitle / Keywords</label>

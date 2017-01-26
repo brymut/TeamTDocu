@@ -35,6 +35,8 @@
         $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
     });
 
+
+
     $('#footer').css('top', screen.height - $('#footer').height() - 120);
     $('#footer').css('left', screen.width - $('#footer').width());
 
