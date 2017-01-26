@@ -13,7 +13,7 @@ namespace AvaloqDocu.Services
 
         private IElasticClient client;
 
-        public SearchResultPTO FullTextSearch(string query, int page = 10, int pageSize = 10) ///*int page, int pageSize*/)
+        public SearchResultPTO FullTextSearch(string query, int page = 1, int pageSize = 10) ///*int page, int pageSize*/)
         {
 
             // client to interact with elasticSearch
