@@ -61,20 +61,22 @@
 
     // Code to switch to advanced search mode
     $('#advancedsearchbutton').click(function () {
-        $("body").css("background-color", "white");
-        $("#mainsearch").slideUp(150);
-        $('#advanced-container').fadeIn();
-        $('#avaloqinverted').show("slide", { direction: "left" }, 350);
-        $('.hideme').fadeIn(25);
+        $("body").animate({"background-color": "white"}, 1);
+        $("#mainsearch").slideUp(50);
+        $('#advanced-container').slideUp(100);
+        $('#avaloqinverted').show("slide", { direction: "left" }, 600);
+        $('.hideme').fadeIn(100);
         $('.hideme').css("display", "unset");
     });
 
     // Code to switch to main search mode
     $('#backToSimple').click(function () {
-        $("body").css("background-color", "#1F559F");
-        $('.hideme').hide();
-        $("#mainsearch").slideDown();
-        $('#avaloqinverted').hide(20);;
+        $('#avaloqinverted').promise().done(function(){
+            $("body").css("background-color", "#1F559F");
+            $('.hideme').hide();
+            $("#mainsearch").slideDown();
+            $('#avaloqinverted').hide(20);
+        });
     });
 
     // Code for the Reset and Submit effects
