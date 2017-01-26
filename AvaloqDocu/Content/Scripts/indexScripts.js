@@ -1,4 +1,5 @@
-﻿$(document).ready(function(){
+﻿$(document).ready(function () {
+    // Code to center main search div on load
     var newWidthMain = ($(window).width() - $('#mainsearch').width()) / 2;
     if (newWidthMain <= 0) {
         $('#mainsearch').css('left', '20px');
@@ -6,6 +7,7 @@
         $('#mainsearch').css('left', newWidthMain + 'px');
     }
 
+    // Code to center main search div on page resize
     $(window).resize(function () {
         newWidthMain = ($(window).width() - $('#mainsearch').width()) / 2;
         if (newWidthMain <= 0) {
@@ -15,6 +17,7 @@
         }
     });
 
+    // Code to center advanced search div on load
     var newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2;
     if (newWidthAdv <= 0) {
         $('#advanced-container').css('left', '20px');
@@ -22,6 +25,7 @@
         $('#advanced-container').css('left', newWidthAdv + 'px');
     }
 
+    // Code to center advanced search div on page resize
     $(window).resize(function () {
         newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2;
         if (newWidthAdv <= 0) {
@@ -30,22 +34,22 @@
             $('#advanced-container').css('left', newWidthAdv + 'px');
         }
     });
+
+    // Code to position the back to main search button
     $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
     $(window).resize(function () {
         $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
     });
 
-
-
+    // Code for the footer image in advanced search mode
     $('#footer').css('top', screen.height - $('#footer').height() - 120);
     $('#footer').css('left', screen.width - $('#footer').width());
 
-    $("#submitbutton").mousedown(function () { $("#searchboxform").submit(); });
-
+    // Tweaks for some of the fields
     $('.options').buttonset();
-
     $('#from-date-input, #to-date-input').datepicker({ dateFormat: 'yy-mm-dd' });
 
+    // Code to switch to advanced search mode
     $('#advancedsearchbutton').click(function () {
         $("body").css("background-color", "white");
         $("#mainsearch").slideUp(150);
@@ -55,6 +59,7 @@
         $('.hideme').css("display", "unset");
     });
 
+    // Code to switch to main search mode
     $('#backToSimple').click(function () {
         $("body").css("background-color", "#1F559F");
         $('.hideme').hide();
@@ -62,10 +67,7 @@
         $('#avaloqinverted').hide(20);;
     });
 
-    $("#reset-adv-b").click(function () {
-        $("#advancedsearchform").trigger("reset");
-    });
-
+    // Code for the Reset and Submit effects
     $('#submit-adv-b').mouseover(function () {
         $('#submit-adv-b').text("Sumbit");
     });
@@ -79,10 +81,44 @@
         $('#reset-adv-b').text("");
     });
 
-    $('#searchboxtext').keyup(function () {
+    // Notification settings and code via Notify JS
+    $.notify.addStyle('resetConfirm', {
+        html:
+          "<div>" +
+            "<div class='clearfix'>" +
+              "<div class='title' data-notify-html='title'/>" +
+              "<div class='buttons'>" +
+                "<button class='no'>Cancel</button>" +
+                "<button class='yes' data-notify-text='button'></button>" +
+              "</div>" +
+            "</div>" +
+          "</div>"
+    });
+    $(document).on('click', '.notifyjs-resetConfirm-base .no', function () {
+        $(this).trigger('notify-hide');
+    });
+    $(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {
+        $("#advancedsearchform").trigger("reset");
+        $(this).trigger('notify-hide');
+    });
+    $('#reset-adv-b').click(function () {
+        $('.notifyjs-resetConfirm-base').trigger('notify-hide');
+        $.notify({
+            title: '<font color="red"><b>Reset</b></font> form?',
+            button: 'Confirm'
+        }, {
+            style: 'resetConfirm',
+            autoHide: 200,
+            clickToHide: false,
+            position: "left bottom",
+        });
+    });
+
+    // Synchronize main search and advanced search fields
+    $('#searchboxtext').change(function () {
         $('#titleboxtext').val($('#searchboxtext').val());
     });
-    $('#titleboxtext').keyup(function () {
+    $('#titleboxtext').change(function () {
         $('#searchboxtext').val($('#titleboxtext').val());
     });
 });
