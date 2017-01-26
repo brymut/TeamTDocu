@@ -11,7 +11,49 @@
             </form>
             <button id="advancedsearchbutton">Advanced Search</button>
         </div>
-        <div class="back"><button id="uploadToSearch" class="cardFlip">Back to search</button></div>
+        <div class="back">
+            <div id="uploadDiv">
+                <button id="uploadToSearch" class="cardFlip">Back to search</button>
+                <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+                    <noscript>&lt;input type="hidden" name="redirect" value="/Index"&gt;</noscript>
+                    <div class="row fileupload-buttonbar">
+                        <div class="col-lg-7">
+                            <span class="btn btn-success fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Add files...</span>
+                                <input type="file" name="files[]" multiple="">
+                            </span><br/>
+                            <button type="submit" class="btn btn-primary start">
+                                <i class="glyphicon glyphicon-upload"></i>
+                                <span>Start upload</span>
+                            </button>
+                            <button type="reset" class="btn btn-warning cancel">
+                                <i class="glyphicon glyphicon-ban-circle"></i>
+                                <span>Cancel upload</span>
+                            </button>
+                            <button type="button" class="btn btn-danger delete">
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <span>Delete</span>
+                            </button>
+                            <input type="checkbox" class="toggle">
+                            <!-- The global file processing state -->
+                            <span class="fileupload-process"></span>
+                        </div>
+                        <!-- The global progress state -->
+                        <div class="col-lg-5 fileupload-progress fade">
+                            <!-- The global progress bar -->
+                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                            </div>
+                            <!-- The extended global progress state -->
+                            <div class="progress-extended">&nbsp;</div>
+                        </div>
+                    </div>
+                    <!-- The table listing the files available for upload/download -->
+                    <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 <form id="advancedsearchform" action="/Search" autocomplete="off">
@@ -177,13 +219,13 @@
 @section scripts{
     @Scripts.Render("~/Content/Scripts/jquery.min.js")
     @Scripts.Render("~/Content/Scripts/jquery-ui.min.js")
-    @Scripts.Render("~/Content/Scripts/bootstrap.min.js")
+    @Scripts.Render("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
     @Scripts.Render("~/Content/Scripts/notify.min.js")
     @Scripts.Render("~/Content/Scripts/indexScripts.js")
 }
 
 @section styles{
-    @Styles.Render("~/Content/Styles/bootstrap.min.css")
+    @Styles.Render("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     @Styles.Render("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
     @Styles.Render("~/Content/Styles/indexStyles.css")    
 }

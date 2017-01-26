@@ -3,8 +3,8 @@
 }
 
 <header>
-    <a href="index.html"><img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></a>
-    <a href="index.html"><img id="avaloqicon" src="~/Content/Icons/logoicon.ico"></a>
+    <a href="/"><img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></a>
+    <a href="/"><img id="avaloqicon" src="~/Content/Icons/logoicon.ico"></a>
     <div id="searchDiv">
         <form id="searchboxform" autocomplete="off">
             <input id="searchbox" type="text" name="search" placeholder="Type in your Avaloq search..">
@@ -251,13 +251,13 @@
 @section scripts{
     @Scripts.Render("~/Content/Scripts/jquery.min.js")
     @Scripts.Render("~/Content/Scripts/jquery-ui.min.js")
-    @Scripts.Render("~/Content/Scripts/bootstrap.min.js")
+    @Scripts.Render("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
     @Scripts.Render("~/Content/Scripts/notify.min.js")
     @Scripts.Render("~/Content/Scripts/resultsScripts.js")
 }
 
 @section styles{
-    @Styles.Render("~/Content/Styles/bootstrap.min.css")
+    @Styles.Render("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     @Styles.Render("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
     @Styles.Render("~/Content/Styles/resultsStyles.css")
 }
