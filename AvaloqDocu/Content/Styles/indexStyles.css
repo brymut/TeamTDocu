@@ -134,13 +134,20 @@ label, p {
 	cursor: pointer;
 }
 
-#submitbutton:hover, #backToSimple:hover {
-	background-color: #1F559F;
-}
-
-#submitbutton:active, #advancedsearchbutton:active, #backToSimple:active, #submit-adv-b:active {
-	box-shadow: inset 0px 2px 2px #000000;
-	transition: all 0.1s ease;
+#uploadToSearch {
+	position: fixed;
+    top: 50px;
+    left: 2px;
+	width: 130px;
+	height: 35px;
+    padding-right: 20px;
+	background-image: url('../Icons/submiticoninv.ico');
+	background-position: 100px 3px;
+	background-repeat: no-repeat;
+	background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 2px;
+	cursor: pointer;
 }
 
 #avaloqlogo {

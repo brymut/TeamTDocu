@@ -1,12 +1,14 @@
 ﻿$(document).ready(function () {
+    // Code to swap between search and upload views
     $('.cardFlip').click(function () {
         $('#card').toggleClass('flipped');
     });
 
-    $('#toUpload').hover(function () {
-        $('#toUpload').css('background-color', '#ffffff');
+    // Code for view switch button transparency
+    $('#toUpload, #uploadToSearch').hover(function () {
+        $('#toUpload, #uploadToSearch').css('background-color', '#ffffff');
     }, function () {
-        $('#toUpload').css('background-color', 'rgba(255, 255, 255, 0.9)');
+        $('#toUpload, #uploadToSearch').css('background-color', 'rgba(255, 255, 255, 0.9)');
     });
 
     // Code to center main search div on load
