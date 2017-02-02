@@ -8,8 +8,8 @@
         <a href="/"><img id="avaloqicon" src="~/Content/Icons/logoicon.ico"></a>
         <div id="searchDiv">
             <form id="searchboxform" autocomplete="off">
-                <input id="searchbox" type="text" name="search" placeholder="Type in your Avaloq search..">
-                <input type="submit" id="searchsubmit" value="">
+                <input id="searchbox" data-bind="value: query" type="text" name="search" placeholder="Type in your Avaloq search..">
+                <input data-bind="click: updateQuery" type="submit" id="searchsubmit" value="">
             </form>
         </div>
     </header>
@@ -159,17 +159,27 @@
         <div id="resultsinfo">
             <span id="infospan">
                 <p class="infop">Search for&nbsp;"</p>
-                <p class="infop" id="term">finance</p>
+                <p data-bind="text: query" class="infop" id="term"></p>
                 <p class="infop">"&nbsp;took&nbsp;</p>
-                <p class="infop" id="searchtime">52</p>
+                <p data-bind="text: queryTime" class="infop" id="searchtime"></p>
                 <p class="infop">&nbsp;milliseconds.</p>
             </span>
-            <span id="resPageSpan"><p class="infop">Page&nbsp;</p><p class="infop" id="pageNum">1</p><p class="infop">&nbsp;of&nbsp;</p><p class="infop" id="totalPage">1</p></span>
-            <button id="resPrev">Previous</button>
-            <button id="resNext">Next</button>
+            <span id="resPageSpan"><p class="infop">Page&nbsp;</p><p data-bind="text: page" class="infop" id="pageNum"></p><p class="infop">&nbsp;of&nbsp;</p><p data-bind="text: pages" class="infop" id="totalPage"></p></span>
+            <button data-bind="visible: page() > 1, click: prev" id="resPrev">Previous</button>
+            <button data-bind="visible: page() < pages(), click: next" id="resNext">Next</button>
         </div>
         <form id="packageform" autocomplete="off">
-            <div id="firstRes" class="resultdiv">
+            <!-- ko foreach: results -->
+                <div class="resultdiv">
+                    <span class="resultcheckboxspan"><input id="cb1" class="resultcheckbox" value="package" type="checkbox" /></span>
+                    <h3 class="resultdivtitle" data-bind="text: Title"></h3>
+                    <p class="dateadded" data-bind="text: $root.formatDate(UploadDate)"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+                    <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
+                    <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
+                    <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
+                </div>
+            <!-- /ko -->
+            @*<div id="firstRes" class="resultdiv">
                 <span class="resultcheckboxspan"><input id="cb1" class="resultcheckbox" value="package" type="checkbox"></span>
                 <h3 id="title1" class="resultdivtitle">Financial trends in 2017</h3>
                 <p id="date1" class="dateadded">Added: 01.03.2016</p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
@@ -190,19 +200,19 @@
             <div class="resultdiv">
             </div>
             <div class="resultdiv">
-            </div>
+            </div>*@
         </form>
         <div id="resultsinfobot">
             <span id="infospanbot">
                 <p class="infop">Search for&nbsp;"</p>
-                <p class="infop" id="term">finance</p>
+                <p data-bind="text: query" class="infop" id="term"></p>
                 <p class="infop">"&nbsp;took&nbsp;</p>
-                <p class="infop" id="searchtime">52</p>
+                <p data-bind="text: queryTime" class="infop" id="searchtime"></p>
                 <p class="infop">&nbsp;milliseconds.</p>
             </span>
-            <span id="resPageSpanBot"><p class="infop">Page&nbsp;</p><p class="infop" id="pageNum">1</p><p class="infop">&nbsp;of&nbsp;</p><p class="infop" id="totalPage">1</p></span>
-            <button id="resPrevBot">Previous</button>
-            <button id="resNextBot">Next</button>
+            <span id="resPageSpanBot"><p class="infop">Page&nbsp;</p><p data-bind="text: page" class="infop" id="pageNum"></p><p class="infop">&nbsp;of&nbsp;</p><p data-bind="text: pages" class="infop" id="totalPage"></p></span>
+            <button data-bind="visible: page() > 1, click: prev" id="resPrev">Previous</button>
+            <button data-bind="visible: page() < pages(), click: next" id="resNext">Next</button>
         </div>
     </div>
     <div id="accordionPackage">
