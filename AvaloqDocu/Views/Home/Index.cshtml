@@ -6,8 +6,8 @@
         <div id="mainsearch" class="front">
             <button id="toUpload" class="cardFlip">Upload files</button>
             <img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></img>
-            <form id="searchboxform" action="/Search" autocomplete="off">
-                <input id="searchboxtext" type="text" name="search" placeholder="Type in your Avaloq search.."><button id="submitbutton" type="submit" form="searchboxform"></button>
+            <form id="searchboxform" autocomplete="off">
+                <input id="searchboxtext" type="text" data-bind="value: query" name="search" placeholder="Type in your Avaloq search..">@*<input type="submit" id="submitbutton" value="">*@<button id="submitbutton" data-bind="click: search"></button>
             </form>
             <button id="advancedsearchbutton">Advanced Search</button>
         </div>
@@ -222,6 +222,7 @@
     @Scripts.Render("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
     @Scripts.Render("~/Content/Scripts/notify.min.js")
     @Scripts.Render("~/Content/Scripts/indexScripts.js")
+    @Scripts.Render("~/Content/Scripts/home.js")
 }
 
 @section styles{

@@ -193,6 +193,8 @@
     <Content Include="Content\Scripts\jquery-ui.min.js" />
     <Content Include="Content\Scripts\notify.min.js" />
     <Content Include="Content\Scripts\resultsScripts.js" />
+	<Content Include="Content\Scripts\home.js" />
+	<Content Include="Content\Scripts\search.js" />
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\Styles\indexStyles.css" />
     <Content Include="Content\Styles\jquery-ui.css" />
