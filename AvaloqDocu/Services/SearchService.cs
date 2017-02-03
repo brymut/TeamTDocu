@@ -26,7 +26,7 @@ namespace AvaloqDocu.Services
                                     .Query(query)
                                         .Fields(f => f
                                             .Fields(f1 => f1.Author, f2 => f2.Title))))
-                            .From(page - 1)           //pagination options
+                            .From(page * pageSize)           //pagination options
                             .Size(pageSize));
 
             // return a result object containing resulting documents from Query along with some more
