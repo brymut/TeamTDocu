@@ -60,6 +60,7 @@
     <div id="advanced-container" class="hideme container form-group">
         <div class="row">
             <label for="titleboxtext">Title / Subtitle / Keywords</label>
+            <label id="titleonly" for="titlecheckbox" class="form-text text-muted">title only</label>
         </div>
         <div id="1" class="row">
             <div class="input-group w90">
@@ -68,9 +69,8 @@
                 </div>
                 <span class="input-group-addon"><input type="checkbox" id="titlecheckbox"></span>
             </div>
-            <label id="titleonly" class="form-text text-muted" for="titlecheckbox">title only</label>
         </div>
-        <div id="2" class="row">
+        <div id="2" class="row m-top-10">
             <div class="input-group w90">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pad-r-5">
                     <label class="" for="docuidboxtext">Docu ID</label>
@@ -92,12 +92,6 @@
             <div class="input-group w90">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label class="" for="funcareamultiple">Functional Area</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-group w90">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <select class="form-control" id="funcareamultiple" name="funcarea" multiple>
                         <option value="0">.......Avaloq Banking System.......</option>
                         <option value="1">Accounting and Position Keeping</option>
@@ -129,11 +123,6 @@
         </div>
         <div id="5" class="row m-top-10">
             <div class="input-group w90">
-
-            </div>
-        </div>
-        <div id="6" class="row m-top-10">
-            <div class="input-group w90">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pad-r-5">
                     <label for="lastmodified">Last Modified</label>
                     <p>From</p>
@@ -144,11 +133,21 @@
                     <p>To</p>
                     <input class="form-control" type="text" id="to-date-input">
                 </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 m-top-10">
+                    <input class="form-check-input" type="radio" name="dateRadio" value="0"><label>Custom Date</label>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 m-top-10">
+                    <input class="form-check-input" type="radio" name="dateRadio" value="1"><label>Last Week</label>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 m-top-10">
+                    <input class="form-check-input" type="radio" name="dateRadio" value="2"><label>Last Month</label>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 m-top-10">
+                    <input class="form-check-input" type="radio" name="dateRadio" value="3"><label>Last Year</label>
+                </div>
             </div>
         </div>
-        <div id="7" class="row">
-        </div>
-        <div id="8" class="row">
+        <div id="6" class="row">
             <div class="input-group w90">
                 <div id="resetDiv" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <button class="hideme" id="reset-adv-b" type="button"></button>

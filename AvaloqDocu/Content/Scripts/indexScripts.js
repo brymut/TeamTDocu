@@ -1,4 +1,61 @@
 ﻿$(document).ready(function () {
+    $('input[type=radio][name=dateRadio]').change(function () {
+        var dateVal = $('input[name="dateRadio"]:checked').val();
+        if (dateVal != 0) {
+            $('#from-date-input, #to-date-input').prop('disabled', true);
+            var d = new Date();
+            var fromDate;
+            var toDate;
+            var month;
+            var day;
+            if (dateVal == 1) {
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                toDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                d.setDate(d.getDate() - 7);
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                fromDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                $('#from-date-input').val(fromDate);
+                $('#to-date-input').val(toDate);
+            }
+            if (dateVal == 2) {
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                toDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                month = d.getMonth();
+                day = d.getDate();
+                fromDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                $('#from-date-input').val(fromDate);
+                $('#to-date-input').val(toDate);
+            }
+            if (dateVal == 3) {
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                toDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                fromDate = (d.getFullYear()-1) + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                $('#from-date-input').val(fromDate);
+                $('#to-date-input').val(toDate);
+            }
+        } else {
+            $('#from-date-input, #to-date-input').prop('disabled', false);
+        }
+    });
+
     // Code to swap between search and upload views and to handle IE's lack of support for CSS transforms
     $('.cardFlip').click(function () {
         if (detectIE() == false) {
@@ -31,7 +88,7 @@
     }
 
     // Code to center advanced search div on load
-    var newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2;
+    var newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2 + 20;
     if (newWidthAdv <= 0) {
         $('#advanced-container').css('left', '20px');
     } else {
@@ -47,8 +104,13 @@
     $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
 
     // Code for the footer image in advanced search mode
-    $('#footer').css('top', screen.height - $('#footer').height() - 120);
-    $('#footer').css('left', screen.width - $('#footer').width());
+    if(detectIE() == false){
+        $('#footer').css('top', screen.height - $('#footer').height() - 120);
+        $('#footer').css('left', screen.width - $('#footer').width());
+    } else {
+        $('#footer').css('down', screen.height - $('#footer').height());
+        $('#footer').css('left', screen.width - $('#footer').width());
+    }
 
     // Tweaks for some of the fields
     $('.options').buttonset();
@@ -164,7 +226,7 @@ function onResize() {
     }
 
     // Code to center advanced search div on page resize
-    newWidthAdv = ($(window).width() - $('#titleboxtext').width()) / 2;
+    newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2 + 20;
     if (newWidthAdv <= 0) {
         $('#advanced-container').css('left', '20px');
     } else {
