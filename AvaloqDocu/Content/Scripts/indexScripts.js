@@ -1,61 +1,4 @@
 ﻿$(document).ready(function () {
-    $('input[type=radio][name=dateRadio]').change(function () {
-        var dateVal = $('input[name="dateRadio"]:checked').val();
-        if (dateVal != 0) {
-            $('#from-date-input, #to-date-input').prop('disabled', true);
-            var d = new Date();
-            var fromDate;
-            var toDate;
-            var month;
-            var day;
-            if (dateVal == 1) {
-                month = d.getMonth() + 1;
-                day = d.getDate();
-                toDate = d.getFullYear() + '-' +
-                (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
-                d.setDate(d.getDate() - 7);
-                month = d.getMonth() + 1;
-                day = d.getDate();
-                fromDate = d.getFullYear() + '-' +
-                (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
-                $('#from-date-input').val(fromDate);
-                $('#to-date-input').val(toDate);
-            }
-            if (dateVal == 2) {
-                month = d.getMonth() + 1;
-                day = d.getDate();
-                toDate = d.getFullYear() + '-' +
-                (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
-                month = d.getMonth();
-                day = d.getDate();
-                fromDate = d.getFullYear() + '-' +
-                (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
-                $('#from-date-input').val(fromDate);
-                $('#to-date-input').val(toDate);
-            }
-            if (dateVal == 3) {
-                month = d.getMonth() + 1;
-                day = d.getDate();
-                toDate = d.getFullYear() + '-' +
-                (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
-                month = d.getMonth() + 1;
-                day = d.getDate();
-                fromDate = (d.getFullYear()-1) + '-' +
-                (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
-                $('#from-date-input').val(fromDate);
-                $('#to-date-input').val(toDate);
-            }
-        } else {
-            $('#from-date-input, #to-date-input').prop('disabled', false);
-        }
-    });
-
     // Code to swap between search and upload views and to handle IE's lack of support for CSS transforms
     $('.cardFlip').click(function () {
         if (detectIE() == false) {
@@ -136,6 +79,73 @@
             $('#avaloqinverted').hide(20);
             onResize();
         });
+    });
+
+    // Code controlling the quick date selection radio buttons
+    $('input[type=radio][name=dateRadio]').change(function () {
+        var dateVal = $('input[name="dateRadio"]:checked').val();
+        if (dateVal != 0) {
+            $('#from-date-input, #to-date-input').prop('disabled', true);
+            var d = new Date();
+            var fromDate;
+            var toDate;
+            var month;
+            var day;
+            if (dateVal == 1) {
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                toDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                d.setDate(d.getDate() - 7);
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                fromDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                $('#from-date-input').val(fromDate);
+                $('#to-date-input').val(toDate);
+            }
+            if (dateVal == 2) {
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                toDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                month = d.getMonth();
+                day = d.getDate();
+                fromDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                $('#from-date-input').val(fromDate);
+                $('#to-date-input').val(toDate);
+            }
+            if (dateVal == 3) {
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                toDate = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                month = d.getMonth() + 1;
+                day = d.getDate();
+                fromDate = (d.getFullYear() - 1) + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
+                $('#from-date-input').val(fromDate);
+                $('#to-date-input').val(toDate);
+            }
+        } else {
+            $('#from-date-input, #to-date-input').prop('disabled', false);
+        }
+    });
+
+    // Code checking if the from date is before the to date
+    $('#submit-adv-b').click(function () {
+        if (Date.parse($('#from-date-input').val()) > Date.parse($('#to-date-input').val())) {
+            alert('The "From Date Modified" field should be less than the "To Date Modified" field.');
+        } else {
+            $('#advancedsearchform').submit();
+        }
     });
 
     // Code for the Reset button effect
