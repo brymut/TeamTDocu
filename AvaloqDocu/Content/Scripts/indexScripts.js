@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    // Code to swap between search and upload views
+    // Code to swap between search and upload views and to handle IE's lack of support for CSS transforms
     $('.cardFlip').click(function () {
         if (detectIE() == false) {
             $('#card').toggleClass('flipped');
@@ -50,7 +50,7 @@
 
     // Code to center advanced search div on page resize
     $(window).resize(function () {
-        newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2;
+        newWidthAdv = ($(window).width() - $('#titleboxtext').width()) / 2;
         if (newWidthAdv <= 0) {
             $('#advanced-container').css('left', '20px');
         } else {
@@ -92,13 +92,7 @@
         });
     });
 
-    // Code for the Reset and Submit effects
-    $('#submit-adv-b').mouseover(function () {
-        $('#submit-adv-b').text("Sumbit");
-    });
-    $('#submit-adv-b').mouseout(function () {
-        $('#submit-adv-b').text("");
-    });
+    // Code for the Reset button effect
     $('#reset-adv-b').mouseover(function () {
         $('#reset-adv-b').text("Reset");
     });

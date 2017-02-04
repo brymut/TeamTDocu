@@ -72,11 +72,11 @@
         </div>
         <div id="2" class="row">
             <div class="input-group w90">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="" for="docuidboxtext">Docu ID</label><p id="dots">(...)</p>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pad-r-5">
+                    <label class="" for="docuidboxtext">Docu ID</label>
                     <input class="form-control" id="docuidboxtext" type="text">
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pad-l-5">
                     <label class="" for="releasedd">Release</label>
                     <select class="form-control" id="releasedd" name="release">
                         <option value="0">-------------------------------</option>
@@ -90,17 +90,14 @@
         </div>
         <div id="3" class="row m-top-10">
             <div class="input-group w90">
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label class="" for="funcareamultiple">Functional Area</label>
-                </div>
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <label for="languagemultiple">Language</label>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="input-group w90">
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <select class="form-control" id="funcareamultiple" name="funcarea" multiple>
                         <option value="0">.......Avaloq Banking System.......</option>
                         <option value="1">Accounting and Position Keeping</option>
@@ -108,17 +105,11 @@
                         <option value="3">AFP Mobile</option>
                     </select>
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    <select class="form-control" id="languagemultiple" name="language" multiple>
-                        <option value="0">English</option>
-                        <option value="1">German</option>
-                    </select>
-                </div>
             </div>
         </div>
         <div id="4" class="row m-top-10">
             <div class="input-group w90">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pad-r-5">
                     <label class="" for="docutypeform">Docu Type</label>
                     <select class="form-control" id="docutypedd" name="docutype">
                         <option value="0">-------------------------------</option>
@@ -126,7 +117,7 @@
                         <option value="2">HTML</option>
                     </select>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pad-l-5">
                     <label for="subtypeform">Subtype</label>
                     <select class="form-control" id="subtypedd" name="subtype">
                         <option value="0">-------------------------------</option>
@@ -138,72 +129,32 @@
         </div>
         <div id="5" class="row m-top-10">
             <div class="input-group w90">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="" for="clientdd">Client</label>
-                    <select class="form-control" id="clientdd" name="client">
-                        <option value="0">Client Independent</option>
-                        <option value="1">Client 2</option>
-                        <option value="2">Client 3</option>
-                        <option value="3">Client 4</option>
-                    </select>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <label class="" for="docustatusmultiple">Docu Status</label>
-                    <select class="form-control" id="docustatusmultiple" name="docustatus" multiple>
-                        <option value="0">Dereleased</option>
-                        <option value="1">Planned</option>
-                        <option value="2">Published</option>
-                    </select>
-                </div>
+
             </div>
         </div>
         <div id="6" class="row m-top-10">
             <div class="input-group w90">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pad-r-5">
                     <label for="lastmodified">Last Modified</label>
                     <p>From</p>
                     <input class="form-control" type="text" id="from-date-input">
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pad-l-5">
                     <p>&nbsp;</p>
                     <p>To</p>
                     <input class="form-control" type="text" id="to-date-input">
                 </div>
             </div>
         </div>
-        <div class="row m-top-10">
-            <label class="" for="titleboxtext">Order by</label>
-        </div>
         <div id="7" class="row">
-            <div class="input-group w90">
-                <select class="form-control" id="orderbydd" name="orderby">
-                    <option value="0">Title</option>
-                    <option value="1">User Added</option>
-                    <option value="2">Date Added</option>
-                    <option value="3">Last Edited</option>
-                </select>
-                <span class="input-group-addon"><input type="checkbox" id="desccheckbox"></span>
-            </div>
-            <label id="desc" class="form-text text-muted" for="desccheckbox">desc.</label>
         </div>
         <div id="8" class="row">
             <div class="input-group w90">
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <br />
-                    <input class="form-check-input" type="radio" name="source"><label>External</label><br />
-                    <input class="form-check-input" type="radio" name="source"><label>Internal</label><br />
-                    <input class="form-check-input" type="radio" name="source"><label>All</label>
-                </div>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pad-l-5">
-                    <br />
-                    <input class="form-check-input" type="radio" name="draft"><label>Draft Only</label><br />
-                    <input class="form-check-input" type="radio" name="draft"><label>All</label>
-                </div>
-                <div id="resetDiv" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div id="resetDiv" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <button class="hideme" id="reset-adv-b" type="button"></button>
                 </div>
-                <div id="submitDiv" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <button class="hideme" id="submit-adv-b" type="submit" form="advancedsearchform"></button>
+                <div id="submitDiv" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <button class="hideme" id="submit-adv-b" type="submit" form="advancedsearchform">Submit</button>
                 </div>
             </div>
         </div>
