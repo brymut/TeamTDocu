@@ -21,17 +21,13 @@
                     <div class="col-md-14 col-lg-14">
                         <div id="titleDIV" class="row">
                             <label class="" for="titleboxtext">Title / Subtitle / Keywords</label>
-                            <div class="input-group">
-                                <input class="form-control" id="titleboxtext" type="text">
-                                <span class="input-group-addon"><input type="checkbox" id="titlecheckbox"></span>
-                            </div>
-                            <label id="titleonly" class="form-text text-muted" for="titlecheckbox">title only</label>
+                            <input type="checkbox" id="titlecheckbox"><label id="titleonly" class="form-text text-muted" for="titlecheckbox">title only</label>
+                            <input class="form-control" id="titleboxtext" type="text">     
                         </div>
                         <div id="docuidDIV" class="row">
                             <div class="input-group">
                                 <label for="docuidboxtext">Docu ID</label>
                                 <input class="form-control" id="docuidboxtext" type="text">
-                                <p id="dots">(...)</p>
                             </div>
                         </div>
                         <div id="releaseDIV" class="row">
@@ -77,27 +73,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div id="clientDIV" class="row">
-                            <div class="input-group">
-                                <label class="" for="clientdd">Client</label>
-                                <select class="form-control" id="clientdd" name="client">
-                                    <option value="0">Client Independent</option>
-                                    <option value="1">Client 2</option>
-                                    <option value="2">Client 3</option>
-                                    <option value="3">Client 4</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="docustatusDIV" class="row">
-                            <div class="input-group">
-                                <label class="" for="docustatusmultiple">Docu Status</label>
-                                <select class="form-control" id="docustatusmultiple" name="docustatus" multiple>
-                                    <option value="0">Dereleased</option>
-                                    <option value="1">Planned</option>
-                                    <option value="2">Published</option>
-                                </select>
-                            </div>
-                        </div>
                         <div id="lastmodifiedDIV" class="row">
                             <div class="input-group">
                                 <label for="lastmodified">Last Modified</label>
@@ -106,41 +81,6 @@
                                 <p>To</p>
                                 <input class="form-control" type="text" id="to-date-input">
                             </div>
-                        </div>
-                        <div id="languageDIV" class="row">
-                            <div class="input-group">
-                                <label for="languagemultiple">Language</label>
-                                <select class="form-control" id="languagemultiple" name="language" multiple>
-                                    <option value="0">English</option>
-                                    <option value="1">German</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="sourceDIV" class="row">
-                            <div class="input-group">
-                                <input class="form-check-input leftmostRadio" type="radio" name="source"><label>External</label>
-                                <input class="form-check-input" type="radio" name="source"><label>Internal</label>
-                                <input class="form-check-input" type="radio" name="source"><label>All</label>
-                            </div>
-                        </div>
-                        <div id="draftDIV" class="row">
-                            <div class="input-group">
-                                <input class="leftmostRadio form-check-input" type="radio" name="draft"><label>Draft Only</label>
-                                <input class="form-check-input" type="radio" name="draft"><label>All</label>
-                            </div>
-                        </div>
-                        <div id="orderbyDIV" class="row">
-                            <label for="orderbydd">Order by</label>
-                            <div class="input-group">
-                                <select class="form-control" id="orderbydd" name="orderby">
-                                    <option value="0">Title</option>
-                                    <option value="1">User Added</option>
-                                    <option value="2">Date Added</option>
-                                    <option value="3">Last Edited</option>
-                                </select>
-                                <span class="input-group-addon"><input type="checkbox" id="desccheckbox"></span>
-                            </div>
-                            <label id="desc" class="form-text text-muted" for="desccheckbox">desc.</label>
                         </div>
                     </div>
                 </form>
@@ -157,13 +97,23 @@
     </div>
     <div id="results">
         <div id="resultsinfo">
-            <span id="infospan">
+            <div id="orderbyDIV">
+                    <select class="form-control" id="orderbydd" name="orderby">
+                        <option value="-1">Order By</option>
+                        <option value="0">Title</option>
+                        <option value="1">User Added</option>
+                        <option value="2">Date Added</option>
+                        <option value="3">Last Edited</option>
+                    </select>
+                <input type="checkbox" id="desccheckbox"><label id="desc" class="form-text text-muted" for="desccheckbox">desc.</label>
+            </div>
+            <div id="infoDIV">
                 <p class="infop">Search for&nbsp;"</p>
                 <p data-bind="text: query" class="infop" id="term"></p>
                 <p class="infop">"&nbsp;took&nbsp;</p>
                 <p data-bind="text: queryTime" class="infop" id="searchtime"></p>
                 <p class="infop">&nbsp;milliseconds.</p>
-            </span>
+            </div>
             <span id="resPageSpan"><p class="infop">Page&nbsp;</p><p data-bind="text: page" class="infop" id="pageNum"></p><p class="infop">&nbsp;of&nbsp;</p><p data-bind="text: pages" class="infop" id="totalPage"></p></span>
             <button data-bind="visible: page() > 1, click: prev" id="resPrev">Previous</button>
             <button data-bind="visible: page() < pages(), click: next" id="resNext">Next</button>

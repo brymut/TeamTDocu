@@ -336,17 +336,35 @@ li.ui-menu-item:hover:before {
 #formcontain {
 	float: left;
 	position: relative;
+    color: #1F559F;
 	width: 100%;
-	max-height: 450px;
+	max-height: 500px;
 	overflow: auto;
 }
 
+#titlecheckbox {
+    margin-left: 15px;
+}
+
 #titleonly, #desc {
-	float: right;
+    font-weight: bold;
 }
 
 #desc {
-	margin-right: 2%;
+	margin-top: 0px;
+}
+
+#desccheckbox, #orderbydd {
+    display: inline;
+}
+
+#orderbydd {
+    width: 125px;
+    height: 30px;
+}
+
+#orderbyDIV {
+    float: left;
 }
 
 #submit-reset {
@@ -430,7 +448,7 @@ li.ui-menu-item:hover:before {
 	transition: all 0.4s ease;
 }
 
-#infospan {
+#infoDIV {
 	position: absolute;
 	margin-left: 1%;
 	bottom: 0px;
