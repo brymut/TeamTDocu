@@ -5,13 +5,13 @@
     <div id="card">
         <div id="mainsearch" class="front">
             <button id="toUpload" class="cardFlip">Upload files</button>
-            <img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></img>
+            <img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png">
             <form id="searchboxform" autocomplete="off">
                 <input id="searchboxtext" type="text" data-bind="value: query" name="search" placeholder="Type in your Avaloq search..">@*<input type="submit" id="submitbutton" value="">*@<button id="submitbutton" data-bind="click: search"></button>
             </form>
             <button id="advancedsearchbutton">Advanced Search</button>
         </div>
-        <div class="back">
+        <div id="backCard" class="back">
             <div id="uploadDiv">
                 <button id="uploadToSearch" class="cardFlip">Back to search</button>
                 <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
@@ -213,7 +213,7 @@
     <button class="hideme" id="backToSimple"></button>
 </div>
 <div id="footer">
-    <img class="hideme" id="avaloqinverted" src="~/Content/Logos/avaloqinverted.jpg"></img>
+    <img class="hideme" id="avaloqinverted" src="~/Content/Logos/avaloqinverted.jpg">
 </div>
 
 @section scripts{

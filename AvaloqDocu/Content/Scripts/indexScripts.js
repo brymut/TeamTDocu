@@ -1,7 +1,18 @@
 ﻿$(document).ready(function () {
     // Code to swap between search and upload views
     $('.cardFlip').click(function () {
-        $('#card').toggleClass('flipped');
+        if (detectIE() == false) {
+            $('#card').toggleClass('flipped');
+            setTimeout(function () { $('#mainsearch').toggleClass('hideme'); }, 300);
+        } else {
+            $('#mainsearch').toggle(20);
+            $('#backCard').toggleClass('back');
+            if ($('#backCard').hasClass('back')) {
+                $('#backCard').hide();
+            } else {
+                $('#backCard').show();
+            }
+        }
     });
 
     // Code for view switch button transparency
@@ -136,3 +147,30 @@
         $('#searchboxtext').val($('#titleboxtext').val());
     });
 });
+
+// Function to determine if the browser is IE
+function detectIE() {
+    var ua = window.navigator.userAgent;
+
+    var msie = ua.indexOf('MSIE ');
+    if (msie > 0) {
+        // IE 10 or older => return version number
+        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+    }
+
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) {
+        // IE 11 => return version number
+        var rv = ua.indexOf('rv:');
+        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+    }
+
+    var edge = ua.indexOf('Edge/');
+    if (edge > 0) {
+        // Edge (IE 12+) => return version number
+        return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+    }
+
+    // other browser
+    return false;
+}
