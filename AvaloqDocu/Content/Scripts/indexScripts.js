@@ -30,16 +30,6 @@
         $('#mainsearch').css('left', newWidthMain + 'px');
     }
 
-    // Code to center main search div on page resize
-    $(window).resize(function () {
-        newWidthMain = ($(window).width() - $('#mainsearch').width()) / 2;
-        if (newWidthMain <= 0) {
-            $('#mainsearch').css('left', '20px');
-        } else {
-            $('#mainsearch').css('left', newWidthMain + 'px');
-        }
-    });
-
     // Code to center advanced search div on load
     var newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2;
     if (newWidthAdv <= 0) {
@@ -48,21 +38,13 @@
         $('#advanced-container').css('left', newWidthAdv + 'px');
     }
 
-    // Code to center advanced search div on page resize
+    // On resize handler to reposition divs
     $(window).resize(function () {
-        newWidthAdv = ($(window).width() - $('#titleboxtext').width()) / 2;
-        if (newWidthAdv <= 0) {
-            $('#advanced-container').css('left', '20px');
-        } else {
-            $('#advanced-container').css('left', newWidthAdv + 'px');
-        }
+        onResize();
     });
 
     // Code to position the back to main search button
     $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
-    $(window).resize(function () {
-        $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
-    });
 
     // Code for the footer image in advanced search mode
     $('#footer').css('top', screen.height - $('#footer').height() - 120);
@@ -80,6 +62,7 @@
         $('#avaloqinverted').show("slide", { direction: "left" }, 600);
         $('.hideme').fadeIn(100);
         $('.hideme').css("display", "unset");
+        onResize();
     });
 
     // Code to switch to main search mode
@@ -89,6 +72,7 @@
             $('.hideme').hide();
             $("#mainsearch").slideDown();
             $('#avaloqinverted').hide(20);
+            onResize();
         });
     });
 
@@ -167,4 +151,26 @@ function detectIE() {
 
     // other browser
     return false;
+}
+
+function onResize() {
+    // Code to center main search div on page resize
+    $('body').css('overflow', 'visible');
+    newWidthMain = ($(window).width() - $('#mainsearch').width()) / 2;
+    if (newWidthMain <= 0) {
+        $('#mainsearch').css('left', '20px');
+    } else {
+        $('#mainsearch').css('left', newWidthMain + 'px');
+    }
+
+    // Code to center advanced search div on page resize
+    newWidthAdv = ($(window).width() - $('#titleboxtext').width()) / 2;
+    if (newWidthAdv <= 0) {
+        $('#advanced-container').css('left', '20px');
+    } else {
+        $('#advanced-container').css('left', newWidthAdv + 'px');
+    }
+
+    // Code to reposition the back to main search button
+    $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
 }
