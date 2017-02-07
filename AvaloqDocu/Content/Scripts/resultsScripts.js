@@ -88,10 +88,10 @@ $(document).ready(function(){
 	});
 	
 	// Synchronization between main search field and the search field in the filter section
-	$('#searchbox').keyup(function(){
+	$('#searchbox').change(function(){
 		$('#titleboxtext').val($('#searchbox').val());
 	});
-	$('#titleboxtext').keyup(function(){
+	$('#titleboxtext').change(function(){
 		$('#searchbox').val($('#titleboxtext').val());
 	});
 	
@@ -171,16 +171,71 @@ $(document).ready(function(){
 	$('.linkbutton').click(function() {
 		$.notify("Link copied to clipboard", { className: "info", autoHideDelay: 1000, position: "right bottom" });
 	});
-	
-	// Result excertps code via Bootstrap JS Modal
+
+	// Result excertps code via Bootstrap JS Modal, fixes a small bug with the width of the results div on modal open / close
 	$('.previewbutton').click(function () {
 		var resWidth = $('#results').css('width');
-		console.log(resWidth);
 		$('.modal-title').text($($(this).closest("div").children("h3")[0]).text());
 		$('#results').css('width', resWidth);
 	});
 	$('.closeModal').click(function () {
-		setTimeout(resetResultsDivWidth, 300);
+	    setTimeout(function () {
+	        $('#results').css('width', '61%');
+	    }, 400);
+	});
+
+    // Package select code via Bootstrap JS Modal, fixes a small bug with the width of the results div on modal open / close
+	$('#packageSelect').click(function () {
+	    var resWidth = $('#results').css('width');
+	    $('#results').css('width', resWidth);
+	});
+	$('.closeModal').click(function () {
+	    setTimeout(function () {
+	        $('#results').css('width', '61%');
+	    }, 400);
+	});
+
+    // Change colour of clicked package name button inside package modal and allow only one selected package
+	$('.collapseButton').click(function () {
+	    var wasClicked = false;
+	    if ($(this).hasClass('clicked')) {
+	        wasClicked = true;
+	    }
+	    $('.collapseButton').removeClass('clicked');
+	    $('.collapse').collapse('hide');
+	    if (!wasClicked) {
+	        $(this).toggleClass('clicked');
+	    }
+	});
+
+    // Code to synchronize the two package search boxes
+	$('#packageSearchbox').change(function () {
+	    $('#packageSearchboxModal').val($('#packageSearchbox').val());
+	});
+
+    // Code to catch enter key pressed on package search box
+	$("#packageSearchbox").keyup(function (event) {
+	    if (event.keyCode == 13) {
+	        $("#packageSelect").click();
+	    }
+	});
+
+    // Code for results on enter key press inside package search box inside the package select modal
+	$("#packageSearchboxModal").keyup(function (event) {
+	    if (event.keyCode == 13) {
+	        // Add KO JS code here
+	    }
+	});
+
+    // Code to disable / enable package search box on package select / deselect
+	$('#selectPackage').click(function () {
+	    if ($('.collapseButton.clicked').length == 1) {
+	        $('#packageSearchbox').val($('.collapseButton.clicked').text());
+	        $('#packageSearchbox').prop("disabled", true);
+	    } else {
+	        $('#packageSearchbox').prop("disabled", false);
+	        $('#packageSearchbox').val("");
+	    }
 	});
 });
 
@@ -224,9 +279,4 @@ function packageRedOnHover(){
 		$($(this).children('a')[0]).css("color", "black");
 		$($(this).children('a')[0]).css("text-decoration", "none");		
 	});
-}
-
-// Resets the div of the results in relation to unwanted behaviour when the result excerpts modal pops up and hides the side-bar
-function resetResultsDivWidth(){
-	$('#results').css('width', '61%');
 }

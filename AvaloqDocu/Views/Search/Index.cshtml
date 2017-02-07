@@ -153,13 +153,13 @@
             </div>*@
         </form>
         <div id="resultsinfobot">
-            <span id="infospanbot">
+            <div id="infospanbot">
                 <p class="infop">Search for&nbsp;"</p>
                 <p data-bind="text: query" class="infop" id="term"></p>
                 <p class="infop">"&nbsp;took&nbsp;</p>
                 <p data-bind="text: queryTime" class="infop" id="searchtime"></p>
                 <p class="infop">&nbsp;milliseconds.</p>
-            </span>
+            </div>
             <span id="resPageSpanBot"><p class="infop">Page&nbsp;</p><p data-bind="text: page" class="infop" id="pageNum"></p><p class="infop">&nbsp;of&nbsp;</p><p data-bind="text: pages" class="infop" id="totalPage"></p></span>
             <button data-bind="visible: page() > 1, click: prev" id="resPrev">Previous</button>
             <button data-bind="visible: page() < pages(), click: next" id="resNext">Next</button>
@@ -168,21 +168,26 @@
     <div id="accordionPackage">
         <h3 class="accordionHeader">Current document package</h3>
         <div id="packageDiv">
+            <input id="packageSearchbox" type="text" name="packageSearch" placeholder="Type in package name..">
+            <button id="packageSelect" data-toggle="modal" data-target="#packageModal" data-backdrop="static"></button>
             <ul id="packageUl"></ul>
             <p class="packageText">You have selected&nbsp;</p>
             <p class="packageText" id="packageCounter"></p>
             <p class="packageText">&nbsp;document</p>
             <p class="packageText" id="packageSHidden">s&nbsp;</p>
             <p class="packageText">for download.</p>
-            <button id="packageDownload">Download as package</button>
+            <button class="packageDownload">Add to current package</button>
+            <button class="packageDownload">Download current package</button>
+            <button class="packageDownload">Add to new package</button>
+            <button class="packageDownload">Download as new package</button>
         </div>
     </div>
-    <div class="modal fade" id="excerptModal" role="dialog">
+    <div id="excerptModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="closeModal close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title">Excerpts of document * for search **</h4>
                 </div>
                 <div>
                     <hr /><div id="modalBody1" class="modal-body">
@@ -203,6 +208,72 @@
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
                     </ul>
+                    <button type="button" class="closeModal btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="packageModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="closeModal close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Package results for *</h4>
+                    <input id="packageSearchboxModal" type="text" name="packageSearch" placeholder="Package name..">
+                </div>
+                <div class="modal-body">
+                    <button id="packageCollapseButton1" class="collapseButton" data-toggle="collapse" data-target="#packageCollapseDiv1">Docu Package</button>
+                    <div id="packageCollapseDiv1" class="collapse">
+                        <ul class="packageContents tripleColUl">
+                            <li class="packageContent">avaloq.pdf</li>
+                            <li class="packageContent">2013-03-23.pdf</li>
+                            <li class="packageContent">projections.pdf</li>
+                            <li class="packageContent">earnings.pdf</li>
+                            <li class="packageContent">bonuses.pdf</li>
+                            <li class="packageContent">example.pdf</li>
+                            <li class="packageContent">glasgow-uni-project.pdf</li>
+                            <li class="packageContent">others.pdf</li>
+                            <li class="packageContent">summary.pdf</li>
+                            <li class="packageContent">bugs.pdf</li>
+                            <li class="packageContent">devices.pdf</li>
+                            <li class="packageContent">clients.pdf</li>
+                            <li class="packageContent">business.pdf</li>
+                            <li class="packageContent">boss.pdf</li>
+                            <li class="packageContent">letter.pdf</li>
+                            <li class="packageContent">executive-email.pdf</li>
+                        </ul>
+                    </div>
+                    <button id="packageCollapseButton2" class="collapseButton" data-toggle="collapse" data-target="#packageCollapseDiv2">Online Documents Backup Package</button>
+                    <div id="packageCollapseDiv2" class="collapse">
+                        <ul class="packageContents tripleColUl">
+                            <li class="packageContent">others.pdf</li>
+                            <li class="packageContent">summary.pdf</li>
+                            <li class="packageContent">bugs.pdf</li>
+                            <li class="packageContent">devices.pdf</li>
+                            <li class="packageContent">clients.pdf</li>
+                            <li class="packageContent">business.pdf</li>
+                        </ul>
+                    </div>
+                    <button id="packageCollapseButton3" class="collapseButton" data-toggle="collapse" data-target="#packageCollapseDiv3">Banking Package</button>
+                    <div id="packageCollapseDiv3" class="collapse">
+                        <ul class="packageContents tripleColUl">
+                            <li class="packageContent">earnings.pdf</li>
+                            <li class="packageContent">bonuses.pdf</li>
+                            <li class="packageContent">example.pdf</li>
+                            <li class="packageContent">glasgow-uni-project.pdf</li>
+                            <li class="packageContent">others.pdf</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <ul class="pagination">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    </ul>
+                    <button type="button" id="selectPackage" class="closeModal btn btn-default" data-dismiss="modal">Select Package</button>
                     <button type="button" class="closeModal btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

@@ -85,6 +85,48 @@ li.ui-menu-item:hover:before {
 	margin-left: 0px !important;
 }
 
+.collapseButton {
+    width: 100%;
+    height: 30px;
+    background-color: #1F559F;
+    color: white;
+}
+
+.collapseButton.clicked {
+    background-color: #efc47D;
+    color: black;
+    font-weight: bold;
+}
+
+.collapse {
+    width: 100%;
+    height: auto;
+    max-height: 110px;
+    overflow: auto;
+}
+
+ul.packageContents {
+    width: 95%;
+    margin-bottom:20px;
+    overflow:hidden;
+    border-top:1px solid #ccc;
+}
+
+li.packageContent {
+    line-height:1.5em;
+    border-bottom:1px solid #ccc;
+    float:left;
+    display:inline;
+}
+
+.doubleColUl li  { 
+    width:50%;
+}
+
+.tripleColUl li  { 
+    width:33.333%; 
+}
+
 .resultdiv {
 	position: relative;
 	float: left;
@@ -300,11 +342,64 @@ li.ui-menu-item:hover:before {
 	top: 48px;
 }
 
+#packageDiv {
+    padding-top: 2px;
+}
+
+#packageSearchbox {
+    float: left;
+	height: 18px;
+    width: 180px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 4px 20px 12px 5px;
+	-webkit-padding-before: 12px;
+}
+
+#packageSelect {
+	height: 25px;
+	width: 25px;
+    background-image: url('../Icons/searchicon.ico');
+	background-size: 16px 16px;
+	background-color: #ffffff;
+    background-position: 5px 3px; 
+    background-repeat: no-repeat;
+	border-radius: 15px;
+    margin-top: 1px;
+    margin-left: 3px;
+    font-size: 10px;
+	cursor: pointer;	
+}
+
+#packageSelect:hover {
+	background-color: #1F559F;	
+	color: white;
+}
+
+#packageSelect:active {
+	box-shadow: inset 0px 2px 2px #000000;
+	transition: all 0.1s ease;	
+}
+
+#packageSearchboxModal {
+	float: right;
+	height: 18px;
+    width: 180px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-image: url('../Icons/searchicon.ico');
+	background-size: 16px 16px;
+    background-position: 5px 3px; 
+    background-repeat: no-repeat;
+    padding: 4px 20px 12px 23px;
+	-webkit-padding-before: 12px;
+}
+
 #packageUl {
 	list-style: none;
 }
 
-#packageDownload {
+.packageDownload {
 	height: 35px;
 	width: 200px;
 	background-color: #ffffff;
@@ -343,11 +438,12 @@ li.ui-menu-item:hover:before {
 }
 
 #titlecheckbox {
-    margin-left: 15px;
+    margin-left: 14px;
 }
 
 #titleonly, #desc {
     font-weight: bold;
+    margin-left: 1px;
 }
 
 #desc {
