@@ -174,6 +174,7 @@
     });
     $(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {
         $("#advancedSearchForm").trigger("reset");
+        $('#fromDateInput, #toDateInput').prop('disabled', false);
         $(this).trigger('notify-hide');
     });
     $('#resetButton').click(function () {
