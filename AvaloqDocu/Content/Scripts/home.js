@@ -9,5 +9,5 @@
 
 $(document).ready(function () {
     var viewModelHome = new HomeViewModel();
-    ko.applyBindings(viewModelHome, $('#mainsearch')[0]);
+    ko.applyBindings(viewModelHome, $('#mainSearchDiv')[0]);
 });

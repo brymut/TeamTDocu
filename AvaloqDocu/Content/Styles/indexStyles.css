@@ -94,36 +94,36 @@ label, p {
   perspective: 800px;
 }
 
-#card {
+#switchModeDiv {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 1s;
 }
 
-#card div {
+#switchModeDiv div {
   backface-visibility: hidden;
 }
 
-#card .front {
+#switchModeDiv .front {
 }
 
-#card .back {
+#switchModeDiv .back {
   transform: rotateY( 180deg );
 }
 
-#card.flipped {
+#switchModeDiv.flipped {
   transform: rotateY( 180deg );
 }
 
-#mainsearch {
+#mainSearchDiv {
 	position: fixed;
 	top: 25vh;
 	left: 25vw;
 	width: 800px;
 }
 
-#toUpload {
+#toUploadMode {
 	position: fixed;
     top: 50px;
     right: 1px;
@@ -139,13 +139,13 @@ label, p {
 	cursor: pointer;
 }
 
-#avaloqlogo {
+#avaloqLogo {
 	position: relative;
 	width: 581px;
 	height: 203px;
 }
 
-#searchboxtext {
+#mainSearchBox {
 	position: relative;
 	margin-right: 300px;
 	float: left;
@@ -161,13 +161,13 @@ label, p {
 	transition: all 0.2s ease-in-out;
 }
 
-#searchboxtext:focus {
+#mainSearchBox:focus {
 	width: 70%;
 	left: 120px;
 	margin-right: 120px;
 }
 
-#submitbutton {
+#mainSubmitButton {
 	position: relative;
 	top: 2px;
 	width: 38px;
@@ -185,16 +185,16 @@ label, p {
 	-webkit-padding-after: 15px;
 }
 
-#submitbutton:hover, #backToSimple:hover {
+#mainSubmitButton:hover, #backToSimple:hover {
 	background-color: #1F559F;
 }
 
-#submitbutton:active, #advancedsearchbutton:active, #backToSimple:active, #submit-adv-b:active {
+#mainSubmitButton:active, #advancedSearchButton:active, #backToSimple:active, #advancedSubmitButton:active {
 	box-shadow: inset 0px 2px 2px #000000;
 	transition: all 0.1s ease;
 }
 
-#advancedsearchbutton {
+#advancedSearchButton {
 	position: absolute;
 	top: 262px;
 	left: 450px;
@@ -204,7 +204,7 @@ label, p {
 	cursor: pointer;
 }
 
-#advancedsearchbutton:hover {
+#advancedSearchButton:hover {
 	color: white;
 	background-color: #1F559F;
 }
@@ -232,7 +232,7 @@ label, p {
 	cursor: pointer;
 }
 
-#advanced-container {
+#advancedSearchDiv {
 	position: absolute;
 	float: left;
 	margin-top: 5%;
@@ -241,7 +241,7 @@ label, p {
     height: 500px;
 }
 
-#advancedsearchform {
+#advancedSearchForm {
 	color: #1F559F;
 	padding: 5px 5px 5px 5px;
 }
@@ -260,7 +260,7 @@ label, p {
 	cursor: pointer;
 }
 
-#titleonly {
+#titleOnly {
 	position: relative;
     float: right;
     right: 9%;
@@ -277,13 +277,13 @@ label, p {
     padding-right: 0px;
 }
 
-#submit-adv-b {
+#advancedSubmitButton {
 	background-image: url('../Icons/submiticon.ico');
 	background-color: green;
     background-position: 70px 8px;
 }
 
-#reset-adv-b {
+#resetButton {
 	float: right;
 	background-image: url('../Icons/reseticon.png');
 	background-color: #FF0000;
@@ -299,7 +299,7 @@ label, p {
 	transition: all 0.2s ease;
 }
 
-#submit-adv-b { 
+#advancedSubmitButton { 
 	margin-top: 1%;
 	margin-left: 2px;
 	width: 100px;
@@ -315,11 +315,11 @@ label, p {
 	transition: all 0.2s ease;
 }
 
-#submit-adv-b:hover {
+#advancedSubmitButton:hover {
 	background-color: greenyellow;
 }
 
-#reset-adv-b:hover {
+#resetButton:hover {
 	background-color: #FF661A;
     width: 100px;
 	background-position: 65px 8px;
@@ -342,7 +342,7 @@ label, p {
     background-image: none;
 } 
 
-#avaloqinverted {
+#avaloqInverted {
 	position: absolute;
 	height: 100%;
 	width: 100%;

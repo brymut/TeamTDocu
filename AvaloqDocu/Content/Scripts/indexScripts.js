@@ -2,40 +2,40 @@
     // Code to swap between search and upload views and to handle IE's lack of support for CSS transforms
     $('.cardFlip').click(function () {
         if (detectIE() == false) {
-            $('#card').toggleClass('flipped');
-            setTimeout(function () { $('#mainsearch').toggleClass('hideme'); }, 300);
+            $('#switchModeDiv').toggleClass('flipped');
+            setTimeout(function () { $('#mainSearchDiv').toggleClass('hideme'); }, 300);
         } else {
-            $('#mainsearch').toggle(20);
-            $('#backCard').toggleClass('back');
-            if ($('#backCard').hasClass('back')) {
-                $('#backCard').hide();
+            $('#mainSearchDiv').toggle(20);
+            $('#uploadMode').toggleClass('back');
+            if ($('#uploadMode').hasClass('back')) {
+                $('#uploadMode').hide();
             } else {
-                $('#backCard').show();
+                $('#uploadMode').show();
             }
         }
     });
 
     // Code for view switch button transparency
-    $('#toUpload, #uploadToSearch').hover(function () {
-        $('#toUpload, #uploadToSearch').css('background-color', '#ffffff');
+    $('#toUploadMode, #uploadToSearch').hover(function () {
+        $('#toUploadMode, #uploadToSearch').css('background-color', '#ffffff');
     }, function () {
-        $('#toUpload, #uploadToSearch').css('background-color', 'rgba(255, 255, 255, 0.9)');
+        $('#toUploadMode, #uploadToSearch').css('background-color', 'rgba(255, 255, 255, 0.9)');
     });
 
     // Code to center main search div on load
-    var newWidthMain = ($(window).width() - $('#mainsearch').width()) / 2;
+    var newWidthMain = ($(window).width() - $('#mainSearchDiv').width()) / 2;
     if (newWidthMain <= 0) {
-        $('#mainsearch').css('left', '20px');
+        $('#mainSearchDiv').css('left', '20px');
     } else {
-        $('#mainsearch').css('left', newWidthMain + 'px');
+        $('#mainSearchDiv').css('left', newWidthMain + 'px');
     }
 
     // Code to center advanced search div on load
-    var newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2 + 20;
+    var newWidthAdv = ($(window).width() - $('#advancedSearchDiv').width()) / 2 + 20;
     if (newWidthAdv <= 0) {
-        $('#advanced-container').css('left', '20px');
+        $('#advancedSearchDiv').css('left', '20px');
     } else {
-        $('#advanced-container').css('left', newWidthAdv + 'px');
+        $('#advancedSearchDiv').css('left', newWidthAdv + 'px');
     }
 
     // On resize handler to reposition divs
@@ -44,7 +44,7 @@
     });
 
     // Code to position the back to main search button
-    $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
+    $('#backToSimple').css('left', $('#advancedSearchDiv').width() * 1 + 1 * $('#advancedSearchDiv').css('left').slice(0, -2) + "px");
 
     // Code for the footer image in advanced search mode
     if(detectIE() == false){
@@ -57,14 +57,14 @@
 
     // Tweaks for some of the fields
     $('.options').buttonset();
-    $('#from-date-input, #to-date-input').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'yy-mm-dd' });
 
     // Code to switch to advanced search mode
-    $('#advancedsearchbutton').click(function () {
+    $('#advancedSearchButton').click(function () {
         $("body").animate({"background-color": "white"}, 1);
-        $("#mainsearch").slideUp(50);
-        $('#advanced-container').slideUp(100);
-        $('#avaloqinverted').show("slide", { direction: "left" }, 600);
+        $("#mainSearchDiv").slideUp(50);
+        $('#advancedSearchDiv').slideUp(100);
+        $('#avaloqInverted').show("slide", { direction: "left" }, 600);
         $('.hideme').fadeIn(100);
         $('.hideme').css("display", "unset");
         onResize();
@@ -72,11 +72,11 @@
 
     // Code to switch to main search mode
     $('#backToSimple').click(function () {
-        $('#avaloqinverted').promise().done(function(){
+        $('#avaloqInverted').promise().done(function(){
             $("body").css("background-color", "#1F559F");
             $('.hideme').hide();
-            $("#mainsearch").slideDown();
-            $('#avaloqinverted').hide(20);
+            $("#mainSearchDiv").slideDown();
+            $('#avaloqInverted').hide(20);
             onResize();
         });
     });
@@ -85,7 +85,7 @@
     $('input[type=radio][name=dateRadio]').change(function () {
         var dateVal = $('input[name="dateRadio"]:checked').val();
         if (dateVal != 0) {
-            $('#from-date-input, #to-date-input').prop('disabled', true);
+            $('#fromDateInput, #toDateInput').prop('disabled', true);
             var d = new Date();
             var fromDate;
             var toDate;
@@ -103,8 +103,8 @@
                 fromDate = d.getFullYear() + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
                 (day < 10 ? '0' : '') + day;
-                $('#from-date-input').val(fromDate);
-                $('#to-date-input').val(toDate);
+                $('#fromDateInput').val(fromDate);
+                $('#toDateInput').val(toDate);
             }
             if (dateVal == 2) {
                 month = d.getMonth() + 1;
@@ -117,8 +117,8 @@
                 fromDate = d.getFullYear() + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
                 (day < 10 ? '0' : '') + day;
-                $('#from-date-input').val(fromDate);
-                $('#to-date-input').val(toDate);
+                $('#fromDateInput').val(fromDate);
+                $('#toDateInput').val(toDate);
             }
             if (dateVal == 3) {
                 month = d.getMonth() + 1;
@@ -131,29 +131,29 @@
                 fromDate = (d.getFullYear() - 1) + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
                 (day < 10 ? '0' : '') + day;
-                $('#from-date-input').val(fromDate);
-                $('#to-date-input').val(toDate);
+                $('#fromDateInput').val(fromDate);
+                $('#toDateInput').val(toDate);
             }
         } else {
-            $('#from-date-input, #to-date-input').prop('disabled', false);
+            $('#fromDateInput, #toDateInput').prop('disabled', false);
         }
     });
 
     // Code checking if the from date is before the to date
-    $('#submit-adv-b').click(function () {
-        if (Date.parse($('#from-date-input').val()) > Date.parse($('#to-date-input').val())) {
+    $('#advancedSubmitButton').click(function () {
+        if (Date.parse($('#fromDateInput').val()) > Date.parse($('#toDateInput').val())) {
             alert('The "From Date Modified" field should be less than the "To Date Modified" field.');
         } else {
-            $('#advancedsearchform').submit();
+            $('#advancedSearchForm').submit();
         }
     });
 
     // Code for the Reset button effect
-    $('#reset-adv-b').mouseover(function () {
-        $('#reset-adv-b').text("Reset");
+    $('#resetButton').mouseover(function () {
+        $('#resetButton').text("Reset");
     });
-    $('#reset-adv-b').mouseout(function () {
-        $('#reset-adv-b').text("");
+    $('#resetButton').mouseout(function () {
+        $('#resetButton').text("");
     });
 
     // Notification settings and code via Notify JS
@@ -173,10 +173,10 @@
         $(this).trigger('notify-hide');
     });
     $(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {
-        $("#advancedsearchform").trigger("reset");
+        $("#advancedSearchForm").trigger("reset");
         $(this).trigger('notify-hide');
     });
-    $('#reset-adv-b').click(function () {
+    $('#resetButton').click(function () {
         $('.notifyjs-resetConfirm-base').trigger('notify-hide');
         $.notify({
             title: '<font color="red"><b>Reset</b></font> form?',
@@ -190,11 +190,11 @@
     });
 
     // Synchronize main search and advanced search fields
-    $('#searchboxtext').change(function () {
-        $('#titleboxtext').val($('#searchboxtext').val());
+    $('#mainSearchBox').change(function () {
+        $('#advancedSearchBox').val($('#mainSearchBox').val());
     });
-    $('#titleboxtext').change(function () {
-        $('#searchboxtext').val($('#titleboxtext').val());
+    $('#advancedSearchBox').change(function () {
+        $('#mainSearchBox').val($('#mainSearchBox').val());
     });
 });
 
@@ -228,21 +228,21 @@ function detectIE() {
 function onResize() {
     // Code to center main search div on page resize
     $('body').css('overflow', 'visible');
-    newWidthMain = ($(window).width() - $('#mainsearch').width()) / 2;
+    newWidthMain = ($(window).width() - $('#mainSearchDiv').width()) / 2;
     if (newWidthMain <= 0) {
-        $('#mainsearch').css('left', '20px');
+        $('#mainSearchDiv').css('left', '20px');
     } else {
-        $('#mainsearch').css('left', newWidthMain + 'px');
+        $('#mainSearchDiv').css('left', newWidthMain + 'px');
     }
 
     // Code to center advanced search div on page resize
-    newWidthAdv = ($(window).width() - $('#advanced-container').width()) / 2 + 20;
+    newWidthAdv = ($(window).width() - $('#advancedSearchDiv').width()) / 2 + 20;
     if (newWidthAdv <= 0) {
-        $('#advanced-container').css('left', '20px');
+        $('#advancedSearchDiv').css('left', '20px');
     } else {
-        $('#advanced-container').css('left', newWidthAdv + 'px');
+        $('#advancedSearchDiv').css('left', newWidthAdv + 'px');
     }
 
     // Code to reposition the back to main search button
-    $('#backToSimple').css('left', $('#advanced-container').width() * 1 + 1 * $('#advanced-container').css('left').slice(0, -2) + "px");
+    $('#backToSimple').css('left', $('#advancedSearchDiv').width() * 1 + 1 * $('#advancedSearchDiv').css('left').slice(0, -2) + "px");
 }
