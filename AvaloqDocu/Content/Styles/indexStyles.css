@@ -17,12 +17,22 @@ label, p {
 	margin-bottom: 0px;
 }
 
+.container { 
+  width: 100%;
+  height: 100%;
+  perspective: 800px;
+}
+
 .hideme {
 	display: none;
 }
 
-.w90 {
+.width-90-percent {
 	width: 90%;
+}
+
+.margin-top-10 {
+	margin-top: 10px;
 }
 
 .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
@@ -33,15 +43,11 @@ label, p {
 	padding-right: 0px;
 }
 
-.m-top-10 {
-	margin-top: 10px;
-}
-
-.pad-l-5 {
+.padding-left-5 {
 	padding-left: 5px;
 }  
 
-.pad-r-5 {
+.padding-right-5 {
 	padding-right: 5px;
 } 
 
@@ -88,12 +94,6 @@ label, p {
   width: 60px;
 }
 
-.container { 
-  width: 100%;
-  height: 100%;
-  perspective: 800px;
-}
-
 #switchModeDiv {
   width: 100%;
   height: 100%;
@@ -103,9 +103,6 @@ label, p {
 
 #switchModeDiv div {
   backface-visibility: hidden;
-}
-
-#switchModeDiv .front {
 }
 
 #switchModeDiv .back {
@@ -185,11 +182,11 @@ label, p {
 	-webkit-padding-after: 15px;
 }
 
-#mainSubmitButton:hover, #backToSimple:hover {
+#mainSubmitButton:hover, #backToMainSearch:hover {
 	background-color: #1F559F;
 }
 
-#mainSubmitButton:active, #advancedSearchButton:active, #backToSimple:active, #advancedSubmitButton:active {
+#mainSubmitButton:active, #advancedSearchButton:active, #backToMainSearch:active, #advancedSubmitButton:active {
 	box-shadow: inset 0px 2px 2px #000000;
 	transition: all 0.1s ease;
 }
@@ -246,12 +243,13 @@ label, p {
 	padding: 5px 5px 5px 5px;
 }
 
-#backToSimple {
+#backToMainSearch {
 	position: absolute;
 	left: 1050px;
 	top: 20px;
 	width: 38px;
 	height: 45px;
+    margin-left: 1px;
 	background-image: url('../Icons/downicon.ico');
 	background-position: 1px 6px;
 	background-repeat: no-repeat;
@@ -266,21 +264,33 @@ label, p {
     right: 9%;
 }
 
-#desc {
-	position: relative;
-	left: 84%;
-}
-
 #submitDiv, #resetDiv {
 	margin-top: 5%;
     padding-left: 0px;
     padding-right: 0px;
 }
 
-#advancedSubmitButton {
-	background-image: url('../Icons/submiticon.ico');
+#advancedSubmitButton { 
+	margin-top: 1%;
+	margin-left: 2px;
+	width: 100px;
+	height: 45px;
+    background-image: url('../Icons/submiticon.ico');
 	background-color: green;
     background-position: 70px 8px;
+	background-repeat: no-repeat;
+    padding-left: 12px;
+	font-size: 17px;
+	font-weight: 600;
+	text-align: left;
+    color: black;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+#advancedSubmitButton:hover {
+	background-color: greenyellow;
 }
 
 #resetButton {
@@ -297,26 +307,6 @@ label, p {
 	border-radius: 15px;
 	cursor: pointer;
 	transition: all 0.2s ease;
-}
-
-#advancedSubmitButton { 
-	margin-top: 1%;
-	margin-left: 2px;
-	width: 100px;
-	height: 45px;
-	background-repeat: no-repeat;
-    padding-left: 12px;
-	font-size: 17px;
-	font-weight: 600;
-	text-align: left;
-    color: black;
-	border-radius: 15px;
-	cursor: pointer;
-	transition: all 0.2s ease;
-}
-
-#advancedSubmitButton:hover {
-	background-color: greenyellow;
 }
 
 #resetButton:hover {

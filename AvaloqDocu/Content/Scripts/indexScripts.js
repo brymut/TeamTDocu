@@ -43,8 +43,16 @@
         onResize();
     });
 
+    // Code to synchronize main search and advanced search fields
+    $('#mainSearchBox').change(function () {
+        $('#advancedSearchBox').val($('#mainSearchBox').val());
+    });
+    $('#advancedSearchBox').change(function () {
+        $('#mainSearchBox').val($('#mainSearchBox').val());
+    });
+
     // Code to position the back to main search button
-    $('#backToSimple').css('left', $('#advancedSearchDiv').width() * 1 + 1 * $('#advancedSearchDiv').css('left').slice(0, -2) + "px");
+    $('#backToMainSearch').css('left', $('#advancedSearchDiv').width() * 1 + 1 * $('#advancedSearchDiv').css('left').slice(0, -2) + "px");
 
     // Code for the footer image in advanced search mode
     if(detectIE() == false){
@@ -71,7 +79,7 @@
     });
 
     // Code to switch to main search mode
-    $('#backToSimple').click(function () {
+    $('#backToMainSearch').click(function () {
         $('#avaloqInverted').promise().done(function(){
             $("body").css("background-color", "#1F559F");
             $('.hideme').hide();
@@ -148,7 +156,7 @@
         }
     });
 
-    // Code for the Reset button effect
+    // Code for the reset button effect
     $('#resetButton').mouseover(function () {
         $('#resetButton').text("Reset");
     });
@@ -189,17 +197,9 @@
             position: "left bottom",
         });
     });
-
-    // Synchronize main search and advanced search fields
-    $('#mainSearchBox').change(function () {
-        $('#advancedSearchBox').val($('#mainSearchBox').val());
-    });
-    $('#advancedSearchBox').change(function () {
-        $('#mainSearchBox').val($('#mainSearchBox').val());
-    });
 });
 
-// Function to determine if the browser is IE
+// Function to determine if the browser is IE, source: stackoverflow
 function detectIE() {
     var ua = window.navigator.userAgent;
 
@@ -245,5 +245,5 @@ function onResize() {
     }
 
     // Code to reposition the back to main search button
-    $('#backToSimple').css('left', $('#advancedSearchDiv').width() * 1 + 1 * $('#advancedSearchDiv').css('left').slice(0, -2) + "px");
+    $('#backToMainSearch').css('left', $('#advancedSearchDiv').width() * 1 + 1 * $('#advancedSearchDiv').css('left').slice(0, -2) + "px");
 }
