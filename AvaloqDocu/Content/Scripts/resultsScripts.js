@@ -6,15 +6,15 @@ $(document).ready(function(){
 	// Change of header and positioning of divs on scrolled load
 	if($(this).scrollTop() > 1){  
 		$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').addClass("sticky");
-		$('#avaloqicon').css("display", "");
-		$('#avaloqicon').show();
-		$('#avaloqlogo').hide();
+		$('#avaloqIcon').css("display", "");
+		$('#avaloqIcon').show();
+		$('#avaloqLogo').hide();
 		$('.ui-accordion-header').css('border-top-color', '#1F559F');
 	}
 	else{
 		$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').removeClass("sticky");
-		$('#avaloqicon').hide();
-		$('#avaloqlogo').show();
+		$('#avaloqIcon').hide();
+		$('#avaloqLogo').show();
 		$('.ui-accordion-header').css('border-top-color', '#efc47D');
 	}
 
@@ -27,17 +27,17 @@ $(document).ready(function(){
 	$(window).scroll(function(){
 		if($(this).scrollTop() > 1){  
 			$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').addClass("sticky");
-			$('#avaloqicon').css("display", "");
-			$('#avaloqicon').show();
-			$('#avaloqlogo').hide();
+			$('#avaloqIcon').css("display", "");
+			$('#avaloqIcon').show();
+			$('#avaloqLogo').hide();
 			$('.ui-accordion-header').css('border-top-color', '#1F559F');
 		}
 		else{
 			$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').removeClass("sticky");
 			$("#sidebar").css("left", 0);
 			$("#accordionPackage").css("left", $('#results').width() + $('#sidebar').width() - 6);
-			$('#avaloqicon').hide();
-			$('#avaloqlogo').show();
+			$('#avaloqIcon').hide();
+			$('#avaloqLogo').show();
 			$('.ui-accordion-header').css('border-top-color', '#efc47D');
 		}
 		
@@ -53,46 +53,46 @@ $(document).ready(function(){
 	// Colouring of results div border in yellow
 	$('.resultdiv').hover(function(){
 		if($(this).attr('id') == 'firstRes'){
-			$('#resultsinfo').css("border-bottom-color", "#efc47D");
+			$('#resultsInfo').css("border-bottom-color", "#efc47D");
 		}
 		$(this).prev().css("border-bottom-color", "#efc47D");
 		$(this).css("border-color", "#efc47D");
 	}, function(){
 		if($(this).attr('id') == 'firstRes'){
-			$('#resultsinfo').css("border-bottom-color", "grey");
+			$('#resultsInfo').css("border-bottom-color", "grey");
 		}
 		$(this).css("border-color", "#1F559F");
 		$(this).prev().css("border-bottom-color", "#1F559F");
 	});
 	
 	// Sumbit and reset function and behaviour
-	$( "#submit-reset" ).hide();	
+	$( "#formButtonsDiv" ).hide();	
 	$( "#h3Filters" ).click(function(){
-		$( "#submit-reset" ).toggle();
+		$( "#formButtonsDiv" ).toggle();
 	});
 
-	$( "#submit-adv-b" ).click(function() { 
-		$( "#advancedsearchform" ).submit();
+	$( "#submitButton" ).click(function() { 
+		$( "#advancedSearchForm" ).submit();
 	});	
-	$('#submit-adv-b').mouseover(function () {
-		$('#submit-adv-b').text("Sumbit");
+	$('#submitButton').mouseover(function () {
+		$('#submitButton').text("Sumbit");
 	});
-	$('#submit-adv-b').mouseout(function () {
-		$('#submit-adv-b').text("");
+	$('#submitButton').mouseout(function () {
+		$('#submitButton').text("");
 	});
-	$('#reset-adv-b').mouseover(function () {
-		$('#reset-adv-b').text("Reset");
+	$('#resetButton').mouseover(function () {
+		$('#resetButton').text("Reset");
 	});
-	$('#reset-adv-b').mouseout(function () {
-		$('#reset-adv-b').text("");
+	$('#resetButton').mouseout(function () {
+		$('#resetButton').text("");
 	});
 	
 	// Synchronization between main search field and the search field in the filter section
-	$('#searchbox').change(function(){
-		$('#titleboxtext').val($('#searchbox').val());
+	$('#mainSearchBox').change(function(){
+		$('#titleTextBox').val($('#mainSearchBox').val());
 	});
-	$('#titleboxtext').change(function(){
-		$('#searchbox').val($('#titleboxtext').val());
+	$('#titleTextBox').change(function(){
+		$('#mainSearchBox').val($('#titleTextBox').val());
 	});
 	
 	// Accordion settings for filters and package floating divs
@@ -149,10 +149,10 @@ $(document).ready(function(){
 	  $(this).trigger('notify-hide');
 	});
 	$(document).on('click', '.notifyjs-resetConfirm-base .yes', function() {
-		$("#advancedsearchform").trigger("reset");
+		$("#advancedSearchForm").trigger("reset");
 		$(this).trigger('notify-hide');
 	});
-	$('#reset-adv-b').click(function() {
+	$('#resetButton').click(function() {
 		$('.notifyjs-resetConfirm-base').trigger('notify-hide');
 		$.notify({
 			title: '<font color="red"><b>Reset</b></font> form?',
@@ -178,7 +178,7 @@ $(document).ready(function(){
 		$('.modal-title').text($($(this).closest("div").children("h3")[0]).text());
 		$('#results').css('width', resWidth);
 	});
-	$('.closeModal').click(function () {
+	$('.closemodal').click(function () {
 	    setTimeout(function () {
 	        $('#results').css('width', '61%');
 	    }, 400);
@@ -189,7 +189,7 @@ $(document).ready(function(){
 	    var resWidth = $('#results').css('width');
 	    $('#results').css('width', resWidth);
 	});
-	$('.closeModal').click(function () {
+	$('.closemodal').click(function () {
 	    setTimeout(function () {
 	        $('#results').css('width', '61%');
 	    }, 400);
@@ -209,19 +209,19 @@ $(document).ready(function(){
 	});
 
     // Code to synchronize the two package search boxes
-	$('#packageSearchbox').change(function () {
-	    $('#packageSearchboxModal').val($('#packageSearchbox').val());
+	$('#packageSearchBox').change(function () {
+	    $('#packageSearchBox').val($('#packageSearchBox').val());
 	});
 
     // Code to catch enter key pressed on package search box
-	$("#packageSearchbox").keyup(function (event) {
+	$("#packageSearchBox").keyup(function (event) {
 	    if (event.keyCode == 13) {
 	        $("#packageSelect").click();
 	    }
 	});
 
     // Code for results on enter key press inside package search box inside the package select modal
-	$("#packageSearchboxModal").keyup(function (event) {
+	$("#packageSearchBox").keyup(function (event) {
 	    if (event.keyCode == 13) {
 	        // Add KO JS code here
 	    }
@@ -230,11 +230,11 @@ $(document).ready(function(){
     // Code to disable / enable package search box on package select / deselect
 	$('#selectPackage').click(function () {
 	    if ($('.collapseButton.clicked').length == 1) {
-	        $('#packageSearchbox').val($('.collapseButton.clicked').text());
-	        $('#packageSearchbox').prop("disabled", true);
+	        $('#packageSearchBox').val($('.collapseButton.clicked').text());
+	        $('#packageSearchBox').prop("disabled", true);
 	    } else {
-	        $('#packageSearchbox').prop("disabled", false);
-	        $('#packageSearchbox').val("");
+	        $('#packageSearchBox').prop("disabled", false);
+	        $('#packageSearchBox').val("");
 	    }
 	});
 });

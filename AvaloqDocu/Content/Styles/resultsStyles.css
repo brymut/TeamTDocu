@@ -63,48 +63,6 @@ li.ui-menu-item:hover:before {
 	padding-right: 3.8px;
 }
 
-.ui-accordion-header-active {
-	background-color: #1F559F;
-}
-
-.ui-accordion-content-active {
-	margin-bottom: 1px;
-}
-
-.ui-accordion .ui-accordion-header {
-	margin-top: 0px;
-	border-top-color: #efc47D;
-	border-top-width: 4px;
-}
-
-.packageText {
-	float: left;
-}
-
-.leftmostRadio {
-	margin-left: 0px !important;
-}
-
-.collapseButton {
-    width: 100%;
-    height: 30px;
-    background-color: #1F559F;
-    color: white;
-}
-
-.collapseButton.clicked {
-    background-color: #efc47D;
-    color: black;
-    font-weight: bold;
-}
-
-.collapse {
-    width: 100%;
-    height: auto;
-    max-height: 110px;
-    overflow: auto;
-}
-
 ul.packageContents {
     width: 95%;
     margin-bottom:20px;
@@ -125,6 +83,44 @@ li.packageContent {
 
 .tripleColUl li  { 
     width:33.333%; 
+}
+
+.ui-accordion-header-active {
+	background-color: #1F559F;
+}
+
+.ui-accordion-content-active {
+	margin-bottom: 1px;
+}
+
+.ui-accordion .ui-accordion-header {
+	margin-top: 0px;
+	border-top-color: #efc47D;
+	border-top-width: 4px;
+}
+
+.packageText {
+	float: left;
+}
+
+.collapseButton {
+    width: 100%;
+    height: 30px;
+    background-color: #1F559F;
+    color: white;
+}
+
+.collapseButton.clicked {
+    background-color: #efc47D;
+    color: black;
+    font-weight: bold;
+}
+
+.collapse {
+    width: 100%;
+    height: auto;
+    max-height: 110px;
+    overflow: auto;
 }
 
 .resultdiv {
@@ -163,7 +159,7 @@ li.packageContent {
 	margin-left: 60px;
 }
 
-.infop, .spaces, .metadata {
+.searchstats, .spaces, .metadata {
 	float: left;
 }
 
@@ -215,6 +211,24 @@ li.packageContent {
 .linkicon {
 	height: 30px;
 	width: 30px;
+}
+
+.packageDownload {
+	height: 35px;
+	width: 200px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;	
+}
+
+.packageDownload:hover {
+	background-color: #1F559F;	
+	color: white;
+}
+
+.packageDownload:active {
+	box-shadow: inset 0px 2px 2px #000000;
+	transition: all 0.1s ease;	
 }
 
 .clearfix {
@@ -269,7 +283,7 @@ li.packageContent {
 	float: left;
 }
 
-#avaloqlogo {
+#avaloqLogo {
 	display: block;
 	float: left;
 	position: fixed;
@@ -279,7 +293,7 @@ li.packageContent {
 	width: 300px;
 }
 
-#avaloqicon {
+#avaloqIcon {
 	display: none;
 	float: left;
 	margin-top: 14px;
@@ -299,7 +313,7 @@ li.packageContent {
 	top: 9px;
 }
 
-#searchbox {
+#mainSearchBox {
 	position: relative;
 	float: left;
 	height: 30px;
@@ -315,17 +329,222 @@ li.packageContent {
     transition: width 0.4s ease-in-out;
 }
 
-#searchbox:focus {
+#mainSearchBox:focus {
 	width: 400px;
 }
 
-#searchsubmit {
+#mainSubmitButton {
 	position: relative;
 	height: 30px;
 	width: 30px;
 	background-image: url('../Icons/submiticon.ico');
 	background-position: 3px 1px; 
 	background-repeat: no-repeat;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#sidebar {
+	position: absolute;
+	top: 105px;
+	width: 300px;
+}
+
+#sidebar.sticky {
+	position: fixed;
+	top: 48px;
+}
+
+#formContain {
+	float: left;
+	position: relative;
+    color: #1F559F;
+	width: 100%;
+	max-height: 500px;
+	overflow: auto;
+}
+
+#titleCheckbox {
+    margin-left: 14px;
+}
+
+#titleOnly, #desc {
+    font-weight: bold;
+    margin-left: 1px;
+}
+
+#formButtonsDiv {
+	position: relative;
+	float: left;
+	margin-top: 2%;
+	width: 300px;
+    color: black;
+}
+
+#resetButtonDiv {
+	float: left;
+	margin-left: 100px;
+}
+
+#submitButton {
+	background-image: url('../Icons/submiticon.ico');
+	background-color: green;
+}
+
+#submitButton:hover {
+	width: 100px;
+	background-position: 72px 8px;
+	padding-left: 12px;
+	font-size: 17px;
+	font-weight: 600;
+	text-align: left;
+	background-color: greenyellow;
+	transition: all 0.2s ease;
+}
+
+#submitButton, #resetButton { 
+	width: 38px;
+	height: 45px;
+	background-position: 6px 8px;
+	background-repeat: no-repeat;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+#resetButton {
+	background-image: url('../Icons/reseticon.png');
+	background-size: 25px 25px;
+	background-color: #FF0000;
+}
+
+#resetButton:hover {
+	width: 100px;
+	background-position: 65px 8px;
+	padding-left: 12px;
+	font-size: 17px;
+	font-weight: 600;
+	text-align: left;
+	background-color: #FF661A;
+	transition: width 0.2s ease;
+}
+
+#results {
+	position: absolute;
+	top: 105px;
+	left: 300px;
+	width: 61%;
+	min-width: 680px;
+	margin-right: 2px;
+}
+
+#results.sticky {
+	position: absolute;
+	top: 48px;
+}
+
+#resultsInfo {
+	position: relative;
+	float:left;
+	width: 99.25%;
+	height: 100px;
+	border-right: thick dotted;
+	border-left: thick dotted;
+    border-bottom: thick dotted;
+	border-color: grey;
+	transition: all 0.4s ease;
+}
+
+#orderByDiv {
+    float: left;
+}
+
+#orderByDropdown {
+    width: 125px;
+    height: 30px;
+}
+
+#descCheckbox, #orderByDropdown {
+    display: inline;
+}
+
+#desc {
+	margin-top: 0px;
+}
+
+#infoDiv {
+	position: absolute;
+	margin-left: 1%;
+	bottom: 0px;
+	float: left;
+}
+
+#resPageSpan {
+	position: absolute;
+	bottom: 40px;
+	right: 5px;
+}
+
+#resPrev, #resNext {
+	position: absolute;
+	bottom: 2px;
+	height: 35px;
+	width: 80px;
+	background-color: #ffffff;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+#resPrev, #resPrevBottom {
+	right: 90px;
+}
+
+#resNext, #resNextBottom {
+	right: 5px;
+}
+
+#resPrev:hover, #resNext:hover, #resPrevBottom:hover, #resNextBottom:hover {
+	color: white;
+	background-color: #1F559F;
+}
+
+#resPrev:active, #resNext:active, #resPrevBottom:active, #resNextBottom:active {
+	box-shadow: inset 0px 2px 2px #000000;
+	transition: all 0.1s ease;
+}
+
+#resultsInfoBottom {
+	position: relative;
+	float:left;
+	width: 99.25%;
+	height: 100px;
+	border-right: thick dotted;
+	border-left: thick dotted;
+   	border-bottom: thick dotted;
+	border-color: grey;
+	transition: all 0.4s ease;
+}
+
+#infoSpanBottom {
+	position: absolute;
+	margin-left: 1%;
+	top: 0px;
+	float: left;
+}
+
+
+#resPageSpanBottom {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
+
+#resPrevBottom, #resNextBottom {
+	position: absolute;
+	top: 2px;
+	height: 35px;
+	width: 80px;
 	background-color: #ffffff;
 	border-radius: 15px;
 	cursor: pointer;
@@ -346,7 +565,7 @@ li.packageContent {
     padding-top: 2px;
 }
 
-#packageSearchbox {
+#packageSearchBox {
     float: left;
 	height: 18px;
     width: 180px;
@@ -381,7 +600,7 @@ li.packageContent {
 	transition: all 0.1s ease;	
 }
 
-#packageSearchboxModal {
+#packageSearchBoxModal {
 	float: right;
 	height: 18px;
     width: 180px;
@@ -397,226 +616,4 @@ li.packageContent {
 
 #packageUl {
 	list-style: none;
-}
-
-.packageDownload {
-	height: 35px;
-	width: 200px;
-	background-color: #ffffff;
-	border-radius: 15px;
-	cursor: pointer;	
-}
-
-#packageDownload:hover {
-	background-color: #1F559F;	
-	color: white;
-}
-
-#packageDownload:active {
-	box-shadow: inset 0px 2px 2px #000000;
-	transition: all 0.1s ease;	
-}
-
-#sidebar {
-	position: absolute;
-	top: 105px;
-	width: 300px;
-}
-
-#sidebar.sticky {
-	position: fixed;
-	top: 48px;
-}
-
-#formcontain {
-	float: left;
-	position: relative;
-    color: #1F559F;
-	width: 100%;
-	max-height: 500px;
-	overflow: auto;
-}
-
-#titlecheckbox {
-    margin-left: 14px;
-}
-
-#titleonly, #desc {
-    font-weight: bold;
-    margin-left: 1px;
-}
-
-#desc {
-	margin-top: 0px;
-}
-
-#desccheckbox, #orderbydd {
-    display: inline;
-}
-
-#orderbydd {
-    width: 125px;
-    height: 30px;
-}
-
-#orderbyDIV {
-    float: left;
-}
-
-#submit-reset {
-	position: relative;
-	float: left;
-	margin-top: 2%;
-	width: 300px;
-}
-
-#resetbuttondiv {
-	float: left;
-	margin-left: 100px;
-}
-
-#submit-adv-b {
-	background-image: url('../Icons/submiticon.ico');
-	background-color: green;
-}
-
-#reset-adv-b {
-	background-image: url('../Icons/reseticon.png');
-	background-size: 25px 25px;
-	background-color: #FF0000;
-}
-
-#submit-adv-b, #reset-adv-b { 
-	width: 38px;
-	height: 45px;
-	background-position: 6px 8px;
-	background-repeat: no-repeat;
-	border-radius: 15px;
-	cursor: pointer;
-	transition: all 0.2s ease;
-}
-
-#submit-adv-b:hover {
-	width: 100px;
-	background-position: 72px 8px;
-	padding-left: 12px;
-	font-size: 17px;
-	font-weight: 600;
-	text-align: left;
-	background-color: greenyellow;
-	transition: all 0.2s ease;
-}
-
-#reset-adv-b:hover {
-	width: 100px;
-	background-position: 65px 8px;
-	padding-left: 12px;
-	font-size: 17px;
-	font-weight: 600;
-	text-align: left;
-	background-color: #FF661A;
-	transition: width 0.2s ease;
-}
-
-#results {
-	position: absolute;
-	top: 105px;
-	left: 300px;
-	width: 61%;
-	min-width: 680px;
-	margin-right: 2px;
-}
-
-#results.sticky {
-	position: absolute;
-	top: 48px;
-}
-
-#resultsinfo {
-	position: relative;
-	float:left;
-	width: 99.25%;
-	height: 100px;
-	border-right: thick dotted;
-	border-left: thick dotted;
-    border-bottom: thick dotted;
-	border-color: grey;
-	transition: all 0.4s ease;
-}
-
-#infoDIV {
-	position: absolute;
-	margin-left: 1%;
-	bottom: 0px;
-	float: left;
-}
-
-#resPageSpan {
-	position: absolute;
-	bottom: 40px;
-	right: 5px;
-}
-
-#resPrev, #resNext {
-	position: absolute;
-	bottom: 2px;
-	height: 35px;
-	width: 80px;
-	background-color: #ffffff;
-	border-radius: 15px;
-	cursor: pointer;
-}
-
-#resPrev, #resPrevBot {
-	right: 90px;
-}
-
-#resNext, #resNextBot {
-	right: 5px;
-}
-
-#resPrev:hover, #resNext:hover, #resPrevBot:hover, #resNextBot:hover {
-	color: white;
-	background-color: #1F559F;
-}
-
-#resPrev:active, #resNext:active, #resPrevBot:active, #resNextBot:active {
-	box-shadow: inset 0px 2px 2px #000000;
-	transition: all 0.1s ease;
-}
-
-#resultsinfobot {
-	position: relative;
-	float:left;
-	width: 99.25%;
-	height: 100px;
-	border-right: thick dotted;
-	border-left: thick dotted;
-   	border-bottom: thick dotted;
-	border-color: grey;
-	transition: all 0.4s ease;
-}
-
-#infospanbot {
-	position: absolute;
-	margin-left: 1%;
-	top: 0px;
-	float: left;
-}
-
-
-#resPageSpanBot {
-	position: absolute;
-	bottom: 5px;
-	right: 5px;
-}
-
-#resPrevBot, #resNextBot {
-	position: absolute;
-	top: 2px;
-	height: 35px;
-	width: 80px;
-	background-color: #ffffff;
-	border-radius: 15px;
-	cursor: pointer;
 }

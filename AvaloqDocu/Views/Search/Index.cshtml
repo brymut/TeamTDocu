@@ -4,36 +4,36 @@
 
 <div id="searchPage">
     <header>
-        <a href="/"><img id="avaloqlogo" src="~/Content/Logos/avaloqlogo.png"></a>
-        <a href="/"><img id="avaloqicon" src="~/Content/Icons/logoicon.ico"></a>
+        <a href="/"><img id="avaloqLogo" src="~/Content/Logos/avaloqlogo.png"></a>
+        <a href="/"><img id="avaloqIcon" src="~/Content/Icons/logoicon.ico"></a>
         <div id="searchDiv">
-            <form id="searchboxform" autocomplete="off">
-                <input id="searchbox" data-bind="value: query" type="text" name="search" placeholder="Type in your Avaloq search..">
-                <input data-bind="click: updateQuery" type="submit" id="searchsubmit" value="">
+            <form id="mainSearchForm" autocomplete="off">
+                <input id="mainSearchBox" data-bind="value: query" type="text" name="search" placeholder="Type in your Avaloq search..">
+                <input id="mainSubmitButton" data-bind="click: updateQuery" type="submit" value="">
             </form>
         </div>
     </header>
     <div id="sidebar">
         <div id="accordionFilters">
-            <h3 id="h3Filters" class="accordionHeader">Filters</h3>
-            <div id="formcontain" class="container form-group">
-                <form id="advancedsearchform" autocomplete="off">
+            <h3 id="h3Filters">Filters</h3>
+            <div id="formContain" class="container form-group">
+                <form id="advancedSearchForm" autocomplete="off">
                     <div class="col-md-14 col-lg-14">
-                        <div id="titleDIV" class="row">
-                            <label class="" for="titleboxtext">Title / Subtitle / Keywords</label>
-                            <input type="checkbox" id="titlecheckbox"><label id="titleonly" class="form-text text-muted" for="titlecheckbox">title only</label>
-                            <input class="form-control" id="titleboxtext" type="text">     
+                        <div id="titleDiv" class="row">
+                            <label for="titleTextBox">Title / Subtitle / Keywords</label>
+                            <input id="titleCheckbox" type="checkbox"><label id="titleOnly" for="titleCheckbox" class="form-text text-muted">title only</label>
+                            <input id="titleTextBox" type="text" class="form-control">     
                         </div>
-                        <div id="docuidDIV" class="row">
+                        <div id="docuIDDiv" class="row">
                             <div class="input-group">
-                                <label for="docuidboxtext">Docu ID</label>
-                                <input class="form-control" id="docuidboxtext" type="text">
+                                <label for="docuIDTextBox">Docu ID</label>
+                                <input id="docuIDTextBox" type="text" class="form-control">
                             </div>
                         </div>
-                        <div id="releaseDIV" class="row">
+                        <div id="releaseDiv" class="row">
                             <div class="input-group">
-                                <label class="" for="releasedd">Release</label>
-                                <select class="form-control" id="releasedd" name="release">
+                                <label for="releaseDropdown">Release</label>
+                                <select id="releaseDropdown" name="release" class="form-control">
                                     <option value="0">-------------------------------</option>
                                     <option value="4">4.0</option>
                                     <option value="3">3.0</option>
@@ -42,10 +42,10 @@
                                 </select>
                             </div>
                         </div>
-                        <div id="functionalareaDIV" class="row">
+                        <div id="funcAreaDiv" class="row">
                             <div class="input-group">
-                                <label class="" for="funcareamultiple">Functional Area</label>
-                                <select class="form-control" id="funcareamultiple" name="funcarea" multiple>
+                                <label class="" for="funcAreaMultiple">Functional Area</label>
+                                <select id="funcAreaMultiple" name="funcarea" class="form-control" multiple>
                                     <option value="0">.......Avaloq Banking System.......</option>
                                     <option value="1">Accounting and Position Keeping</option>
                                     <option value="2">AFP Front Office</option>
@@ -53,82 +53,81 @@
                                 </select>
                             </div>
                         </div>
-                        <div id="docutypeDIV" class="row">
+                        <div id="docuTypeDiv" class="row">
                             <div class="input-group">
-                                <label class="" for="docutypedd">Docu Type</label>
-                                <select class="form-control" id="docutypedd" name="docutype">
+                                <label for="docuTypeDropdown">Docu Type</label>
+                                <select id="docuTypeDropdown" name="docutype" class="form-control">
                                     <option value="0">-------------------------------</option>
                                     <option value="1">PDF</option>
                                     <option value="2">HTML</option>
                                 </select>
                             </div>
                         </div>
-                        <div id="subtypeDIV" class="row">
+                        <div id="subtypeDiv" class="row">
                             <div class="input-group">
-                                <label for="subtypedd">Subtype</label>
-                                <select class="form-control" id="subtypedd" name="subtype">
+                                <label for="subtypeDropdown">Subtype</label>
+                                <select id="subtypeDropdown" name="subtype" class="form-control">
                                     <option value="0">-------------------------------</option>
                                     <option value="1">Team 1</option>
                                     <option value="2">Team 2</option>
                                 </select>
                             </div>
                         </div>
-                        <div id="lastmodifiedDIV" class="row">
+                        <div id="lastModifiedDiv" class="row">
                             <div class="input-group">
-                                <label for="lastmodified">Last Modified</label>
+                                <label>Last Modified</label>
                                 <p>From</p>
-                                <input class="form-control" type="text" id="from-date-input">
+                                <input class="form-control" type="text" id="fromDateInput">
                                 <p>To</p>
-                                <input class="form-control" type="text" id="to-date-input">
+                                <input class="form-control" type="text" id="toDateInput">
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div id="submit-reset">
-            <div id="resetbuttondiv">
-                <button class="adv-s-hide" id="reset-adv-b"></button>
+        <div id="formButtonsDiv">
+            <div id="resetButtonDiv">
+                <button id="resetButton"></button>
             </div>
             <div>
-                <button class="adv-s-hide" id="submit-adv-b"></button>
+                <button id="submitButton"></button>
             </div>
         </div>
     </div>
     <div id="results">
-        <div id="resultsinfo">
-            <div id="orderbyDIV">
-                    <select class="form-control" id="orderbydd" name="orderby">
+        <div id="resultsInfo">
+            <div id="orderByDiv">
+                    <select id="orderByDropdown" name="orderby" class="form-control">
                         <option value="-1">Order By</option>
                         <option value="0">Title</option>
                         <option value="1">User Added</option>
                         <option value="2">Date Added</option>
                         <option value="3">Last Edited</option>
                     </select>
-                <input type="checkbox" id="desccheckbox"><label id="desc" class="form-text text-muted" for="desccheckbox">desc.</label>
+                <input id="descCheckbox" type="checkbox"><label id="desc" for="descCheckbox" class="form-text text-muted">desc.</label>
             </div>
-            <div id="infoDIV">
-                <p class="infop">Search for&nbsp;"</p>
-                <p data-bind="text: query" class="infop" id="term"></p>
-                <p class="infop">"&nbsp;took&nbsp;</p>
-                <p data-bind="text: queryTime" class="infop" id="searchtime"></p>
-                <p class="infop">&nbsp;milliseconds.</p>
+            <div id="infoDiv">
+                <p class="searchstats">Search for&nbsp;"</p>
+                <p id="term" class="searchstats" data-bind="text: query"></p>
+                <p class="searchstats">"&nbsp;took&nbsp;</p>
+                <p id="searchTime" data-bind="text: queryTime" class="searchstats"></p>
+                <p class="searchstats">&nbsp;milliseconds.</p>
             </div>
-            <span id="resPageSpan"><p class="infop">Page&nbsp;</p><p data-bind="text: page" class="infop" id="pageNum"></p><p class="infop">&nbsp;of&nbsp;</p><p data-bind="text: pages" class="infop" id="totalPage"></p></span>
-            <button data-bind="visible: page() > 1, click: prev" id="resPrev">Previous</button>
-            <button data-bind="visible: page() < pages(), click: next" id="resNext">Next</button>
+            <span id="resPageSpan"><p class="searchstats">Page&nbsp;</p><p id="pageNum" data-bind="text: page" class="searchstats"></p><p class="searchstats">&nbsp;of&nbsp;</p><p id="totalPage" data-bind="text: pages" class="searchstats"></p></span>
+            <button id="resPrev" data-bind="visible: page() > 1, click: prev">Previous</button>
+            <button id="resNext" data-bind="visible: page() < pages(), click: next">Next</button>
         </div>
-        <form id="packageform" autocomplete="off">
-            <!-- ko foreach: results -->
-                <div class="resultdiv">
-                    <span class="resultcheckboxspan"><input id="cb1" class="resultcheckbox" value="package" type="checkbox" /></span>
-                    <h3 class="resultdivtitle" data-bind="text: Title"></h3>
-                    <p class="dateadded" data-bind="text: $root.formatDate(UploadDate)"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
-                    <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
-                    <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
-                    <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
-                </div>
-            <!-- /ko -->
+        <!-- ko foreach: results -->
+        <div class="resultdiv">
+                <span class="resultcheckboxspan"><input id="cb1" class="resultcheckbox" value="package" type="checkbox" /></span>
+                <h3 data-bind="text: Title" class="resultdivtitle"></h3>
+                <p data-bind="text: $root.formatDate(UploadDate)" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+                <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
+                <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
+                <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
+        </div>
+        <!-- /ko -->
             @*<div id="firstRes" class="resultdiv">
                 <span class="resultcheckboxspan"><input id="cb1" class="resultcheckbox" value="package" type="checkbox"></span>
                 <h3 id="title1" class="resultdivtitle">Financial trends in 2017</h3>
@@ -151,24 +150,23 @@
             </div>
             <div class="resultdiv">
             </div>*@
-        </form>
-        <div id="resultsinfobot">
-            <div id="infospanbot">
-                <p class="infop">Search for&nbsp;"</p>
-                <p data-bind="text: query" class="infop" id="term"></p>
-                <p class="infop">"&nbsp;took&nbsp;</p>
-                <p data-bind="text: queryTime" class="infop" id="searchtime"></p>
-                <p class="infop">&nbsp;milliseconds.</p>
+        <div id="resultsInfoBottom">
+            <div id="infoSpanBottom">
+                <p class="searchstats">Search for&nbsp;"</p>
+                <p id="term" data-bind="text: query" class="searchstats"></p>
+                <p class="searchstats">"&nbsp;took&nbsp;</p>
+                <p id="searchTime" data-bind="text: queryTime" class="searchstats"></p>
+                <p class="searchstats">&nbsp;milliseconds.</p>
             </div>
-            <span id="resPageSpanBot"><p class="infop">Page&nbsp;</p><p data-bind="text: page" class="infop" id="pageNum"></p><p class="infop">&nbsp;of&nbsp;</p><p data-bind="text: pages" class="infop" id="totalPage"></p></span>
-            <button data-bind="visible: page() > 1, click: prev" id="resPrev">Previous</button>
-            <button data-bind="visible: page() < pages(), click: next" id="resNext">Next</button>
+            <span id="resPageSpanBottom"><p class="searchstats">Page&nbsp;</p><p id="pageNum" data-bind="text: page" class="searchstats"></p><p class="searchstats">&nbsp;of&nbsp;</p><p id="totalPage" data-bind="text: pages" class="searchstats"></p></span>
+            <button id="resPrevBottom" data-bind="visible: page() > 1, click: prev">Previous</button>
+            <button id="resNextBottom" data-bind="visible: page() < pages(), click: next">Next</button>
         </div>
     </div>
     <div id="accordionPackage">
-        <h3 class="accordionHeader">Current document package</h3>
+        <h3>Current document package</h3>
         <div id="packageDiv">
-            <input id="packageSearchbox" type="text" name="packageSearch" placeholder="Type in package name..">
+            <input id="packageSearchBox" type="text" name="packagesearch" placeholder="Type in package name..">
             <button id="packageSelect" data-toggle="modal" data-target="#packageModal" data-backdrop="static"></button>
             <ul id="packageUl"></ul>
             <p class="packageText">You have selected&nbsp;</p>
@@ -186,7 +184,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="closeModal close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="closemodal close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Excerpts of document * for search **</h4>
                 </div>
                 <div>
@@ -208,7 +206,7 @@
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
                     </ul>
-                    <button type="button" class="closeModal btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="closemodal btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -217,9 +215,9 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="closeModal close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="closemodal close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Package results for *</h4>
-                    <input id="packageSearchboxModal" type="text" name="packageSearch" placeholder="Package name..">
+                    <input id="packageSearchBoxModal" type="text" name="packagesearch" placeholder="Package name..">
                 </div>
                 <div class="modal-body">
                     <button id="packageCollapseButton1" class="collapseButton" data-toggle="collapse" data-target="#packageCollapseDiv1">Docu Package</button>
@@ -273,8 +271,8 @@
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
                     </ul>
-                    <button type="button" id="selectPackage" class="closeModal btn btn-default" data-dismiss="modal">Select Package</button>
-                    <button type="button" class="closeModal btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="selectPackage" class="closemodal btn btn-default" data-dismiss="modal">Select Package</button>
+                    <button type="button" class="closemodal btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
