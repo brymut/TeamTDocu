@@ -13,10 +13,10 @@
         </div>
     </div>
     <div id="uploadMode" class="back">
+        <button id="uploadToSearch" class="cardFlip">Back to search</button>
         <div id="uploadDiv">
-            <button id="uploadToSearch" class="cardFlip">Back to search</button>
             <!-- Code inside the form below taken from blueimp/JQuery-File-Upload -->
-            <form id="fileUpload" action="" method="POST" enctype="multipart/form-data">
+            <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
                 <noscript>&lt;input type="hidden" name="redirect" value="/Index"&gt;</noscript>
                 <div class="row fileupload-buttonbar">
                     <div class="col-lg-7">
@@ -54,6 +54,15 @@
                 <!-- The table listing the files available for upload/download -->
                 <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
             </form>
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
         </div>
     </div>
 </div>
@@ -166,12 +175,81 @@
 <div id="footer">
     <img id="avaloqInverted" class="hideme" src="~/Content/Logos/avaloqinverted.jpg">
 </div>
-
+<script id="template-upload" type="text/x-tmpl">
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+            <button class="btn btn-primary start" disabled>
+                <i class="glyphicon glyphicon-upload"></i>
+                <span>Start</span>
+            </button>
+            {% } %}
+            {% if (!i) { %}
+            <button class="btn btn-warning cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>Cancel</span>
+            </button>
+            {% } %}
+        </td>
+    </tr>
+    {% } %}
+</script>
+<script id="template-download" type="text/x-tmpl">
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery': '' %}>{%=file.name%}</a>
+                {% } else { %}
+                <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+            <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.deleteUrl) { %}
+            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+                <i class="glyphicon glyphicon-trash"></i>
+                <span>Delete</span>
+            </button>
+            <input type="checkbox" name="delete" value="1" class="toggle">
+            {% } else { %}
+            <button class="btn btn-warning cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>Cancel</span>
+            </button>
+            {% } %}
+        </td>
+    </tr>
+    {% } %}
+</script>
 @section scripts{
     @Scripts.Render("~/Content/Scripts/jquery.min.js")
     @Scripts.Render("~/Content/Scripts/jquery-ui.min.js")
+    @Scripts.Render("~/Content/Scripts/upload-tmpl.min.js")
     @Scripts.Render("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
     @Scripts.Render("~/Content/Scripts/notify.min.js")
+    @Scripts.Render("~/Content/Scripts/jquery.iframe-transport.js")
+    @Scripts.Render("~/Content/Scripts/jquery.fileupload.js")
+    @Scripts.Render("~/Content/Scripts/jquery.fileupload-process.js")
+    @Scripts.Render("~/Content/Scripts/jquery.fileupload-validate.js")
+    @Scripts.Render("~/Content/Scripts/jquery.fileupload-ui.js")
+    @Scripts.Render("~/Content/Scripts/upload-main.js")
     @Scripts.Render("~/Content/Scripts/indexScripts.js")
     @Scripts.Render("~/Content/Scripts/home.js")
 }
@@ -179,5 +257,8 @@
 @section styles{
     @Styles.Render("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
     @Styles.Render("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
+    @Styles.Render("~/Content/Styles/blueimp-gallery.min.css") 
+    @Styles.Render("~/Content/Styles/jquery.fileupload.css")
+    @Styles.Render("~/Content/Styles/jquery.fileupload-ui.css")
     @Styles.Render("~/Content/Styles/indexStyles.css")    
 }

@@ -1,7 +1,7 @@
 body {
 	background-color: #1F559F;
 	transition: all 0.3s ease;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 input, select {
@@ -15,6 +15,21 @@ input[type='radio'] {
 
 label, p {
 	margin-bottom: 0px;
+}
+
+thead, tbody { 
+    display: block; 
+}
+
+td {
+    width: 300px;
+}
+
+tbody {
+    height: auto;
+    max-height: 400px;
+    overflow-y: auto; 
+    overflow-x: hidden; 
 }
 
 .container { 
@@ -208,9 +223,12 @@ label, p {
 
 #uploadDiv {
     position: fixed;
-	top: 25vh;
-	left: 25vw;
-	width: 800px;
+    top: 10vh;
+    left: 25vw;
+    width: 800px;
+    border-radius: 15px;
+    background-color: white;
+    padding: 10px 10px 10px 10px;
 }
 
 #uploadToSearch {
