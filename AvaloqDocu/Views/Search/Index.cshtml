@@ -99,6 +99,9 @@
             <div id="resetButtonDiv">
                 <button id="resetButton"></button>
             </div>
+            <div >
+                <button id="updateButton"></button>
+            </div>
         </div>
     </div>
     <div id="results">
@@ -172,7 +175,10 @@
     <div id="accordionPackage">
         <h3>Current document package</h3>
         <div id="packageDiv">
-            <input id="packageSearchBox" type="text" name="packagesearch" placeholder="Type in package name..">
+            <div id="onHover">
+                <input id="packageSearchBox" type="text" name="packagesearch" placeholder="Type in package name..">
+                <p id="removePackage">x</p>
+            </div>
             <button id="packageSelect" data-toggle="modal" data-target="#packageModal" data-backdrop="static"></button>
             <ul id="packageUl"></ul>
             <p class="packageText">You have selected&nbsp;</p>
@@ -190,8 +196,8 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="closemodal close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Excerpts of document * for search **</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="excerptModalTitle" class="modal-title">Excerpts of document * for search **</h4>
                 </div>
                 <div>
                     <hr /><div id="modalBody1" class="modal-body">
@@ -212,7 +218,7 @@
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
                     </ul>
-                    <button type="button" class="closemodal btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -221,8 +227,8 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="closemodal close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Package results for *</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="packageModalTitle" class="modal-title">Results for ""</h4>
                     <input id="packageSearchBoxModal" type="text" name="packagesearch" placeholder="Package name..">
                 </div>
                 <div class="modal-body">
@@ -277,8 +283,8 @@
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
                     </ul>
-                    <button type="button" id="selectPackage" class="closemodal btn btn-default" data-dismiss="modal">Select Package</button>
-                    <button type="button" class="closemodal btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="selectPackage" class="btn btn-default">Select Package</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

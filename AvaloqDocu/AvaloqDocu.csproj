@@ -207,6 +207,7 @@
     <Content Include="Content\Icons\reseticon.png" />
     <Content Include="Content\Icons\searchicon.ico" />
     <Content Include="Content\Icons\submiticon.ico" />
+    <Content Include="Content\Icons\updateicon.png" />
     <Content Include="Content\Logos\avaloqinverted.jpg" />
     <Content Include="Content\Logos\avaloqlogo.png" />
     <Content Include="Content\Scripts\bootstrap.min.js" />

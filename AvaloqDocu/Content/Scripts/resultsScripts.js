@@ -1,7 +1,9 @@
-$(document).ready(function(){
+$(document).ready(function () {
+    // Disallow whitespace to the right of the Package div
+    $('body').css('maxWidth', $('#results').width() + $('#accordionPackage').width() + $('#sidebar').width()-6);
+
 	// Positioning of the package floating div on load
 	$('#accordionPackage').css("left", $('#results').width() + $('#sidebar').width() - 6);
-	var accPckgLeft = $("#accordionPackage").css("left").slice(0,-2);
 	
 	// Change of header and positioning of divs on scrolled load
 	if($(this).scrollTop() > 1){  
@@ -47,7 +49,7 @@ $(document).ready(function(){
 	
 	// Positioning of the package floating div on window resize
 	$(window).resize(function(){
-		$("#accordionPackage").css("left", $('#results').width() + $('#sidebar').width() - 6 - $(this).scrollLeft());
+		$("#accordionPackage").css("left", $('#results').width() + $('#sidebar').width() - 2 - $(this).scrollLeft());
 	});
 	
 	// Colouring of results div border in yellow
@@ -135,15 +137,18 @@ $(document).ready(function(){
     // Attach JQuery callendar to date fields
 	$('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'dd-mm-yy' });
 	
-	// Reset function and behaviour
+	// Update and reset function and behaviour
 	$( "#formButtonsDiv" ).hide();	
 	$( "#h3Filters" ).click(function(){
 		$( "#formButtonsDiv" ).toggle();
 	});
 
-	//$("#advancedSearchForm").change(function () {
-		//$( "#advancedSearchForm" ).submit();
-	//});	
+	$('#updateButton').mouseover(function () {
+	    $('#updateButton').text("Update");
+	});
+	$('#updateButton').mouseout(function () {
+	    $('#updateButton').text("");
+	});
 	$('#resetButton').mouseover(function () {
 		$('#resetButton').text("Reset");
 	});
@@ -239,42 +244,37 @@ $(document).ready(function(){
 	// Result excertps code via Bootstrap JS Modal, fixes a small bug with the width of the results div on modal open / close
 	$('.previewbutton').click(function () {
 		var resWidth = $('#results').css('width');
-		$('.modal-title').text($($(this).closest("div").children("h3")[0]).text());
+		$('#excerptModalTitle').text($($(this).closest("div").children("h3")[0]).text());
 		$('#results').css('width', resWidth);
 	});
-	$('.closemodal').click(function () {
+
+
+    // Package select code via Bootstrap JS Modal
+	$('#packageModal').on('show.bs.modal', function () {
+	    $('#packageModalTitle').text('Results for "' + $('#packageSearchBox').val() + '"');
+	});
+
+    // Fixes a small bug with the width of the results div on modal open / close
+	$('#excerptModal, #packageModal').on('hide.bs.modal', function () {
 	    setTimeout(function () {
 	        $('#results').css('width', '61%');
 	    }, 400);
 	});
 
-    // Package select code via Bootstrap JS Modal, fixes a small bug with the width of the results div on modal open / close
-	$('#packageSelect').click(function () {
-	    var resWidth = $('#results').css('width');
-	    $('#results').css('width', resWidth);
+    // Change colour of clicked package name button inside package modal and attemp to force only one selected package
+	$('.collapse').on('hide.bs.collapse', function () {
+	    $(this).prev().removeClass('clicked');
 	});
-	$('.closemodal').click(function () {
-	    setTimeout(function () {
-	        $('#results').css('width', '61%');
-	    }, 400);
+	$('.collapse').on('show.bs.collapse', function () {
+	    $(this).prev().addClass('clicked');
 	});
-
-    // Change colour of clicked package name button inside package modal and allow only one selected package
 	$('.collapseButton').click(function () {
-	    var wasClicked = false;
-	    if ($(this).hasClass('clicked')) {
-	        wasClicked = true;
-	    }
-	    $('.collapseButton').removeClass('clicked');
 	    $('.collapse').collapse('hide');
-	    if (!wasClicked) {
-	        $(this).toggleClass('clicked');
-	    }
 	});
 
     // Code to synchronize the two package search boxes
 	$('#packageSearchBox').change(function () {
-	    $('#packageSearchBox').val($('#packageSearchBox').val());
+	    $('#packageSearchBoxModal').val($('#packageSearchBox').val());
 	});
 
     // Code to catch enter key pressed on package search box
@@ -284,23 +284,64 @@ $(document).ready(function(){
 	    }
 	});
 
-    // Code for results on enter key press inside package search box inside the package select modal
-	$("#packageSearchBox").keyup(function (event) {
+    // Code to change package modal title on enter key pressed inside modal searchbox
+	$("#packageSearchBoxModal").keyup(function (event) {
 	    if (event.keyCode == 13) {
-	        // Add KO JS code here
+	        $('#packageModalTitle').text('Results for "' + $('#packageSearchBoxModal').val() + '"');
+	        var resWidth = $('#results').css('width');
+	        $('#results').css('width', resWidth);
 	    }
 	});
 
+    // Fixes width problems on modal open
+	$("#packageSelect").click(function () {
+	    var resWidth = $('#results').css('width');
+	    $('#results').css('width', resWidth);
+	});
+
     // Code to disable / enable package search box on package select / deselect
-	$('#selectPackage').click(function () {
-	    if ($('.collapseButton.clicked').length == 1) {
-	        $('#packageSearchBox').val($('.collapseButton.clicked').text());
-	        $('#packageSearchBox').prop("disabled", true);
-	    } else {
+    $('#selectPackage').click(function () {
+        if ($('.collapseButton.clicked').length == 1) {
+            $('#packageSearchBox').val($('.collapseButton.clicked').text());
+            $('#packageSearchBox').prop("disabled", true);
+            $('#packageSearchBox').css('background-color', '#EBEBE4');
+            $('#packageModal').modal('toggle');
+        } else if ($('.collapseButton.clicked').length > 1) {
+            alert("Please select only one package.");
+        } else {
 	        $('#packageSearchBox').prop("disabled", false);
 	        $('#packageSearchBox').val("");
+	        $('#packageModal').modal('toggle');
 	    }
 	});
+
+    // Red color of disabled package searchbox on hover
+	$('#onHover').hover(function () {
+	    if ($('#packageSearchBox').prop('disabled')) {
+	        $('#packageSearchBox').css('background-color', '#ff3939');
+	        $('#packageSearchBox').css('text-decoration', 'line-through');
+	        $('#packageSearchBox').css('cursor', 'pointer');
+	        $('#removePackage').css('display', 'inline');
+	        $('#onHover').click(function () {
+	            $('#packageSearchBox').prop('disabled', false);
+	            $('#packageSearchBox').val('');
+	            $('#packageSearchBox').css('background-color', 'white');
+	            $('#packageSearchBox').css('text-decoration', 'none');
+	            $('#packageSearchBox').css('cursor', 'auto');
+	            $('#removePackage').css('display', 'none');
+	        });
+	    }
+	}, function () {
+	    if ($('#packageSearchBox').prop('disabled')) {
+	        $('#packageSearchBox').css('background-color', '#EBEBE4');
+	        $('#packageSearchBox').css('text-decoration', 'none');
+	        $('#packageSearchBox').css('cursor', 'auto');
+	        $('#removePackage').css('display', 'none');
+	    }
+	});
+
+    // Appends ids to the checkboxes of the KO result divs
+	updateResultDivsNames();
 });
 
 // Function to update in real-life the package floating div
@@ -343,4 +384,13 @@ function packageRedOnHover(){
 		$($(this).children('a')[0]).css("color", "black");
 		$($(this).children('a')[0]).css("text-decoration", "none");		
 	});
+}
+
+// Appends ids to the checkboxes of the KO result divs
+function updateResultDivsNames() {
+    var i;
+    var resultChildren = $('#results').children().length - 2;
+    for(i = 1; i < resultChildren - 1; i++){
+        $('#results').children().eq(i).children('input').attr('id', "cb" + i);
+    };
 }
