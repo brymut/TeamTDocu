@@ -9,7 +9,7 @@
 
     self.search = function () {
         $.ajax({
-            url: "/api/search/GetFreeTextSearch?query=" + self.query() + "&page=" + self.page(),
+            url: "/api/search/GetFreeTextSearch?query=" + self.query() + "&page=" + self.page() - 1,
             type: "GET",
             dataType: "json",
             contentType: "application/json; charset=utf-8",
