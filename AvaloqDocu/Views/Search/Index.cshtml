@@ -80,6 +80,15 @@
                                 <input class="form-control" type="text" id="fromDateInput">
                                 <p>To</p>
                                 <input class="form-control" type="text" id="toDateInput">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <input name="dateRadio" value="0" type="radio" class="form-check-input"><label>Custom Date</label>
+                                    <input name="dateRadio" value="2" type="radio" class="form-check-input"><label>Last Month</label>
+
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <input name="dateRadio" value="1" type="radio" class="form-check-input"><label>Last Week</label>
+                                    <input name="dateRadio" value="3" type="radio" class="form-check-input"><label>Last Year</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -89,9 +98,6 @@
         <div id="formButtonsDiv">
             <div id="resetButtonDiv">
                 <button id="resetButton"></button>
-            </div>
-            <div>
-                <button id="submitButton"></button>
             </div>
         </div>
     </div>

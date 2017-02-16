@@ -64,22 +64,86 @@ $(document).ready(function(){
 		$(this).css("border-color", "#1F559F");
 		$(this).prev().css("border-bottom-color", "#1F559F");
 	});
+
+    // Code controlling the quick date selection radio buttons
+	$('input[type=radio][name=dateRadio]').change(function () {
+	    var dateVal = $('input[name="dateRadio"]:checked').val();
+	    if (dateVal != 0) {
+	        $('#fromDateInput, #toDateInput').prop('disabled', true);
+	        var d = new Date();
+	        var fromDate;
+	        var toDate;
+	        var month;
+	        var day;
+	        if (dateVal == 1) {
+	            month = d.getMonth() + 1;
+	            day = d.getDate();
+	            toDate = (day < 10 ? '0' : '') + day + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                d.getFullYear();
+	            d.setDate(d.getDate() - 7);
+	            month = d.getMonth() + 1;
+	            day = d.getDate();
+	            fromDate = (day < 10 ? '0' : '') + day + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                d.getFullYear();
+	            $('#fromDateInput').val(fromDate);
+	            $('#toDateInput').val(toDate);
+	        }
+	        if (dateVal == 2) {
+	            month = d.getMonth() + 1;
+	            day = d.getDate();
+	            toDate = (day < 10 ? '0' : '') + day + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                d.getFullYear();
+	            month = d.getMonth();
+	            day = d.getDate();
+	            fromDate = (day < 10 ? '0' : '') + day + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                d.getFullYear();
+	            $('#fromDateInput').val(fromDate);
+	            $('#toDateInput').val(toDate);
+	        }
+	        if (dateVal == 3) {
+	            month = d.getMonth() + 1;
+	            day = d.getDate();
+	            toDate = (day < 10 ? '0' : '') + day + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                d.getFullYear();
+	            month = d.getMonth() + 1;
+	            day = d.getDate();
+	            fromDate = (day < 10 ? '0' : '') + day + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (d.getFullYear()-1);
+	            $('#fromDateInput').val(fromDate);
+	            $('#toDateInput').val(toDate);
+	        }
+	    } else {
+	        $('#fromDateInput, #toDateInput').prop('disabled', false);
+	    }
+	});
+
+    // Code checking if the from date is before the to date
+	$('#advancedSubmitButton').click(function () {
+	    if (Date.parse($('#fromDateInput').val()) > Date.parse($('#toDateInput').val())) {
+	        alert('The "From Date Modified" field should be less than the "To Date Modified" field.');
+	    } else {
+	        $('#advancedSearchForm').submit();
+	    }
+	});
+
+    // Attach JQuery callendar to date fields
+	$('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'dd-mm-yy' });
 	
-	// Sumbit and reset function and behaviour
+	// Reset function and behaviour
 	$( "#formButtonsDiv" ).hide();	
 	$( "#h3Filters" ).click(function(){
 		$( "#formButtonsDiv" ).toggle();
 	});
 
-	$( "#submitButton" ).click(function() { 
-		$( "#advancedSearchForm" ).submit();
-	});	
-	$('#submitButton').mouseover(function () {
-		$('#submitButton').text("Sumbit");
-	});
-	$('#submitButton').mouseout(function () {
-		$('#submitButton').text("");
-	});
+	//$("#advancedSearchForm").change(function () {
+		//$( "#advancedSearchForm" ).submit();
+	//});	
 	$('#resetButton').mouseover(function () {
 		$('#resetButton').text("Reset");
 	});

@@ -63,10 +63,6 @@
         $('#footer').css('left', screen.width - $('#footer').width());
     }
 
-    // Tweaks for some of the fields
-    $('.options').buttonset();
-    $('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'yy-mm-dd' });
-
     // Code to switch to advanced search mode
     $('#advancedSearchButton').click(function () {
         $("body").animate({"background-color": "white"}, 1);
@@ -89,6 +85,9 @@
         });
     });
 
+    // Attach JQuery callendar to date fields
+    $('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'yy-mm-dd' });
+
     // Code controlling the quick date selection radio buttons
     $('input[type=radio][name=dateRadio]').change(function () {
         var dateVal = $('input[name="dateRadio"]:checked').val();
@@ -102,43 +101,43 @@
             if (dateVal == 1) {
                 month = d.getMonth() + 1;
                 day = d.getDate();
-                toDate = d.getFullYear() + '-' +
+                toDate = (day < 10 ? '0' : '') + day + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
+                d.getFullYear();
                 d.setDate(d.getDate() - 7);
                 month = d.getMonth() + 1;
                 day = d.getDate();
-                fromDate = d.getFullYear() + '-' +
+                fromDate = (day < 10 ? '0' : '') + day + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
+                d.getFullYear();
                 $('#fromDateInput').val(fromDate);
                 $('#toDateInput').val(toDate);
             }
             if (dateVal == 2) {
                 month = d.getMonth() + 1;
                 day = d.getDate();
-                toDate = d.getFullYear() + '-' +
+                toDate = (day < 10 ? '0' : '') + day + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
+                d.getFullYear();
                 month = d.getMonth();
                 day = d.getDate();
-                fromDate = d.getFullYear() + '-' +
+                fromDate = (day < 10 ? '0' : '') + day + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
+                d.getFullYear();
                 $('#fromDateInput').val(fromDate);
                 $('#toDateInput').val(toDate);
             }
             if (dateVal == 3) {
                 month = d.getMonth() + 1;
                 day = d.getDate();
-                toDate = d.getFullYear() + '-' +
+                toDate = (day < 10 ? '0' : '') + day + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
+                d.getFullYear();
                 month = d.getMonth() + 1;
                 day = d.getDate();
-                fromDate = (d.getFullYear() - 1) + '-' +
+                fromDate = (day < 10 ? '0' : '') + day + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
-                (day < 10 ? '0' : '') + day;
+                (d.getFullYear() - 1);
                 $('#fromDateInput').val(fromDate);
                 $('#toDateInput').val(toDate);
             }

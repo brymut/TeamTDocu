@@ -231,6 +231,10 @@ li.packageContent {
 	transition: all 0.1s ease;	
 }
 
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6 {
+    padding-left: 0px;
+}
+
 .clearfix {
 	position: relative;
 }
@@ -384,39 +388,26 @@ li.packageContent {
 
 #resetButtonDiv {
 	float: left;
+	margin-left: 125px;
+    transition: all 0.2s ease;
+}
+
+#resetButtonDiv:hover {
 	margin-left: 100px;
-}
-
-#submitButton {
-	background-image: url('../Icons/submiticon.ico');
-	background-color: green;
-}
-
-#submitButton:hover {
-	width: 100px;
-	background-position: 72px 8px;
-	padding-left: 12px;
-	font-size: 17px;
-	font-weight: 600;
-	text-align: left;
-	background-color: greenyellow;
-	transition: all 0.2s ease;
-}
-
-#submitButton, #resetButton { 
-	width: 38px;
-	height: 45px;
-	background-position: 6px 8px;
-	background-repeat: no-repeat;
-	border-radius: 15px;
-	cursor: pointer;
-	transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 #resetButton {
-	background-image: url('../Icons/reseticon.png');
-	background-size: 25px 25px;
-	background-color: #FF0000;
+    width: 38px;
+    height: 45px;
+    background-image: url('../Icons/reseticon.png');
+    background-size: 25px 25px;
+    background-color: #FF0000;
+    background-position: 6px 8px;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 #resetButton:hover {
