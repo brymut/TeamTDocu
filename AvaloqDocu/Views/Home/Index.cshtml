@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Avaloq Search - Welcome";
 }
+
 <div id="switchModeDiv">
     <div id="searchMode" class="front">
         <div id="mainSearchDiv">
@@ -16,7 +17,7 @@
         <button id="uploadToSearch" class="cardFlip">Back to search</button>
         <div id="uploadDiv">
             <!-- Code inside the form below taken from blueimp/JQuery-File-Upload -->
-            <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+            <form id="fileupload" action="@Url.Action("UploadFiles, Upload")" method="POST" enctype="multipart/form-data">
                 <noscript>&lt;input type="hidden" name="redirect" value="/Index"&gt;</noscript>
                 <div class="row fileupload-buttonbar">
                     <div class="col-lg-7">
@@ -223,7 +224,7 @@
         </td>
         <td>
             {% if (file.deleteUrl) { %}
-            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{withCredentials:true}' {% } %}>
                 <i class="glyphicon glyphicon-trash"></i>
                 <span>Delete</span>
             </button>

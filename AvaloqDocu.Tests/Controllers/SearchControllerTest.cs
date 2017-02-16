@@ -20,7 +20,6 @@ namespace AvaloqDocu.Tests.Controllers
 
             // Act
             ViewResult result = controller.Index("finance") as ViewResult;
-
             // Assert
             Assert.IsNotNull(result);
         }
