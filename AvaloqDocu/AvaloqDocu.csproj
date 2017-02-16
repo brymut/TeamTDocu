@@ -148,11 +148,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\OrderByAttribute.cs" />
+    <Compile Include="ControllersAPI\FilterController.cs" />
     <Compile Include="ControllersAPI\PackageController.cs" />
     <Compile Include="ControllersAPI\SearchController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DocuContext.cs" />
+    <Compile Include="Enums\AvaloqCoreEnum.cs" />
+    <Compile Include="Enums\AvaloqFrontEnum.cs" />
+    <Compile Include="Enums\AvaloqToolsEnum.cs" />
+    <Compile Include="Enums\DocuTypeEnum.cs" />
+    <Compile Include="Enums\FunctionalAreaEnum.cs" />
+    <Compile Include="Enums\OrderByEnum.cs" />
+    <Compile Include="Enums\ReleaseInfoEnum.cs" />
+    <Compile Include="Enums\SupportEnum.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,19 +175,26 @@
     <Compile Include="Migrations\201701121100166_file-description.Designer.cs">
       <DependentUpon>201701121100166_file-description.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702161109217_file-path-fix.cs" />
+    <Compile Include="Migrations\201702161109217_file-path-fix.Designer.cs">
+      <DependentUpon>201702161109217_file-path-fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\FilePath.cs" />
     <Compile Include="Models\Package.cs" />
     <Compile Include="Models\PackageDocument.cs" />
+    <Compile Include="PresentationTransferObjects\FilterDropdownPTO.cs" />
     <Compile Include="PresentationTransferObjects\SearchResultPTO.cs" />
     <Compile Include="PresentationTransferObjects\PackagePTO.cs" />
+    <Compile Include="Services\FilterService.cs" />
     <Compile Include="Services\PackageService.cs" />
     <Compile Include="PresentationTransferObjects\ResultPTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\ElasticSearchConfig.cs" />
     <Compile Include="Services\UploadService.cs" />
+    <Compile Include="Enums\ReleaseEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Icons\downicon.ico" />
@@ -273,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701121100166_file-description.resx">
       <DependentUpon>201701121100166_file-description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702161109217_file-path-fix.resx">
+      <DependentUpon>201702161109217_file-path-fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
