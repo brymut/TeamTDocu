@@ -567,10 +567,11 @@ li.packageContent {
 
 #packageSearchBox {
     float: left;
-	height: 18px;
+	height: 28px;
     width: 180px;
     border: 2px solid #ccc;
     border-radius: 8px;
+    margin-top: 1px;
     padding: 4px 20px 12px 5px;
 	-webkit-padding-before: 12px;
 }
@@ -616,4 +617,14 @@ li.packageContent {
 
 #packageUl {
 	list-style: none;
+}
+
+@-moz-document url-prefix() {
+    #mainSearchBox {
+        padding: 4px 20px 6px 40px;
+    }
+
+    #packageSearchBox {
+        padding: 4px 20px 6px 5px;
+    }
 }
