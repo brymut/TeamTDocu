@@ -25,7 +25,7 @@ namespace AvaloqDocu.Services
                                 .MultiMatch(mp => mp
                                     .Query(query)
                                         .Fields(f => f
-                                            .Fields(f1 => f1.Author, f2 => f2.Title))))
+                                            .Fields(f1 => f1.Title, f2 => f2.Subtitle))))
                             .From(page * pageSize)           //pagination options
                             .Size(pageSize));
 
