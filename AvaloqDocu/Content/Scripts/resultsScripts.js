@@ -54,18 +54,13 @@ $(document).ready(function () {
 	
 	// Colouring of results div border in yellow
 	$('.resultdiv').hover(function(){
-		if($(this).attr('id') == 'firstRes'){
-			$('#resultsInfo').css("border-bottom-color", "#efc47D");
-		}
-		$(this).prev().css("border-bottom-color", "#efc47D");
 		$(this).css("border-color", "#efc47D");
 	}, function(){
-		if($(this).attr('id') == 'firstRes'){
-			$('#resultsInfo').css("border-bottom-color", "grey");
-		}
 		$(this).css("border-color", "#1F559F");
-		$(this).prev().css("border-bottom-color", "#1F559F");
 	});
+
+    // Code to hide the separator in the last results div
+	$('.resultdiv').children().last().css('display', 'none');
 
     // Code controlling the quick date selection radio buttons
 	$('input[type=radio][name=dateRadio]').change(function () {
@@ -268,7 +263,7 @@ $(document).ready(function () {
 	$('.collapse').on('show.bs.collapse', function () {
 	    $(this).prev().addClass('clicked');
 	});
-	$('.collapseButton').click(function () {
+	$('.collapsebutton').click(function () {
 	    $('.collapse').collapse('hide');
 	});
 
@@ -301,12 +296,12 @@ $(document).ready(function () {
 
     // Code to disable / enable package search box on package select / deselect
     $('#selectPackage').click(function () {
-        if ($('.collapseButton.clicked').length == 1) {
-            $('#packageSearchBox').val($('.collapseButton.clicked').text());
+        if ($('.collapsebutton.clicked').length == 1) {
+            $('#packageSearchBox').val($('.collapsebutton.clicked').text());
             $('#packageSearchBox').prop("disabled", true);
             $('#packageSearchBox').css('background-color', '#EBEBE4');
             $('#packageModal').modal('toggle');
-        } else if ($('.collapseButton.clicked').length > 1) {
+        } else if ($('.collapsebutton.clicked').length > 1) {
             alert("Please select only one package.");
         } else {
 	        $('#packageSearchBox').prop("disabled", false);

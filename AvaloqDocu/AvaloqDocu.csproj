@@ -197,11 +197,14 @@
     <Compile Include="Enums\ReleaseEnum.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Icons\addtopackageicon.png" />
     <Content Include="Content\Icons\downicon.ico" />
     <Content Include="Content\Icons\downloadicon.png" />
+    <Content Include="Content\Icons\downloadpackageicon.png" />
     <Content Include="Content\Icons\linkicon.png" />
     <Content Include="Content\Icons\loading.gif" />
     <Content Include="Content\Icons\logoicon.ico" />
+    <Content Include="Content\Icons\newpackageicon.png" />
     <Content Include="Content\Icons\previewicon.png" />
     <Content Include="Content\Icons\progressbar.gif" />
     <Content Include="Content\Icons\reseticon.png" />
