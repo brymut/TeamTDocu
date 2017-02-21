@@ -16,10 +16,10 @@ namespace AvaloqDocu.Services
                 var document = new Models.Document { };
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    document.DocumentId = 0;
-                    document.Author = "null";
-                    document.Description = "null";
+                    document.DocuID = 0;
                     document.Title = "null";
+                    document.Subtitle = "null";
+                    document.Release = "null";
                     var filepath = new Models.FilePath
                     {
                         FileName = System.IO.Path.GetFileName(upload.FileName),
