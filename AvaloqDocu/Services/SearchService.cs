@@ -41,10 +41,14 @@ namespace AvaloqDocu.Services
             };
         }
 
-        public IEnumerable<ResultPTO> FilterSearch(string query /* other filters too */)
+        public SearchResultPTO FilterSearch(string query, int page = 1, int pageSize = 10, string Title = null, string Subtitle = null, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModified = null)
         {
-            // A search with filters.
-            return null;
+            client = ElasticSearchConfig.GetClient();
+            var result = client.Search<Document>(x => x
+                            .From(page * pageSize)           //pagination options
+                            .Size(pageSize));
+
+            return new SearchResultPTO { };
         }
     }
 }
