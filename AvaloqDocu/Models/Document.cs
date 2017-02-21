@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvaloqDocu.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,7 +26,7 @@ namespace AvaloqDocu.Models
         /// <param name="SubType"
         /// <param name="LastModified"
         /// <param name="Filepath"
-        public Document(string Title = null, string Subtitle = null, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModified = null, Filepath Filepath = null)
+        public Document(string Title = null, string Subtitle = null, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModified = null, FilePath Filepath = null)
         {
             this.Title = Title;
             this.Subtitle = Subtitle;
