@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvaloqDocu.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,6 +27,9 @@ namespace AvaloqDocu.Controllers
                 {
                     var f = Request.Files[i];
                     f.SaveAs(Server.MapPath("~/App_Data/Uploads/") + f.FileName);
+
+                    var uservice = new UploadService();
+                    uservice.Create(f);
 
                     statuses.Add(new FileMetadata()
                     {

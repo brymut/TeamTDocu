@@ -19,6 +19,7 @@ namespace AvaloqDocu.Services
                 {
                     document.UploadDate = DateTime.Now;
                     document.Description = "foo";
+                    document.FileSize = upload.ContentLength;
                     document.Title = upload.FileName;
                     var filepath = new Models.FilePath
                     {
