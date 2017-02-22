@@ -154,6 +154,7 @@
     <Compile Include="ControllersAPI\SearchController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="DocuContext.cs" />
     <Compile Include="Enums\AvaloqCoreEnum.cs" />
     <Compile Include="Enums\AvaloqFrontEnum.cs" />
@@ -178,6 +179,10 @@
     <Compile Include="Migrations\201702161109217_file-path-fix.cs" />
     <Compile Include="Migrations\201702161109217_file-path-fix.Designer.cs">
       <DependentUpon>201702161109217_file-path-fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702221528192_changed-document-model.cs" />
+    <Compile Include="Migrations\201702221528192_changed-document-model.Designer.cs">
+      <DependentUpon>201702221528192_changed-document-model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Document.cs" />
@@ -280,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -298,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702161109217_file-path-fix.resx">
       <DependentUpon>201702161109217_file-path-fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702221528192_changed-document-model.resx">
+      <DependentUpon>201702221528192_changed-document-model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
