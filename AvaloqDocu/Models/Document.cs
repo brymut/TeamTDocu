@@ -15,8 +15,8 @@ namespace AvaloqDocu.Models
         public int FilePathId { get; set; }
         public int FileSize { get; set; }
         public string Description { get; set; }
-        public DateTime UploadDate { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime? UploadDate { get; set; }
+        public DateTime? CreationDate { get; set; }
         [ForeignKey("FilePathId")]
         public virtual FilePath FilePath { get; set; }
 

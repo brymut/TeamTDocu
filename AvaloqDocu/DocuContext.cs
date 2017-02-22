@@ -17,6 +17,7 @@ namespace AvaloqDocu
         public DbSet<Document> Documents { get; set; }
         public DbSet<Package> Packages { get; set; }
         public DbSet<PackageDocument> PackageDocuments { get; set; }
+        public DbSet<FilePath> FilePaths { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

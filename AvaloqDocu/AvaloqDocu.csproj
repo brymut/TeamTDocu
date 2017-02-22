@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201702221528192_changed-document-model.Designer.cs">
       <DependentUpon>201702221528192_changed-document-model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702221559093_date-nullable.cs" />
+    <Compile Include="Migrations\201702221559093_date-nullable.Designer.cs">
+      <DependentUpon>201702221559093_date-nullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\FilePath.cs" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702221528192_changed-document-model.resx">
       <DependentUpon>201702221528192_changed-document-model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702221559093_date-nullable.resx">
+      <DependentUpon>201702221559093_date-nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
