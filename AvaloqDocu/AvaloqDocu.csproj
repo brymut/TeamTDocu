@@ -180,6 +180,10 @@
     <Compile Include="Migrations\201702161109217_file-path-fix.Designer.cs">
       <DependentUpon>201702161109217_file-path-fix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702221528192_changed-document-model.cs" />
+    <Compile Include="Migrations\201702221528192_changed-document-model.Designer.cs">
+      <DependentUpon>201702221528192_changed-document-model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\FilePath.cs" />
@@ -296,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702161109217_file-path-fix.resx">
       <DependentUpon>201702161109217_file-path-fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702221528192_changed-document-model.resx">
+      <DependentUpon>201702221528192_changed-document-model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
