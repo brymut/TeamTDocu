@@ -9,7 +9,7 @@ namespace AvaloqDocu.Controllers
 {
     public class UploadController : Controller
     {
-        public ActionResult UploadDocument()
+        public ActionResult Index()
         {
             return View();
         }
@@ -19,7 +19,7 @@ namespace AvaloqDocu.Controllers
         {
             foreach (string file in Request.Files)
             {
-                var statuses = new List<ViewDataUploadFilesResult>();
+                var statuses = new List<FileMetadata>();
                 var headers = Request.Headers;
 
                 for (int i = 0; i < Request.Files.Count; i++)
@@ -27,7 +27,7 @@ namespace AvaloqDocu.Controllers
                     var f = Request.Files[i];
                     f.SaveAs(Server.MapPath("~/App_Data/Uploads/") + f.FileName);
 
-                    statuses.Add(new ViewDataUploadFilesResult()
+                    statuses.Add(new FileMetadata()
                     {
                         name = f.FileName,
                         size = f.ContentLength,
@@ -42,11 +42,11 @@ namespace AvaloqDocu.Controllers
                 return result;
             }
 
-            return Json(new List<ViewDataUploadFilesResult>());
+            return Json(new List<FileMetadata>());
         }
     }
 
-    public class ViewDataUploadFilesResult
+    public class FileMetadata
     {
         public string name { get; set; }
         public int size { get; set; }

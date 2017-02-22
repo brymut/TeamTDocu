@@ -154,6 +154,7 @@
     <Compile Include="ControllersAPI\SearchController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="DocuContext.cs" />
     <Compile Include="Enums\AvaloqCoreEnum.cs" />
     <Compile Include="Enums\AvaloqFrontEnum.cs" />
@@ -276,6 +277,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -18,7 +18,7 @@ namespace AvaloqDocu.Services
                 if (upload != null && upload.ContentLength > 0)
                 {
                     document.UploadDate = DateTime.Now;
-                    document.Description = "this is a default description";
+                    document.Description = "foo";
                     document.Title = upload.FileName;
                     var filepath = new Models.FilePath
                     {
