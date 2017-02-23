@@ -25,71 +25,70 @@
                             <input id="titleTextBox" type="text" class="form-control">     
                         </div>
                         <div id="docuIDDiv" class="row">
-                            <div class="input-group">
-                                <label for="docuIDTextBox">Docu ID</label>
-                                <input id="docuIDTextBox" type="text" class="form-control">
-                            </div>
+                            <label for="docuIDTextBox">Docu ID</label>
+                            <input id="docuIDTextBox" type="text" class="form-control">
                         </div>
                         <div id="releaseDiv" class="row">
-                            <div class="input-group">
-                                <label for="releaseDropdown">Release</label>
-                                <select id="releaseDropdown" name="release" class="form-control">
-                                    <option value="0">-------------------------------</option>
-                                    <option value="4">4.0</option>
-                                    <option value="3">3.0</option>
-                                    <option value="2">2.0</option>
-                                    <option value="1">1.0</option>
-                                </select>
-                            </div>
+                            <label for="releaseDropdown">Release</label>
+                            <select id="releaseDropdown" name="release" class="form-control">
+                                <option value="0">-------------------------------</option>
+                                <option value="4">4.0</option>
+                                <option value="3">3.0</option>
+                                <option value="2">2.0</option>
+                                <option value="1">1.0</option>
+                            </select>
                         </div>
                         <div id="funcAreaDiv" class="row">
-                            <div class="input-group">
-                                <label class="" for="funcAreaMultiple">Functional Area</label>
-                                <select id="funcAreaMultiple" name="funcarea" class="form-control" multiple>
-                                    <option value="0">.......Avaloq Banking System.......</option>
-                                    <option value="1">Accounting and Position Keeping</option>
-                                    <option value="2">AFP Front Office</option>
-                                    <option value="3">AFP Mobile</option>
-                                </select>
-                            </div>
+                            <label class="" for="funcAreaMultiple">Functional Area</label>
+                            <select id="funcAreaMultiple" name="funcarea" class="form-control" multiple>
+                                <option value="0">.......Avaloq Banking System.......</option>
+                                <option value="1">Accounting and Position Keeping</option>
+                                <option value="2">AFP Front Office</option>
+                                <option value="3">AFP Mobile</option>
+                            </select>
                         </div>
-                        <div id="docuTypeDiv" class="row">
-                            <div class="input-group">
-                                <label for="docuTypeDropdown">Docu Type</label>
-                                <select id="docuTypeDropdown" name="docutype" class="form-control">
-                                    <option value="0">-------------------------------</option>
-                                    <option value="1">PDF</option>
-                                    <option value="2">HTML</option>
-                                </select>
-                            </div>
+                         <div id="docuTypeDiv" class="row">
+                            <label for="docuTypeDropdown">Docu Type</label>
+                            <select id="docuTypeDropdown" name="docutype" class="form-control">
+                                <option value="0">-------------------------------</option>
+                                <option value="1">PDF</option>
+                                <option value="2">HTML</option>
+                            </select>
                         </div>
                         <div id="subtypeDiv" class="row">
-                            <div class="input-group">
-                                <label for="subtypeDropdown">Subtype</label>
-                                <select id="subtypeDropdown" name="subtype" class="form-control">
-                                    <option value="0">-------------------------------</option>
-                                    <option value="1">Team 1</option>
-                                    <option value="2">Team 2</option>
-                                </select>
-                            </div>
+                            <label for="subtypeDropdown">Subtype</label>
+                            <select id="subtypeDropdown" name="subtype" class="form-control">
+                                <option value="0">-------------------------------</option>
+                                <option value="1">Team 1</option>
+                                <option value="2">Team 2</option>
+                            </select>
                         </div>
                         <div id="lastModifiedDiv" class="row">
-                            <div class="input-group">
-                                <label>Last Modified</label>
-                                <p>From</p>
-                                <input class="form-control" type="text" id="fromDateInput">
-                                <p>To</p>
-                                <input class="form-control" type="text" id="toDateInput">
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                    <input name="dateRadio" value="0" type="radio" class="form-check-input"><label>Custom Date</label>
-                                    <input name="dateRadio" value="2" type="radio" class="form-check-input"><label>Last Month</label>
+                            <label>Last Modified</label>
+                            <p>From</p>
+                            <input class="form-control" type="text" id="fromDateInput">
+                            <p>To</p>
+                            <input class="form-control" type="text" id="toDateInput">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <input name="dateRadio" value="0" type="radio" class="form-check-input"><label>Custom Date</label>
+                                <input name="dateRadio" value="2" type="radio" class="form-check-input"><label>Last Month</label>
 
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                    <input name="dateRadio" value="1" type="radio" class="form-check-input"><label>Last Week</label>
-                                    <input name="dateRadio" value="3" type="radio" class="form-check-input"><label>Last Year</label>
-                                </div>
                             </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <input name="dateRadio" value="1" type="radio" class="form-check-input"><label>Last Week</label>
+                                <input name="dateRadio" value="3" type="radio" class="form-check-input"><label>Last Year</label>
+                            </div>
+                        </div>
+                        <div id="orderByDiv" class="row">
+                            <label>Order by</label>
+                            <input id="descCheckbox" type="checkbox"><label id="desc" for="descCheckbox" class="form-text text-muted">desc.</label>
+                            <select id="orderByDropdown" name="orderby" class="form-control">
+                                <option value="-1">Order By</option>
+                                <option value="0">Title</option>
+                                <option value="1">User Added</option>
+                                <option value="2">Date Added</option>
+                                <option value="3">Last Edited</option>
+                            </select>
                         </div>
                     </div>
                 </form>
@@ -99,23 +98,13 @@
             <div id="resetButtonDiv">
                 <button id="resetButton"></button>
             </div>
-            <div >
+            <div>
                 <button id="updateButton"></button>
             </div>
         </div>
     </div>
     <div id="results">
         <div id="resultsInfo">
-            <div id="orderByDiv">
-                    <select id="orderByDropdown" name="orderby" class="form-control">
-                        <option value="-1">Order By</option>
-                        <option value="0">Title</option>
-                        <option value="1">User Added</option>
-                        <option value="2">Date Added</option>
-                        <option value="3">Last Edited</option>
-                    </select>
-                <input id="descCheckbox" type="checkbox"><label id="desc" for="descCheckbox" class="form-text text-muted">desc.</label>
-            </div>
             <div id="infoDiv">
                 <p class="searchstats">Search for&nbsp;"</p>
                 <p id="term" class="searchstats" data-bind="text: query"></p>
