@@ -57,7 +57,10 @@ namespace AvaloqDocu
                                                                   .Type(NumberType.Integer))
                                                              .Date(s => s
                                                                   .Name(c => c.LastModified)
-                                                                  .Format("dd-MM-yyyy")))));
+                                                                  )
+                                                             .Text(s => s
+                                                                  .Name(c => c.FilePath)
+                                                                  .Index(false)))));
 
                 var response = client.CreateIndex(indexDescriptor);
 
