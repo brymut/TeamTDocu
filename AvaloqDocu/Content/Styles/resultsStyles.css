@@ -99,18 +99,19 @@ li.packageContent {
 	border-top-width: 4px;
 }
 
-.packageText {
+.packagetext {
 	float: left;
 }
 
-.collapseButton {
+.collapsebutton {
     width: 100%;
     height: 30px;
     background-color: #1F559F;
+    border-radius: 25px;
     color: white;
 }
 
-.collapseButton.clicked {
+.collapsebutton.clicked {
     background-color: #efc47D;
     color: black;
     font-weight: bold;
@@ -128,10 +129,10 @@ li.packageContent {
 	float: left;
 	width: 99.25%;
 	height: 180px;
-	border-right: thick dotted;
-	border-left: thick dotted;
-   	border-bottom: thick dotted;
-	border-color: #1F559F;
+    border-top: unset;
+    border-right: thick solid;
+	border-left: thick solid;
+    border-color: grey;
 	transition: all 0.4s ease;
 }
 
@@ -214,10 +215,12 @@ li.packageContent {
 }
 
 .packageDownload {
-	height: 35px;
-	width: 200px;
+    margin-top: 2px;
+	height: 50px;
+	width: 50px;
 	background-color: #ffffff;
-	border-radius: 15px;
+    background-repeat: no-repeat;
+	border-radius: 20px;
 	cursor: pointer;	
 }
 
@@ -229,6 +232,14 @@ li.packageContent {
 .packageDownload:active {
 	box-shadow: inset 0px 2px 2px #000000;
 	transition: all 0.1s ease;	
+}
+
+.resultsseparator {
+    margin-top: 120px;
+    border: 0;
+    height: 1px;
+    background: #1F559F;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(#CCC), to(#CCC), color-stop(50%, #1F559F));
 }
 
 .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6 {
@@ -248,38 +259,38 @@ li.packageContent {
 .notifyjs-resetConfirm-base .yes {
 	position: absolute;
 	top: 25px;
-	right: 2px;
+    right: 2px;
 }
 
 .notifyjs-resetConfirm-base {
-  height: 65px;
-  width: 200px;
-  background: #F5F5F5;
-  padding: 5px;
-  border-radius: 10px;
+    height: 65px;
+    width: 200px;
+    background: #F5F5F5;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .notifyjs-resetConfirm-base .title {
 	position: absolute;
-	top: 1px;
-  width: 90px;
-  float: left;
-  margin: 0px 0 0 4px;
-  text-align: center;
+    top: 1px;
+    width: 90px;
+    float: left;
+    margin: 0px 0 0 4px;
+    text-align: center;
 }
 
 .notifyjs-resetConfirm-base .buttons {
-  width: 70px;
-  font-size: 9px;
-  padding: 5px;
-  margin: 2px;
+    width: 70px;
+    font-size: 9px;
+    padding: 5px;
+    margin: 2px;
 }
 
 .notifyjs-resetConfirm-base button {
-  font-size: 9px;
-  padding: 5px;
-  margin: 2px;
-  width: 60px;
+    font-size: 9px;
+    padding: 5px;
+    margin: 2px;
+    width: 60px;
 }
 
 .pagination {
@@ -365,7 +376,7 @@ li.packageContent {
 	position: relative;
     color: #1F559F;
 	width: 100%;
-	max-height: 500px;
+	max-height: 65vh;
 	overflow: auto;
 }
 
@@ -378,6 +389,11 @@ li.packageContent {
     margin-left: 1px;
 }
 
+#descCheckbox {
+    margin-left: 140px;
+}
+
+
 #formButtonsDiv {
 	position: relative;
 	float: left;
@@ -388,26 +404,41 @@ li.packageContent {
 
 #resetButtonDiv {
 	float: left;
-	margin-left: 125px;
-    transition: all 0.2s ease;
+	margin-left: 100px;
 }
 
-#resetButtonDiv:hover {
-	margin-left: 100px;
-    transition: all 0.2s ease;
+#updateButton {
+	background-image: url('../Icons/updateicon.png');
+	background-size: 25px 25px;
+    background-position:5px 8px;
+	background-color: dodgerblue;
+}
+
+#updateButton:hover {
+	width: 100px;
+	background-position: 65px 8px;
+	padding-left: 7px;
+	font-size: 17px;
+	font-weight: 600;
+	text-align: left;
+	background-color: powderblue;
+	transition: all 0.2s ease;
+}
+
+#updateButton, #resetButton { 
+	width: 38px;
+	height: 45px;
+	background-repeat: no-repeat;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 #resetButton {
-    width: 38px;
-    height: 45px;
-    background-image: url('../Icons/reseticon.png');
-    background-size: 25px 25px;
-    background-color: #FF0000;
-    background-position: 6px 8px;
-    background-repeat: no-repeat;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+	background-image: url('../Icons/reseticon.png');
+	background-size: 25px 25px;
+	background-position: 6px 8px;
+	background-color: #FF0000;
 }
 
 #resetButton:hover {
@@ -440,23 +471,14 @@ li.packageContent {
 	float:left;
 	width: 99.25%;
 	height: 100px;
-	border-right: thick dotted;
-	border-left: thick dotted;
-    border-bottom: thick dotted;
-	border-color: grey;
+	border-right: thick solid;
+	border-left: thick solid;
+    border-bottom: thick dashed;
+	border-color: #1F559F;
 	transition: all 0.4s ease;
 }
 
-#orderByDiv {
-    float: left;
-}
-
-#orderByDropdown {
-    width: 125px;
-    height: 30px;
-}
-
-#descCheckbox, #orderByDropdown {
+#descCheckbox {
     display: inline;
 }
 
@@ -471,7 +493,7 @@ li.packageContent {
 	float: left;
 }
 
-#resPageSpan {
+#resPageDiv {
 	position: absolute;
 	bottom: 40px;
 	right: 5px;
@@ -510,14 +532,15 @@ li.packageContent {
 	float:left;
 	width: 99.25%;
 	height: 100px;
-	border-right: thick dotted;
-	border-left: thick dotted;
-   	border-bottom: thick dotted;
-	border-color: grey;
+    border-top: thick dashed;
+	border-right: thick solid;
+	border-left: thick solid;
+   	border-bottom: thick solid;
+	border-color: #1F559F;
 	transition: all 0.4s ease;
 }
 
-#infoSpanBottom {
+#infoDivBottom {
 	position: absolute;
 	margin-left: 1%;
 	top: 0px;
@@ -525,7 +548,7 @@ li.packageContent {
 }
 
 
-#resPageSpanBottom {
+#resPageDivBottom {
 	position: absolute;
 	bottom: 5px;
 	right: 5px;
@@ -556,6 +579,13 @@ li.packageContent {
     padding-top: 2px;
 }
 
+#onHover {
+    position: relative;
+    float: left;
+    height: 28px;
+    width: 180px;
+}
+
 #packageSearchBox {
     float: left;
 	height: 28px;
@@ -565,6 +595,14 @@ li.packageContent {
     margin-top: 1px;
     padding: 4px 20px 12px 5px;
 	-webkit-padding-before: 12px;
+}
+
+#removePackage {
+    display: none;
+    position: absolute;
+    float: right;
+    top: 5px;
+    right: 6px;
 }
 
 #packageSelect {
@@ -608,6 +646,26 @@ li.packageContent {
 
 #packageUl {
 	list-style: none;
+}
+
+#addToPackageButton {
+    margin-top: 5px;
+    margin-left: 35px;
+    background-image: url('../Icons/addtopackageicon.png');
+    background-size: 35px 35px;
+    background-position: 8px 5px; 
+}
+
+#downloadPackageButton {
+    background-image: url('../Icons/downloadpackageicon.png');
+    background-size: 30px 30px;
+    background-position: 9px 7px; 
+}
+
+#createNewPackageButton {
+    background-image: url('../Icons/newpackageicon.png');
+    background-size: 35px 35px;
+    background-position: 9px 7px; 
 }
 
 @-moz-document url-prefix() {

@@ -25,71 +25,70 @@
                             <input id="titleTextBox" type="text" class="form-control">     
                         </div>
                         <div id="docuIDDiv" class="row">
-                            <div class="input-group">
-                                <label for="docuIDTextBox">Docu ID</label>
-                                <input id="docuIDTextBox" type="text" class="form-control">
-                            </div>
+                            <label for="docuIDTextBox">Docu ID</label>
+                            <input id="docuIDTextBox" type="text" class="form-control">
                         </div>
                         <div id="releaseDiv" class="row">
-                            <div class="input-group">
-                                <label for="releaseDropdown">Release</label>
-                                <select id="releaseDropdown" name="release" class="form-control">
-                                    <option value="0">-------------------------------</option>
-                                    <option value="4">4.0</option>
-                                    <option value="3">3.0</option>
-                                    <option value="2">2.0</option>
-                                    <option value="1">1.0</option>
-                                </select>
-                            </div>
+                            <label for="releaseDropdown">Release</label>
+                            <select id="releaseDropdown" name="release" class="form-control">
+                                <option value="0">-------------------------------</option>
+                                <option value="4">4.0</option>
+                                <option value="3">3.0</option>
+                                <option value="2">2.0</option>
+                                <option value="1">1.0</option>
+                            </select>
                         </div>
                         <div id="funcAreaDiv" class="row">
-                            <div class="input-group">
-                                <label class="" for="funcAreaMultiple">Functional Area</label>
-                                <select id="funcAreaMultiple" name="funcarea" class="form-control" multiple>
-                                    <option value="0">.......Avaloq Banking System.......</option>
-                                    <option value="1">Accounting and Position Keeping</option>
-                                    <option value="2">AFP Front Office</option>
-                                    <option value="3">AFP Mobile</option>
-                                </select>
-                            </div>
+                            <label class="" for="funcAreaMultiple">Functional Area</label>
+                            <select id="funcAreaMultiple" name="funcarea" class="form-control" multiple>
+                                <option value="0">.......Avaloq Banking System.......</option>
+                                <option value="1">Accounting and Position Keeping</option>
+                                <option value="2">AFP Front Office</option>
+                                <option value="3">AFP Mobile</option>
+                            </select>
                         </div>
-                        <div id="docuTypeDiv" class="row">
-                            <div class="input-group">
-                                <label for="docuTypeDropdown">Docu Type</label>
-                                <select id="docuTypeDropdown" name="docutype" class="form-control">
-                                    <option value="0">-------------------------------</option>
-                                    <option value="1">PDF</option>
-                                    <option value="2">HTML</option>
-                                </select>
-                            </div>
+                         <div id="docuTypeDiv" class="row">
+                            <label for="docuTypeDropdown">Docu Type</label>
+                            <select id="docuTypeDropdown" name="docutype" class="form-control">
+                                <option value="0">-------------------------------</option>
+                                <option value="1">PDF</option>
+                                <option value="2">HTML</option>
+                            </select>
                         </div>
                         <div id="subtypeDiv" class="row">
-                            <div class="input-group">
-                                <label for="subtypeDropdown">Subtype</label>
-                                <select id="subtypeDropdown" name="subtype" class="form-control">
-                                    <option value="0">-------------------------------</option>
-                                    <option value="1">Team 1</option>
-                                    <option value="2">Team 2</option>
-                                </select>
-                            </div>
+                            <label for="subtypeDropdown">Subtype</label>
+                            <select id="subtypeDropdown" name="subtype" class="form-control">
+                                <option value="0">-------------------------------</option>
+                                <option value="1">Team 1</option>
+                                <option value="2">Team 2</option>
+                            </select>
                         </div>
                         <div id="lastModifiedDiv" class="row">
-                            <div class="input-group">
-                                <label>Last Modified</label>
-                                <p>From</p>
-                                <input class="form-control" type="text" id="fromDateInput">
-                                <p>To</p>
-                                <input class="form-control" type="text" id="toDateInput">
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                    <input name="dateRadio" value="0" type="radio" class="form-check-input"><label>Custom Date</label>
-                                    <input name="dateRadio" value="2" type="radio" class="form-check-input"><label>Last Month</label>
+                            <label>Last Modified</label>
+                            <p>From</p>
+                            <input class="form-control" type="text" id="fromDateInput">
+                            <p>To</p>
+                            <input class="form-control" type="text" id="toDateInput">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <input name="dateRadio" value="0" type="radio" class="form-check-input"><label>Custom Date</label>
+                                <input name="dateRadio" value="2" type="radio" class="form-check-input"><label>Last Month</label>
 
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                    <input name="dateRadio" value="1" type="radio" class="form-check-input"><label>Last Week</label>
-                                    <input name="dateRadio" value="3" type="radio" class="form-check-input"><label>Last Year</label>
-                                </div>
                             </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <input name="dateRadio" value="1" type="radio" class="form-check-input"><label>Last Week</label>
+                                <input name="dateRadio" value="3" type="radio" class="form-check-input"><label>Last Year</label>
+                            </div>
+                        </div>
+                        <div id="orderByDiv" class="row">
+                            <label>Order by</label>
+                            <input id="descCheckbox" type="checkbox"><label id="desc" for="descCheckbox" class="form-text text-muted">desc.</label>
+                            <select id="orderByDropdown" name="orderby" class="form-control">
+                                <option value="-1">Order By</option>
+                                <option value="0">Title</option>
+                                <option value="1">User Added</option>
+                                <option value="2">Date Added</option>
+                                <option value="3">Last Edited</option>
+                            </select>
                         </div>
                     </div>
                 </form>
@@ -99,20 +98,13 @@
             <div id="resetButtonDiv">
                 <button id="resetButton"></button>
             </div>
+            <div>
+                <button id="updateButton"></button>
+            </div>
         </div>
     </div>
     <div id="results">
         <div id="resultsInfo">
-            <div id="orderByDiv">
-                    <select id="orderByDropdown" name="orderby" class="form-control">
-                        <option value="-1">Order By</option>
-                        <option value="0">Title</option>
-                        <option value="1">User Added</option>
-                        <option value="2">Date Added</option>
-                        <option value="3">Last Edited</option>
-                    </select>
-                <input id="descCheckbox" type="checkbox"><label id="desc" for="descCheckbox" class="form-text text-muted">desc.</label>
-            </div>
             <div id="infoDiv">
                 <p class="searchstats">Search for&nbsp;"</p>
                 <p id="term" class="searchstats" data-bind="text: query"></p>
@@ -120,7 +112,7 @@
                 <p id="searchTime" data-bind="text: queryTime" class="searchstats"></p>
                 <p class="searchstats">&nbsp;milliseconds.</p>
             </div>
-            <span id="resPageSpan"><p class="searchstats">Page&nbsp;</p><p id="pageNum" data-bind="text: page" class="searchstats"></p><p class="searchstats">&nbsp;of&nbsp;</p><p id="totalPage" data-bind="text: pages" class="searchstats"></p></span>
+            <div id="resPageDiv"><p class="searchstats">Page&nbsp;</p><p id="pageNum" data-bind="text: page" class="searchstats"></p><p class="searchstats">&nbsp;of&nbsp;</p><p id="totalPage" data-bind="text: pages" class="searchstats"></p></div>
             <button id="resPrev" data-bind="visible: page() > 1, click: prev">Previous</button>
             <button id="resNext" data-bind="visible: page() < pages(), click: next">Next</button>
         </div>
@@ -132,6 +124,7 @@
                 <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
                 <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
                 <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
+                <hr class="resultsseparator" />
         </div>
         <!-- /ko -->
             @*<div id="firstRes" class="resultdiv">
@@ -157,14 +150,14 @@
             <div class="resultdiv">
             </div>*@
         <div id="resultsInfoBottom">
-            <div id="infoSpanBottom">
+            <div id="infoDivBottom">
                 <p class="searchstats">Search for&nbsp;"</p>
                 <p id="term" data-bind="text: query" class="searchstats"></p>
                 <p class="searchstats">"&nbsp;took&nbsp;</p>
                 <p id="searchTime" data-bind="text: queryTime" class="searchstats"></p>
                 <p class="searchstats">&nbsp;milliseconds.</p>
             </div>
-            <span id="resPageSpanBottom"><p class="searchstats">Page&nbsp;</p><p id="pageNum" data-bind="text: page" class="searchstats"></p><p class="searchstats">&nbsp;of&nbsp;</p><p id="totalPage" data-bind="text: pages" class="searchstats"></p></span>
+            <div id="resPageDivBottom"><p class="searchstats">Page&nbsp;</p><p id="pageNum" data-bind="text: page" class="searchstats"></p><p class="searchstats">&nbsp;of&nbsp;</p><p id="totalPage" data-bind="text: pages" class="searchstats"></p></div>
             <button id="resPrevBottom" data-bind="visible: page() > 1, click: prev">Previous</button>
             <button id="resNextBottom" data-bind="visible: page() < pages(), click: next">Next</button>
         </div>
@@ -172,26 +165,28 @@
     <div id="accordionPackage">
         <h3>Current document package</h3>
         <div id="packageDiv">
-            <input id="packageSearchBox" type="text" name="packagesearch" placeholder="Type in package name..">
+            <div id="onHover">
+                <input id="packageSearchBox" type="text" name="packagesearch" placeholder="Type in package name..">
+                <p id="removePackage">x</p>
+            </div>
             <button id="packageSelect" data-toggle="modal" data-target="#packageModal" data-backdrop="static"></button>
             <ul id="packageUl"></ul>
-            <p class="packageText">You have selected&nbsp;</p>
-            <p class="packageText" id="packageCounter"></p>
-            <p class="packageText">&nbsp;document</p>
-            <p class="packageText" id="packageSHidden">s&nbsp;</p>
-            <p class="packageText">for download.</p>
-            <button class="packageDownload">Add to current package</button>
-            <button class="packageDownload">Download current package</button>
-            <button class="packageDownload">Add to new package</button>
-            <button class="packageDownload">Download as new package</button>
+            <p class="packagetext">You have selected&nbsp;</p>
+            <p class="packagetext" id="packageCounter"></p>
+            <p class="packagetext">&nbsp;document</p>
+            <p class="packagetext" id="packageSHidden">s&nbsp;</p>
+            <p>for download.</p>
+            <button id="addToPackageButton" class="packageDownload"></button>
+            <button id="downloadPackageButton" class="packageDownload"></button>
+            <button id="createNewPackageButton"class="packageDownload"></button>
         </div>
     </div>
     <div id="excerptModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="closemodal close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Excerpts of document * for search **</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="excerptModalTitle" class="modal-title">Excerpts of document * for search **</h4>
                 </div>
                 <div>
                     <hr /><div id="modalBody1" class="modal-body">
@@ -212,7 +207,7 @@
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
                     </ul>
-                    <button type="button" class="closemodal btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -221,12 +216,12 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="closemodal close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Package results for *</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="packageModalTitle" class="modal-title">Results for ""</h4>
                     <input id="packageSearchBoxModal" type="text" name="packagesearch" placeholder="Package name..">
                 </div>
                 <div class="modal-body">
-                    <button id="packageCollapseButton1" class="collapseButton" data-toggle="collapse" data-target="#packageCollapseDiv1">Docu Package</button>
+                    <button id="packageCollapseButton1" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv1">Docu Package</button>
                     <div id="packageCollapseDiv1" class="collapse">
                         <ul class="packageContents tripleColUl">
                             <li class="packageContent">avaloq.pdf</li>
@@ -247,7 +242,7 @@
                             <li class="packageContent">executive-email.pdf</li>
                         </ul>
                     </div>
-                    <button id="packageCollapseButton2" class="collapseButton" data-toggle="collapse" data-target="#packageCollapseDiv2">Online Documents Backup Package</button>
+                    <button id="packageCollapseButton2" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv2">Online Documents Backup Package</button>
                     <div id="packageCollapseDiv2" class="collapse">
                         <ul class="packageContents tripleColUl">
                             <li class="packageContent">others.pdf</li>
@@ -258,7 +253,7 @@
                             <li class="packageContent">business.pdf</li>
                         </ul>
                     </div>
-                    <button id="packageCollapseButton3" class="collapseButton" data-toggle="collapse" data-target="#packageCollapseDiv3">Banking Package</button>
+                    <button id="packageCollapseButton3" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv3">Banking Package</button>
                     <div id="packageCollapseDiv3" class="collapse">
                         <ul class="packageContents tripleColUl">
                             <li class="packageContent">earnings.pdf</li>
@@ -277,8 +272,8 @@
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
                     </ul>
-                    <button type="button" id="selectPackage" class="closemodal btn btn-default" data-dismiss="modal">Select Package</button>
-                    <button type="button" class="closemodal btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="selectPackage" class="btn btn-default">Select Package</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

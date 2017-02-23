@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -17,12 +18,15 @@ namespace AvaloqDocu.Services
                 if (upload != null && upload.ContentLength > 0)
                 {
                     document.DocuID = 0;
-                    document.Title = "null";
                     document.Subtitle = "null";
                     document.Release = "null";
+                    document.LastModified = DateTime.Now;
+                    document.Subtitle = "foo";
+                    document.FileSize = upload.ContentLength;
+                    document.Title = upload.FileName;
                     var filepath = new Models.FilePath
                     {
-                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileName = Path.GetFileName(upload.FileName),
                     };
                     document.FilePath = filepath;
                 }

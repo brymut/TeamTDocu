@@ -44,15 +44,17 @@ namespace AvaloqDocu.Models
 
 
         [Key]
+        public int DocumentID { get; set; }
         public string Title { get; set; }
         public string Subtitle { get; set; }
-        //public IEnumerable<> Keywords { get; set; }
         public int DocuID { get; set; }
         public string Release { get; set; }
         public string FunctionalArea { get; set; }
         public string DocuType { get; set; }
         public string SubType { get; set; }
         public DateTime LastModified { get; set; }
+        public int FilePathId { get; set; }
+        public int FileSize { get; set; }
         [ForeignKey("FilePathId")]
         public virtual FilePath FilePath { get; set; }
 

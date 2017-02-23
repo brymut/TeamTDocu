@@ -85,6 +85,7 @@
         });
     });
 
+
     // Attach JQuery callendar to date fields
     $('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'yy-mm-dd' });
 
