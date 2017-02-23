@@ -17,8 +17,11 @@ namespace AvaloqDocu.Services
                 var document = new Models.Document { };
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    document.UploadDate = DateTime.Now;
-                    document.Description = "foo";
+                    document.DocuID = 0;
+                    document.Subtitle = "null";
+                    document.Release = "null";
+                    document.LastModified = DateTime.Now;
+                    document.Subtitle = "foo";
                     document.FileSize = upload.ContentLength;
                     document.Title = upload.FileName;
                     var filepath = new Models.FilePath

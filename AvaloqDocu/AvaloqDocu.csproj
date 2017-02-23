@@ -197,7 +197,7 @@
     <Compile Include="PresentationTransferObjects\ResultPTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SearchService.cs" />
-    <Compile Include="Services\ElasticSearchConfig.cs" />
+    <Compile Include="App_Start\ElasticSearchConfig.cs" />
     <Compile Include="Services\UploadService.cs" />
     <Compile Include="Enums\ReleaseEnum.cs" />
   </ItemGroup>
