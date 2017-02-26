@@ -1,11 +1,7 @@
 body {
 	margin: 0px;
 	height: 1500px;
-	width: 1500px;
-}
-
-body.modal-open {
-    overflow: hidden;
+	width: 100%;
 }
 
 header {
@@ -50,41 +46,6 @@ a.ui-all {
 	cursor: pointer;
 }
 
-li.ui-menu-item:before {
-	content: "•";
-	padding-right: 5px;
-	cursor: pointer;
-}
-
-li.ui-menu-item:hover:before {
-	content: "×";
-	font-size: 12px;
-	color: red;
-	padding-right: 3.8px;
-}
-
-ul.packageContents {
-    width: 95%;
-    margin-bottom:20px;
-    overflow:hidden;
-    border-top:1px solid #ccc;
-}
-
-li.packageContent {
-    line-height:1.5em;
-    border-bottom:1px solid #ccc;
-    float:left;
-    display:inline;
-}
-
-.doubleColUl li  { 
-    width:50%;
-}
-
-.tripleColUl li  { 
-    width:33.333%; 
-}
-
 .ui-accordion-header-active {
 	background-color: #1F559F;
 }
@@ -99,35 +60,14 @@ li.packageContent {
 	border-top-width: 4px;
 }
 
-.packagetext {
-	float: left;
-}
-
-.collapsebutton {
-    width: 100%;
-    height: 30px;
-    background-color: #1F559F;
-    border-radius: 25px;
-    color: white;
-}
-
-.collapsebutton.clicked {
-    background-color: #efc47D;
-    color: black;
-    font-weight: bold;
-}
-
-.collapse {
-    width: 100%;
-    height: auto;
-    max-height: 110px;
-    overflow: auto;
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6 {
+    padding-left: 0px;
 }
 
 .resultdiv {
 	position: relative;
 	float: left;
-	width: 99.25%;
+	width: 100%;
 	height: 180px;
     border-top: unset;
     border-right: thick solid;
@@ -214,7 +154,7 @@ li.packageContent {
 	width: 30px;
 }
 
-.packageDownload {
+.packagedownload {
     margin-top: 2px;
 	height: 50px;
 	width: 50px;
@@ -224,12 +164,12 @@ li.packageContent {
 	cursor: pointer;	
 }
 
-.packageDownload:hover {
+.packagedownload:hover {
 	background-color: #1F559F;	
 	color: white;
 }
 
-.packageDownload:active {
+.packagedownload:active {
 	box-shadow: inset 0px 2px 2px #000000;
 	transition: all 0.1s ease;	
 }
@@ -242,8 +182,65 @@ li.packageContent {
     background: -webkit-gradient(linear, 0 0, 100% 0, from(#CCC), to(#CCC), color-stop(50%, #1F559F));
 }
 
-.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6 {
-    padding-left: 0px;
+li.ui-menu-item:before {
+	content: "•";
+	padding-right: 5px;
+	cursor: pointer;
+}
+
+li.ui-menu-item:hover:before {
+	content: "×";
+	font-size: 12px;
+	color: red;
+	padding-right: 3.8px;
+}
+
+ul.packageContents {
+    width: 95%;
+    margin-bottom:20px;
+    overflow:hidden;
+    border-top:1px solid #ccc;
+}
+
+li.packageContent {
+    line-height:1.5em;
+    border-bottom:1px solid #ccc;
+    float:left;
+    display:inline;
+}
+
+.tripleColUl li  { 
+    width:33.333%; 
+}
+
+.packagetext {
+	float: left;
+}
+
+.collapsebutton {
+    width: 100%;
+    height: 30px;
+    background-color: #1F559F;
+    border-radius: 25px;
+    color: white;
+}
+
+.collapsebutton.clicked {
+    background-color: #efc47D;
+    color: black;
+    font-weight: bold;
+}
+
+.collapse {
+    width: 100%;
+    height: auto;
+    max-height: 110px;
+    overflow: auto;
+}
+
+.pagination {
+	margin-top: 0px; 
+	float: left;
 }
 
 .clearfix {
@@ -291,11 +288,6 @@ li.packageContent {
     padding: 5px;
     margin: 2px;
     width: 60px;
-}
-
-.pagination {
-	margin-top: 0px; 
-	float: left;
 }
 
 #avaloqLogo {
@@ -360,15 +352,16 @@ li.packageContent {
 	cursor: pointer;
 }
 
-#sidebar {
-	position: absolute;
+#sidebar-left {
+	position: relative;
+    float:left;
 	top: 105px;
-	width: 300px;
+    width: 20.834%;
 }
 
-#sidebar.sticky {
-	position: fixed;
-	top: 48px;
+#sidebar-left.sticky {
+    position: absolute;
+    left: 0px;
 }
 
 #formContain {
@@ -453,12 +446,10 @@ li.packageContent {
 }
 
 #results {
-	position: absolute;
+	position: relative;
 	top: 105px;
-	left: 300px;
-	width: 61%;
-	min-width: 680px;
-	margin-right: 2px;
+    float: left;
+    width: 58.3336%;
 }
 
 #results.sticky {
@@ -469,7 +460,7 @@ li.packageContent {
 #resultsInfo {
 	position: relative;
 	float:left;
-	width: 99.25%;
+	width: 100%;
 	height: 100px;
 	border-right: thick solid;
 	border-left: thick solid;
@@ -530,7 +521,7 @@ li.packageContent {
 #resultsInfoBottom {
 	position: relative;
 	float:left;
-	width: 99.25%;
+	width: 100%;
 	height: 100px;
     border-top: thick dashed;
 	border-right: thick solid;
@@ -564,14 +555,15 @@ li.packageContent {
 	cursor: pointer;
 }
 
-#accordionPackage {
-	position: absolute;
+#sidebar-right {
+    position: relative;
+    float: left;
 	top: 105px;
-	width: 300px;
+    width: 20.834%;
 }
 
-#accordionPackage.sticky {
-	position: fixed;
+#sidebar-right.sticky {
+    position: absolute;
 	top: 48px;
 }
 

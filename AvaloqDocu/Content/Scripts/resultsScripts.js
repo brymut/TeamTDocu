@@ -1,57 +1,50 @@
 $(document).ready(function () {
-    // Disallow whitespace to the right of the Package div
-    $('body').css('maxWidth', $('#results').width() + $('#accordionPackage').width() + $('#sidebar').width()-6);
+    // Initial css tweaks
+    $('body').css('min-width', screen.width - 17);                                          // Set min body height to the screen width minus scrollbar width and other browser stuff
+    $('#results').css('width', (screen.width - 20) * 58.3336 / 100);                        // Set results div width to ~58% of the entire screen
+    $('#sidebar-left, #sidebar-right').css('width', (screen.width - 20) * 20.834 / 100);    // Set the two sidebar's width values to ~21%
 
-	// Positioning of the package floating div on load
-	$('#accordionPackage').css("left", $('#results').width() + $('#sidebar').width() - 6);
-	
 	// Change of header and positioning of divs on scrolled load
 	if($(this).scrollTop() > 1){  
-		$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').addClass("sticky");
-		$('#avaloqIcon').css("display", "");
-		$('#avaloqIcon').show();
-		$('#avaloqLogo').hide();
-		$('.ui-accordion-header').css('border-top-color', '#1F559F');
+	    $('header, #searchDiv, #sidebar-right, #results, #sidebar-left').addClass("sticky");    // Add the sticky class which defines the page appereance when vertically scrolled
+	    $('#sidebar-left, #sidebar-right').css('top', $(this).scrollTop() + 48);                // Make sure the two sidebars scroll with the page vertically; 48 is the width of the the sticky header, hardcoded due to timing sync issues when getting the header's height with JQuery
+	    $('#results').css('left', $('#sidebar-left').width());                                  // Make sure the results div takes its appropriate position when it's position css value changes from relative to absolute
+	    $('#sidebar-right').css('left', $('#sidebar-left').width() + $('#results').width());    // Make sure the right sidebar takes its appropriate position when it's position css value changes from relative to absolute
+		$('#avaloqIcon').css("display", "");                                                    // Remove the hidden attribute
+		$('#avaloqIcon').show();                                                                // Display the Avaloq icon
+		$('#avaloqLogo').hide();                                                                // Hide the Avaloq logo
+		$('.ui-accordion-header').css('border-top-color', '#1F559F');                           // Change the colour of the sidebar's border from yellow to blue
 	}
 	else{
-		$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').removeClass("sticky");
-		$('#avaloqIcon').hide();
-		$('#avaloqLogo').show();
-		$('.ui-accordion-header').css('border-top-color', '#efc47D');
-	}
-
-	if($(this).scrollLeft() > 1){
-		$("#sidebar.sticky").css("left", 0-$(this).scrollLeft());
-		$("#accordionPackage.sticky").css("left", $('#results').width() + $('#sidebar').width() - 6 - $(this).scrollLeft());
+	    $('header, #searchDiv, #sidebar-right, #results, #sidebar-left').removeClass("sticky"); // Remove the sticky class as the page goes back to its normal appearance with the large blue header
+		$('#avaloqIcon').hide();                                                                // Hide the Avaloq icon
+		$('#avaloqLogo').show();                                                                // Display the Avaloq logo
+		$('.ui-accordion-header').css('border-top-color', '#efc47D');                           // Change the colour of the sidebar's border from blue to yellow
 	}
 	
 	// Change of header and positioning of divs on scrolling
-	$(window).scroll(function(){
+	$(window).scroll(function () {
 		if($(this).scrollTop() > 1){  
-			$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').addClass("sticky");
+		    $('header, #searchDiv, #sidebar-right, #results, #sidebar-left').addClass("sticky");
+		    $('#sidebar-left, #sidebar-right').css('top', $(this).scrollTop() + 48);
+		    $('#results').css('left', $('#sidebar-left').width());
+		    $('#sidebar-right').css('left', $('#sidebar-left').width() + $('#results').width());
 			$('#avaloqIcon').css("display", "");
 			$('#avaloqIcon').show();
 			$('#avaloqLogo').hide();
 			$('.ui-accordion-header').css('border-top-color', '#1F559F');
 		}
 		else{
-			$('header, #searchDiv, #accordionPackage, #results, #accordionPackage, #sidebar').removeClass("sticky");
-			$("#sidebar").css("left", 0);
-			$("#accordionPackage").css("left", $('#results').width() + $('#sidebar').width() - 6);
+		    $('header, #searchDiv, #sidebar-right, #results, #sidebar-left').removeClass("sticky");
+		    $('#sidebar-left, #sidebar-right').css('top', '105px');
+		    $('#results').css('left', '0px');
+		    $('#sidebar-right').css('left', '0px');
 			$('#avaloqIcon').hide();
 			$('#avaloqLogo').show();
 			$('.ui-accordion-header').css('border-top-color', '#efc47D');
 		}
-		
-		$("#sidebar.sticky").css("left", 0-$(this).scrollLeft());		
-		$("#accordionPackage.sticky").css("left", $('#results').width() + $('#sidebar').width() - 6 - $(this).scrollLeft());
 	});
-	
-	// Positioning of the package floating div on window resize
-	$(window).resize(function(){
-		$("#accordionPackage").css("left", $('#results').width() + $('#sidebar').width() - 2 - $(this).scrollLeft());
-	});
-	
+
 	// Colouring of results div border in yellow
 	$('.resultdiv').hover(function(){
 		$(this).css("border-color", "#efc47D");
@@ -132,12 +125,13 @@ $(document).ready(function () {
     // Attach JQuery callendar to date fields
 	$('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'dd-mm-yy' });
 	
-	// Update and reset function and behaviour
+	// Filter sidebar options
 	$( "#formButtonsDiv" ).hide();	
 	$( "#h3Filters" ).click(function(){
 		$( "#formButtonsDiv" ).toggle();
 	});
 
+    // Update and reset filters function and behaviour
 	$('#updateButton').mouseover(function () {
 	    $('#updateButton').text("Update");
 	});
@@ -168,8 +162,8 @@ $(document).ready(function () {
     	});
 	
 	$( "#accordionFilters" ).accordion({
-		collapsible: true,
-		active: false,
+	    collapsible: true,
+	    active: false,
 		heightStyle: "content",
 		autoHeight: false,
         	clearStyle: true
@@ -249,14 +243,7 @@ $(document).ready(function () {
 	    $('#packageModalTitle').text('Results for "' + $('#packageSearchBox').val() + '"');
 	});
 
-    // Fixes a small bug with the width of the results div on modal open / close
-	$('#excerptModal, #packageModal').on('hide.bs.modal', function () {
-	    setTimeout(function () {
-	        $('#results').css('width', '61%');
-	    }, 400);
-	});
-
-    // Change colour of clicked package name button inside package modal and attemp to force only one selected package
+    // Change colour of clicked package name button inside package modal and attempt to force only one selected package
 	$('.collapse').on('hide.bs.collapse', function () {
 	    $(this).prev().removeClass('clicked');
 	});
@@ -286,12 +273,6 @@ $(document).ready(function () {
 	        var resWidth = $('#results').css('width');
 	        $('#results').css('width', resWidth);
 	    }
-	});
-
-    // Fixes width problems on modal open
-	$("#packageSelect").click(function () {
-	    var resWidth = $('#results').css('width');
-	    $('#results').css('width', resWidth);
 	});
 
     // Code to disable / enable package search box on package select / deselect
@@ -335,7 +316,7 @@ $(document).ready(function () {
 	    }
 	});
 
-    // Appends ids to the checkboxes of the KO result divs
+    // Appends ids to the checkboxes of the Knockout JS result divs
 	updateResultDivsNames();
 });
 

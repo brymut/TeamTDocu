@@ -197,6 +197,8 @@
             position: "left bottom",
         });
     });
+
+
 });
 
 // Function to determine if the browser is IE, source: stackoverflow
