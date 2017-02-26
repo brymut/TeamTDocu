@@ -16,9 +16,6 @@ $(function () {
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
-        // Uncomment the following to send cross-domain cookies:
-        //xhrFields: {withCredentials: true},
-        url: 'http://localhost:64376/Upload/UploadFiles'
     });
 
     // Enable iframe cross-domain access via redirect option:

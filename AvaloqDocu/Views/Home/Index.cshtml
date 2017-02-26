@@ -18,7 +18,7 @@
         <button id="uploadToSearch" class="cardFlip">Back to search</button>
         <div id="uploadDiv">
             <!-- Code inside the form below taken from blueimp/JQuery-File-Upload -->
-            <form id="fileupload" , enctype="multipart/form-data">
+            <form id="fileupload" action="@Url.Action("UploadFiles","Upload")" method="POST" enctype="multipart/form-data">
                 <noscript>&lt;input type="hidden" name="redirect" value="/Index"&gt;</noscript>
                 <div class="row fileupload-buttonbar">
                     <div class="col-lg-7">
