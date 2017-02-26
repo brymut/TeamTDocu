@@ -16,6 +16,7 @@ $(function () {
 
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
+        acceptFileTypes: /(\.|\/)(pdf)$/i
     });
 
     // Enable iframe cross-domain access via redirect option:
