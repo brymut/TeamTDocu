@@ -34,5 +34,14 @@ namespace AvaloqDocu.Services
                 dc.SaveChanges();
             }
         }
+
+        public void Delete(int ID)
+        {
+            using (var dc = new DocuContext())
+            {
+                dc.Documents.Remove(dc.Documents.Find(ID));
+                dc.SaveChanges();
+            }
+        }
     }
 }

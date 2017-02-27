@@ -15,6 +15,16 @@ namespace AvaloqDocu.Controllers
             return View();
         }
 
+        [HttpGet]
+        public void DeleteFile(string name)
+        {
+            var path = "~/Uploads/Uploads/" + name;
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+        }
+
         [HttpPost]
         public ActionResult UploadFiles()
         {
