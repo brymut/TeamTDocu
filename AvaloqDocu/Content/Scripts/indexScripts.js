@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    
     // Code to swap between search and upload views and to handle IE's lack of support for CSS transforms
     $('.cardFlip').click(function () {
         if (detectIE() == false) {
@@ -14,6 +13,14 @@
                 $('#uploadMode').show();
             }
         }
+    });
+
+    // Code to handle delete buttons of uploaded files
+    $(document).on("click", ".delete", function () {                            // For all elements of class delete now and in the future, add event listener for clicks
+        $(this).closest("tr").removeClass("template-download").addClass("tocancel").html("<td><font color='red'>Element deleted.</font></td><td></td><td></td>");
+    });                                                                         // Remove the class template-download, add the class tocancel and change the content of the row with an "Element deleted" warning.
+    $("#cancelAllUploads").click(function () {                                  // On click of the cancelAllUploads button
+        $("#uploadTableBody").children(".tocancel").remove();                   // Clear all children of the upload table which represent deleted items; this button also clears failed uploads and item that have been added but not uploaded, however this functionality is part of the JQuery Blue Imp File Upload plugin
     });
 
     // Code for view switch button transparency

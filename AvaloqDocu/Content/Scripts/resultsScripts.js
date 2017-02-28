@@ -23,64 +23,64 @@ $(document).ready(function () {
 	}
 	
 	// Change of header and positioning of divs on scrolling
-	$(window).scroll(function () {
-		if($(this).scrollTop() > 1){  
-		    $('header, #searchDiv, #sidebar-right, #results, #sidebar-left').addClass("sticky");
-		    $('#sidebar-left, #sidebar-right').css('top', $(this).scrollTop() + 48);
-		    $('#results').css('left', $('#sidebar-left').width());
-		    $('#sidebar-right').css('left', $('#sidebar-left').width() + $('#results').width());
-			$('#avaloqIcon').css("display", "");
-			$('#avaloqIcon').show();
-			$('#avaloqLogo').hide();
-			$('.ui-accordion-header').css('border-top-color', '#1F559F');
+	$(window).scroll(function () {                                                              // On scroll
+		if($(this).scrollTop() > 1){                                                            // If page has not been scrolled to the top
+		    $('header, #searchDiv, #sidebar-right, #results, #sidebar-left').addClass("sticky");// Add the sticky class to the listed elements
+		    $('#sidebar-left, #sidebar-right').css('top', $(this).scrollTop() + 48);            // Always position the two sidebars on screen; 48 is the height of the small header
+		    $('#results').css('left', $('#sidebar-left').width());                              // Push the results div to the middle of the page
+		    $('#sidebar-right').css('left', $('#sidebar-left').width() + $('#results').width());// Push the right sidebar to the right of the page
+			$('#avaloqIcon').css("display", "");                                                // Remove the setting that hides the Avaloq icon
+			$('#avaloqIcon').show();                                                            // Display the icon
+			$('#avaloqLogo').hide();                                                            // Hide the Avaloq logo
+			$('.ui-accordion-header').css('border-top-color', '#1F559F');                       // Switch the colour of the sidebar top border to blue
 		}
 		else{
-		    $('header, #searchDiv, #sidebar-right, #results, #sidebar-left').removeClass("sticky");
-		    $('#sidebar-left, #sidebar-right').css('top', '105px');
-		    $('#results').css('left', '0px');
-		    $('#sidebar-right').css('left', '0px');
-			$('#avaloqIcon').hide();
-			$('#avaloqLogo').show();
-			$('.ui-accordion-header').css('border-top-color', '#efc47D');
+		    $('header, #searchDiv, #sidebar-right, #results, #sidebar-left').removeClass("sticky"); // If scrolled to the top of page remove the sticky class from the listed elements
+		    $('#sidebar-left, #sidebar-right').css('top', '105px');                             // Push the sidebars by the height of the large header
+		    $('#results').css('left', '0px');                                                   // Don't push the results div anymore as its position has changed to relative which places it automatically
+		    $('#sidebar-right').css('left', '0px');                                             // Don't push the right sidebar either
+		    $('#avaloqIcon').hide();                                                            // Hide the Avaloq icon
+			$('#avaloqLogo').show();                                                            // Show the Avaloq logo
+			$('.ui-accordion-header').css('border-top-color', '#efc47D');                       // Switch the colour of the sidebar top border to blue
 		}
 	});
 
 	// Colouring of results div border in yellow
-	$('.resultdiv').hover(function(){
-		$(this).css("border-color", "#efc47D");
-	}, function(){
-		$(this).css("border-color", "#1F559F");
+	$('.resultdiv').hover(function(){                                                           // On hover on a results
+		$(this).css("border-color", "#efc47D");                                                 // Colour its side borders in yellow
+	}, function(){                                                                              // On hover out
+		$(this).css("border-color", "#1F559F");                                                 // Colour back to blue
 	});
 
     // Code to hide the separator in the last results div
 	$('.resultdiv').children().last().css('display', 'none');
 
     // Code controlling the quick date selection radio buttons
-	$('input[type=radio][name=dateRadio]').change(function () {
-	    var dateVal = $('input[name="dateRadio"]:checked').val();
-	    if (dateVal != 0) {
-	        $('#fromDateInput, #toDateInput').prop('disabled', true);
-	        var d = new Date();
+	$('input[type=radio][name=dateRadio]').change(function () {                                 // On selecting a radio button from the date group
+	    var dateVal = $('input[name="dateRadio"]:checked').val();                               // Identify the selected chechbox
+	    if (dateVal != 0) {                                                                     // If not 'Custom date'
+	        $('#fromDateInput, #toDateInput').prop('disabled', true);                           // Disable the manual input fields
+	        var d = new Date();                                                                 // Get the date
 	        var fromDate;
 	        var toDate;
 	        var month;
 	        var day;
-	        if (dateVal == 1) {
-	            month = d.getMonth() + 1;
-	            day = d.getDate();
-	            toDate = (day < 10 ? '0' : '') + day + '-' +
+	        if (dateVal == 1) {                                                                 // If 'Last week'
+	            month = d.getMonth() + 1;                                                       // Get current month, plus 1 as they start from 0
+	            day = d.getDate();                                                              // Get current day
+	            toDate = (day < 10 ? '0' : '') + day + '-' +                                    // Build the To date
                 (month < 10 ? '0' : '') + month + '-' +
                 d.getFullYear();
-	            d.setDate(d.getDate() - 7);
+	            d.setDate(d.getDate() - 7);                                                     // Subtract 7 days as the target date is a week ago
 	            month = d.getMonth() + 1;
 	            day = d.getDate();
-	            fromDate = (day < 10 ? '0' : '') + day + '-' +
+	            fromDate = (day < 10 ? '0' : '') + day + '-' +                                  // Build the From date
                 (month < 10 ? '0' : '') + month + '-' +
                 d.getFullYear();
-	            $('#fromDateInput').val(fromDate);
+	            $('#fromDateInput').val(fromDate);                                              // Set the two dates inside the designated fields
 	            $('#toDateInput').val(toDate);
 	        }
-	        if (dateVal == 2) {
+	        if (dateVal == 2) {                                                                 // Identical process as above please refer to the previous comments
 	            month = d.getMonth() + 1;
 	            day = d.getDate();
 	            toDate = (day < 10 ? '0' : '') + day + '-' +
@@ -94,7 +94,7 @@ $(document).ready(function () {
 	            $('#fromDateInput').val(fromDate);
 	            $('#toDateInput').val(toDate);
 	        }
-	        if (dateVal == 3) {
+	        if (dateVal == 3) {                                                                 // Identical process as above please refer to the previous comments
 	            month = d.getMonth() + 1;
 	            day = d.getDate();
 	            toDate = (day < 10 ? '0' : '') + day + '-' +
@@ -108,8 +108,8 @@ $(document).ready(function () {
 	            $('#fromDateInput').val(fromDate);
 	            $('#toDateInput').val(toDate);
 	        }
-	    } else {
-	        $('#fromDateInput, #toDateInput').prop('disabled', false);
+	    } else {                                                                                // If Custom date was selected
+	        $('#fromDateInput, #toDateInput').prop('disabled', false);                          // Unlock the date fields
 	    }
 	});
 
@@ -170,28 +170,42 @@ $(document).ready(function () {
     	});
 	
 	// Package floating div function
-	var packaged = [];
-	var cboxID = [];
+	var packaged = [];                                                                              // To store the titles of the checked results
+	var cboxID = [];                                                                                // To store the checkbox IDs of the checked results
 	$('#packageCounter').text(packaged.length);
-	$( ".resultcheckbox" ).each(function(){
+	$( ".resultcheckbox" ).each(function(){                                                         // On page load uncheck all result checkboxes, this is to prevent cached selections interfering with the script
 		$(this).prop('checked', false);
 	});
 	
-	$( ".resultcheckbox" ).change(function(){
-		var index = packaged.indexOf($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text());
-		if(index == -1){
-			packaged.push($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text());
-			cboxID.push($($(this)[0]).attr('id'));
-		} else {
-			packaged.splice(index, index+1);
-			cboxID.splice(index, index+1);
+	$( ".resultcheckbox" ).change(function(){                                                       // On tick/untick
+		var index = packaged.indexOf($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text());  // Check if the title of the result is already in the packaged array
+		if(index == -1){                                                                            // If the title was not in the array, then this is a checkbox tick event
+			packaged.push($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text()); // Add it to the array
+			cboxID.push($($(this)[0]).attr('id'));                                                  // Add the corresponding checkbox id to the cbox array
+		} else {                                                                                    // If the title was in the array, then this is a checkbox untick event
+			packaged.splice(index, index+1);                                                        // Remove title from the package array
+			cboxID.splice(index, index+1);                                                          // Remove id from the checkbox id array
 		}
-		updatePackage(packaged, cboxID);
-		packageRedOnHover();
+		updatePackage(packaged, cboxID);                                                            // Update the package structure in the package sidebar
+	});
+
+    // Code to colour red and put a line through the titles of the results displayed in the package sidebar after being selected in the results div
+	$(document).on("mouseenter", "li.ui-menu-item", function () {
+	    $($(this).children('a')[0]).css("color", "red");
+	    $($(this).children('a')[0]).css("text-decoration", "line-through");
+	});
+	$(document).on("mouseleave", "li.ui-menu-item", function () {
+	    $($(this).children('a')[0]).css("color", "black");
+	    $($(this).children('a')[0]).css("text-decoration", "none");
+	});
+
+    // Code to remove a result from the package sidebar and uncheck its checkbox in the results div
+	$(document).on("mousedown", "li.ui-menu-item", function () {
+	    $('#' + $($($(this)[0]).children('a')).attr('data-id')).click();
 	});
 	
 	// Notification settings and code via Notify JS
-	$.notify.addStyle('resetConfirm', {
+	$.notify.addStyle('resetConfirm', {                                             // Code for the reset box that pop ups after clicking the search reset button
 	  html: 
 		"<div>" +
 		  "<div class='clearfix'>" +
@@ -203,14 +217,14 @@ $(document).ready(function () {
 		  "</div>" +
 		"</div>"
 	});
-	$(document).on('click', '.notifyjs-resetConfirm-base .no', function() {
+	$(document).on('click', '.notifyjs-resetConfirm-base .no', function() {         // Handler for clicking the no button on the reset box
 	  $(this).trigger('notify-hide');
 	});
-	$(document).on('click', '.notifyjs-resetConfirm-base .yes', function() {
+	$(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {       // Handler for clicking the yes button on the reset box
 		$("#advancedSearchForm").trigger("reset");
 		$(this).trigger('notify-hide');
 	});
-	$('#resetButton').click(function() {
+	$('#resetButton').click(function() {                                            // Code to trigger the reset box
 		$('.notifyjs-resetConfirm-base').trigger('notify-hide');
 		$.notify({
 			title: '<font color="red"><b>Reset</b></font> form?',
@@ -230,17 +244,9 @@ $(document).ready(function () {
 		$.notify("Link copied to clipboard", { className: "info", autoHideDelay: 1000, position: "right bottom" });
 	});
 
-	// Result excertps code via Bootstrap JS Modal, fixes a small bug with the width of the results div on modal open / close
-	$('.previewbutton').click(function () {
-		var resWidth = $('#results').css('width');
-		$('#excerptModalTitle').text($($(this).closest("div").children("h3")[0]).text());
-		$('#results').css('width', resWidth);
-	});
-
-
     // Package select code via Bootstrap JS Modal
-	$('#packageModal').on('show.bs.modal', function () {
-	    $('#packageModalTitle').text('Results for "' + $('#packageSearchBox').val() + '"');
+	$('#packageModal').on('show.bs.modal', function () {                                        // On showing the modal
+	    $('#packageModalTitle').text('Results for "' + $('#packageSearchBox').val() + '"');     // Update its title to indicate the search term
 	});
 
     // Change colour of clicked package name button inside package modal and attempt to force only one selected package
@@ -251,7 +257,7 @@ $(document).ready(function () {
 	    $(this).prev().addClass('clicked');
 	});
 	$('.collapsebutton').click(function () {
-	    $('.collapse').collapse('hide');
+	    $('.collapse').collapse('hide');                                                        // On clicking a package name hide all collapsible divs before collapsing the corresponding div
 	});
 
     // Code to synchronize the two package search boxes
@@ -261,17 +267,15 @@ $(document).ready(function () {
 
     // Code to catch enter key pressed on package search box
 	$("#packageSearchBox").keyup(function (event) {
-	    if (event.keyCode == 13) {
+	    if (event.keyCode == 13) {                                                              // If the key was Enter
 	        $("#packageSelect").click();
 	    }
 	});
 
     // Code to change package modal title on enter key pressed inside modal searchbox
 	$("#packageSearchBoxModal").keyup(function (event) {
-	    if (event.keyCode == 13) {
+	    if (event.keyCode == 13) {                                                              // If the key was Enter
 	        $('#packageModalTitle').text('Results for "' + $('#packageSearchBoxModal').val() + '"');
-	        var resWidth = $('#results').css('width');
-	        $('#results').css('width', resWidth);
 	    }
 	});
 
@@ -341,25 +345,6 @@ function updatePackage(packaged, cboxID){
 	} else {
 		$('#packageSHidden').hide();		
 	}
-	removeFromPackage();
-}
-
-// On remove from package floating div
-function removeFromPackage(){
-	$( "li.ui-menu-item" ).mousedown(function(){
-		$('#'+$($($(this)[0]).children('a')).attr('data-id')).click();
-	});
-}
-
-// Red colouring on hover for package floating div
-function packageRedOnHover(){
-	$('li.ui-menu-item').hover(function(){
-		$($(this).children('a')[0]).css("color", "red");
-		$($(this).children('a')[0]).css("text-decoration", "line-through");
-	}, function(){
-		$($(this).children('a')[0]).css("color", "black");
-		$($(this).children('a')[0]).css("text-decoration", "none");		
-	});
 }
 
 // Appends ids to the checkboxes of the KO result divs
