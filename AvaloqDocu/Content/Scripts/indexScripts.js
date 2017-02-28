@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    
     // Code to swap between search and upload views and to handle IE's lack of support for CSS transforms
     $('.cardFlip').click(function () {
         if (detectIE() == false) {

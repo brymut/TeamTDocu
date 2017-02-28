@@ -18,9 +18,12 @@ namespace AvaloqDocu.Controllers
         [HttpGet]
         public void DeleteFile(string name)
         {
-            var path = "~/Uploads/Uploads/" + name;
+            var path = Server.MapPath("~/UploadFiles/" + name);
+
             if (System.IO.File.Exists(path))
             {
+                // var uservice = new UploadService();
+                // uservice.Delete(path);
                 System.IO.File.Delete(path);
             }
         }
@@ -37,7 +40,7 @@ namespace AvaloqDocu.Controllers
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     var f = Request.Files[i];
-                    f.SaveAs(Server.MapPath("~/Uploads/Uploads/") + f.FileName);
+                    f.SaveAs(Server.MapPath("~/UploadFiles/") + f.FileName);
 
                     // var uservice = new UploadService();
                     // uservice.Create(f);
@@ -46,8 +49,8 @@ namespace AvaloqDocu.Controllers
                     {
                         name = f.FileName,
                         size = f.ContentLength,
-                        url = "/Uploads/Uploads/" + f.FileName,
-                        deleteUrl = "/Uploads/Delete/" + f.FileName,
+                        url = "/UploadFiles/" + f.FileName,
+                        deleteUrl = "/Upload/DeleteFile?name=" + f.FileName,
                         deleteType = "GET",
                         thumbnailUrl = "null"
                     });

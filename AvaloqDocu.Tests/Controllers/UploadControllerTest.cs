@@ -17,7 +17,6 @@ namespace AvaloqDocu.Tests.Controllers
         {
             // Arrange
             UploadController controller = new UploadController();
-
             var context = MockRepository.GenerateStub<HttpContextBase>();
             var request = MockRepository.GenerateStub<HttpRequestBase>();
             var singleFile = MockRepository.GenerateStub<HttpPostedFileBase>();
@@ -27,7 +26,6 @@ namespace AvaloqDocu.Tests.Controllers
             context.Stub(x => x.Request).Return(request);
             request.Stub(x => x.Files).Return(files);
             files.Stub(x => x.Count).Return(1);
-            files.Stub(x => x.GetEnumerator()).Return(fileKey.GetEnumerator());
             singleFile.Stub(x => x.FileName).Return("foo.png");
 
             controller.ControllerContext = new ControllerContext(context, new RouteData(), controller);

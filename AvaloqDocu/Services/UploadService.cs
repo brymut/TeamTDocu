@@ -35,11 +35,11 @@ namespace AvaloqDocu.Services
             }
         }
 
-        public void Delete(int ID)
+        public void Delete(string path)
         {
             using (var dc = new DocuContext())
             {
-                dc.Documents.Remove(dc.Documents.Find(ID));
+                dc.Documents.Remove(dc.Documents.Find(path));
                 dc.SaveChanges();
             }
         }
