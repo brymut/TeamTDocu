@@ -5,7 +5,7 @@
 <div id="switchModeDiv">
     <div id="searchMode" class="front">
         <div id="mainSearchDiv">
-            <button id="toUploadMode" class="cardFlip">Upload files</button>
+            <button id="toUploadMode" class="cardflip">Upload files</button>
             <img id="avaloqLogo" src="~/Content/Logos/avaloqlogo.png">
             <form id="mainSearchForm" autocomplete="off">
                 <input id="mainSearchBox" type="text" data-bind="value: query" name="search" placeholder="Type in your Avaloq search..">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div id="uploadMode" class="back">
-        <button id="uploadToSearch" class="cardFlip">Back to search</button>
+        <button id="uploadToSearch" class="cardflip">Back to search</button>
         <div id="uploadDiv">
             <!-- Code inside the form below taken from blueimp/JQuery-File-Upload -->
             <form id="fileupload" action="@Url.Action("UploadFiles","Upload")" method="POST" enctype="multipart/form-data">
