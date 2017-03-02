@@ -120,7 +120,7 @@
                 <h3 data-bind="text: Title" class="resultdivtitle"></h3>
                 <p data-bind="text: $root.formatDate(UploadDate)" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
                 <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
-                <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
+                <button data-bind="attr: { 'href': Filepath }" class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
                 <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
                 <hr class="resultsseparator" />
         </div>
