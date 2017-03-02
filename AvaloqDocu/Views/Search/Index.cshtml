@@ -176,9 +176,9 @@
                 <p class="packagetext">&nbsp;document</p>
                 <p class="packagetext" id="packageSHidden">s&nbsp;</p>
                 <p>for download.</p>
-                <button id="addToPackageButton" class="packagedownload"></button>
-                <button id="downloadPackageButton" class="packagedownload"></button>
-                <button id="createNewPackageButton" class="packagedownload"></button>
+                <button id="addToPackageButton" title="Add to package" class="packagedownload"></button>
+                <button id="downloadPackageButton" title="Download package" class="packagedownload"></button>
+                <button id="createNewPackageButton" title="Create new package" data-toggle="modal" data-target="#createNewPackageModal" data-backdrop="static" class="packagedownload"></button>
             </div>
         </div>
     </div>
@@ -274,6 +274,23 @@
                         <li><a href="#">5</a></li>
                     </ul>
                     <button type="button" id="selectPackage" class="btn btn-default">Select Package</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="createNewPackageModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="createNewPackageModalTitle" class="modal-title">Please input name for new package</h4>
+                </div>
+                <div class="modal-body">
+                    <input id="newPackageNameBox" type="text" name="newpackagename" placeholder="New package name...">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="acceptNewPackageName" class="btn btn-default" data-dismiss="modal">Accept</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

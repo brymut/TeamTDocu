@@ -298,7 +298,7 @@ $(document).ready(function () {
     // Red color of disabled package searchbox on hover
     $('#onHoverPackageSidebarDiv').hover(function () {                              // On hover on the div that encompasses onlu the package search box in the package sidebar
 	    if ($('#packageSearchBox').prop('disabled')) {                              // Only if the search box is disabled
-	        $('#packageSearchBox').css('background-color', '#ff3939');              // Set its background colour to red
+	        $('#packageSearchBox').css('background-color', 'rgba(255,0,0,0.7)');    // Set its background colour to red
 	        $('#packageSearchBox').css('text-decoration', 'line-through');          // Add a line through the text
 	        $('#packageSearchBox').css('cursor', 'pointer');                        // Make the cursor a pointer
 	        $('#removePackage').css('display', 'inline');                           // Add the x to indicate removal on click

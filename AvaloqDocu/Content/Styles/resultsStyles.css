@@ -581,7 +581,7 @@ li.packageContent {
 #packageSearchBox {
     float: left;
 	height: 28px;
-    width: 180px;
+    width: 200px;
     border: 2px solid #ccc;
     border-radius: 8px;
     margin-top: 1px;
@@ -591,10 +591,11 @@ li.packageContent {
 
 #removePackage {
     display: none;
+    cursor: pointer;
     position: absolute;
     float: right;
     top: 5px;
-    right: 6px;
+    right: -10px;
 }
 
 #packageSelect {
@@ -607,7 +608,7 @@ li.packageContent {
     background-repeat: no-repeat;
 	border-radius: 15px;
     margin-top: 1px;
-    margin-left: 3px;
+    margin-left: 22px;
     font-size: 10px;
 	cursor: pointer;	
 }
@@ -658,6 +659,15 @@ li.packageContent {
     background-image: url('../Icons/newpackageicon.png');
     background-size: 35px 35px;
     background-position: 9px 7px; 
+}
+
+#newPackageNameBox {
+	height: 30px;
+    width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 20px 12px 10px;
+	-webkit-padding-before: 12px;
 }
 
 @-moz-document url-prefix() {
