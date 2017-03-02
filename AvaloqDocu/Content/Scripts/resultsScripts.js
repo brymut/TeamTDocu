@@ -116,7 +116,7 @@ $(document).ready(function () {
     // Code checking if the from date is before the to date
 	$('#advancedSubmitButton').click(function () {
 	    if (Date.parse($('#fromDateInput').val()) > Date.parse($('#toDateInput').val())) {
-	        alert('The "From Date Modified" field should be less than the "To Date Modified" field.');
+	        alert('The "From Date Modified" date should be before the "To Date Modified" date.');
 	    } else {
 	        $('#advancedSearchForm').submit();
 	    }
@@ -127,11 +127,11 @@ $(document).ready(function () {
 	
 	// Filter sidebar options
 	$( "#formButtonsDiv" ).hide();	
-	$( "#h3Filters" ).click(function(){
-		$( "#formButtonsDiv" ).toggle();
+	$( "#h3Filters" ).click(function(){                             // When the title of the sidebar is clicked
+		$( "#formButtonsDiv" ).toggle();                            // Collapse the form buttons div
 	});
 
-    // Update and reset filters function and behaviour
+    // Update and reset buttons behaviour on hover
 	$('#updateButton').mouseover(function () {
 	    $('#updateButton').text("Update");
 	});
@@ -146,11 +146,11 @@ $(document).ready(function () {
 	});
 	
 	// Synchronization between main search field and the search field in the filter section
-	$('#mainSearchBox').change(function(){
-		$('#titleTextBox').val($('#mainSearchBox').val());
+	$('#mainSearchBox').change(function(){                              // On change
+		$('#titleTextBox').val($('#mainSearchBox').val());              // Make values equal
 	});
-	$('#titleTextBox').change(function(){
-		$('#mainSearchBox').val($('#titleTextBox').val());
+	$('#titleTextBox').change(function () {                             // On change
+	    $('#mainSearchBox').val($('#titleTextBox').val());              // Make values equal
 	});
 	
 	// Accordion settings for filters and package floating divs
@@ -158,16 +158,16 @@ $(document).ready(function () {
 		collapsible: true,
 		heightStyle: "content",
 		autoHeight: false,
-        	clearStyle: true
-    	});
+        clearStyle: true
+    });
 	
 	$( "#accordionFilters" ).accordion({
 	    collapsible: true,
 	    active: false,
 		heightStyle: "content",
 		autoHeight: false,
-        	clearStyle: true
-    	});
+        clearStyle: true
+    });
 	
 	// Package floating div function
 	var packaged = [];                                                                              // To store the titles of the checked results
@@ -186,7 +186,7 @@ $(document).ready(function () {
 			packaged.splice(index, index+1);                                                        // Remove title from the package array
 			cboxID.splice(index, index+1);                                                          // Remove id from the checkbox id array
 		}
-		updatePackage(packaged, cboxID);                                                            // Update the package structure in the package sidebar
+		updatePackage(packaged, cboxID);                                                            // Call the function to update the package list structure in the package sidebar
 	});
 
     // Code to colour red and put a line through the titles of the results displayed in the package sidebar after being selected in the results div
@@ -199,13 +199,13 @@ $(document).ready(function () {
 	    $($(this).children('a')[0]).css("text-decoration", "none");
 	});
 
-    // Code to remove a result from the package sidebar and uncheck its checkbox in the results div
+    // Code to uncheck a result's checkbox in the results div when its title is clicked in the package sidebar list
 	$(document).on("mousedown", "li.ui-menu-item", function () {
 	    $('#' + $($($(this)[0]).children('a')).attr('data-id')).click();
 	});
 	
 	// Notification settings and code via Notify JS
-	$.notify.addStyle('resetConfirm', {                                             // Code for the reset box that pop ups after clicking the search reset button
+	$.notify.addStyle('resetConfirm', {                                             // HTML code for the reset box that pop ups after clicking the search reset button
 	  html: 
 		"<div>" +
 		  "<div class='clearfix'>" +
@@ -217,10 +217,10 @@ $(document).ready(function () {
 		  "</div>" +
 		"</div>"
 	});
-	$(document).on('click', '.notifyjs-resetConfirm-base .no', function() {         // Handler for clicking the no button on the reset box
+	$(document).on('click', '.notifyjs-resetConfirm-base .no', function() {         // Handler for clicking the no button on the reset notification box
 	  $(this).trigger('notify-hide');
 	});
-	$(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {       // Handler for clicking the yes button on the reset box
+	$(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {       // Handler for clicking the yes button on the reset notification box
 		$("#advancedSearchForm").trigger("reset");
 		$(this).trigger('notify-hide');
 	});
@@ -237,10 +237,10 @@ $(document).ready(function () {
 		});
 	});
 
-	$('.downloadbutton').click(function() {
+	$('.downloadbutton').click(function () {                                        // Code to trigger the document download notification
 		$.notify("Item has started downloading", { className: "success", autoHideDelay: 1000, position: "right bottom" });
 	});
-	$('.linkbutton').click(function() {
+	$('.linkbutton').click(function () {                                            // Code to trigger the link copied notification
 		$.notify("Link copied to clipboard", { className: "info", autoHideDelay: 1000, position: "right bottom" });
 	});
 
@@ -250,14 +250,14 @@ $(document).ready(function () {
 	});
 
     // Change colour of clicked package name button inside package modal and attempt to force only one selected package
-	$('.collapse').on('hide.bs.collapse', function () {
-	    $(this).prev().removeClass('clicked');
+	$('.collapse').on('hide.bs.collapse', function () {                                         // On hiding a .collapse div
+	    $(this).prev().removeClass('clicked');                                                  // Remove the class 'clicked' from the button responsible for that div
 	});
-	$('.collapse').on('show.bs.collapse', function () {
-	    $(this).prev().addClass('clicked');
+	$('.collapse').on('show.bs.collapse', function () {                                         // On collapsing a .collapse div
+	    $(this).prev().addClass('clicked');                                                     // Add the class 'clicked' from the button responsible for that div
 	});
-	$('.collapsebutton').click(function () {
-	    $('.collapse').collapse('hide');                                                        // On clicking a package name hide all collapsible divs before collapsing the corresponding div
+	$('.collapsebutton').click(function () {                                                    // On clicking a package name button in the package select modal
+	    $('.collapse').collapse('hide');                                                        // Hide all collapsible divs before collapsing the corresponding div
 	});
 
     // Code to synchronize the two package search boxes
@@ -268,79 +268,79 @@ $(document).ready(function () {
     // Code to catch enter key pressed on package search box
 	$("#packageSearchBox").keyup(function (event) {
 	    if (event.keyCode == 13) {                                                              // If the key was Enter
-	        $("#packageSelect").click();
+	        $("#packageSelect").click();                                                        // Click the button with the magnifying glass to open the package select modal
 	    }
 	});
 
     // Code to change package modal title on enter key pressed inside modal searchbox
 	$("#packageSearchBoxModal").keyup(function (event) {
-	    if (event.keyCode == 13) {                                                              // If the key was Enter
-	        $('#packageModalTitle').text('Results for "' + $('#packageSearchBoxModal').val() + '"');
+	    if (event.keyCode == 13) {                                                                      // If the key was Enter
+	        $('#packageModalTitle').text('Results for "' + $('#packageSearchBoxModal').val() + '"');    // Update the package modal title
 	    }
 	});
 
     // Code to disable / enable package search box on package select / deselect
-    $('#selectPackage').click(function () {
-        if ($('.collapsebutton.clicked').length == 1) {
-            $('#packageSearchBox').val($('.collapsebutton.clicked').text());
-            $('#packageSearchBox').prop("disabled", true);
-            $('#packageSearchBox').css('background-color', '#EBEBE4');
-            $('#packageModal').modal('toggle');
-        } else if ($('.collapsebutton.clicked').length > 1) {
-            alert("Please select only one package.");
-        } else {
-	        $('#packageSearchBox').prop("disabled", false);
-	        $('#packageSearchBox').val("");
-	        $('#packageModal').modal('toggle');
+    $('#selectPackage').click(function () {                                         // On click of the 'Select package' button in the package modal
+        if ($('.collapsebutton.clicked').length == 1) {                             // If only one package has been opened (selected)
+            $('#packageSearchBox').val($('.collapsebutton.clicked').text());        // Put the name in the package select field in the package sidebar on the results main page
+            $('#packageSearchBox').prop("disabled", true);                          // Disable that field
+            $('#packageSearchBox').css('background-color', '#EBEBE4');              // Set its colour to grey as some browsers will not on second disable
+            $('#packageModal').modal('toggle');                                     // Close the package modal
+        } else if ($('.collapsebutton.clicked').length > 1) {                       // If more packages has been selected
+            alert("Please select only one package.");                               // Alert user and don't close the modal
+        } else {                                                                    // If no packages have been selected
+	        $('#packageSearchBox').prop("disabled", false);                         // Enable the field in the package sidebar
+	        $('#packageSearchBox').val("");                                         // Set its value to empty
+	        $('#packageModal').modal('toggle');                                     // Close the modal
 	    }
 	});
 
     // Red color of disabled package searchbox on hover
-	$('#onHover').hover(function () {
-	    if ($('#packageSearchBox').prop('disabled')) {
-	        $('#packageSearchBox').css('background-color', '#ff3939');
-	        $('#packageSearchBox').css('text-decoration', 'line-through');
-	        $('#packageSearchBox').css('cursor', 'pointer');
-	        $('#removePackage').css('display', 'inline');
-	        $('#onHover').click(function () {
-	            $('#packageSearchBox').prop('disabled', false);
-	            $('#packageSearchBox').val('');
-	            $('#packageSearchBox').css('background-color', 'white');
-	            $('#packageSearchBox').css('text-decoration', 'none');
-	            $('#packageSearchBox').css('cursor', 'auto');
-	            $('#removePackage').css('display', 'none');
+    $('#onHoverPackageSidebarDiv').hover(function () {                              // On hover on the div that encompasses onlu the package search box in the package sidebar
+	    if ($('#packageSearchBox').prop('disabled')) {                              // Only if the search box is disabled
+	        $('#packageSearchBox').css('background-color', '#ff3939');              // Set its background colour to red
+	        $('#packageSearchBox').css('text-decoration', 'line-through');          // Add a line through the text
+	        $('#packageSearchBox').css('cursor', 'pointer');                        // Make the cursor a pointer
+	        $('#removePackage').css('display', 'inline');                           // Add the x to indicate removal on click
+	        $('#onHoverPackageSidebarDiv').click(function () {                      // On click in the search box
+	            $('#packageSearchBox').prop('disabled', false);                     // Enable it
+	            $('#packageSearchBox').val('');                                     // Clear its content
+	            $('#packageSearchBox').css('background-color', 'white');            // Set background colour to white
+	            $('#packageSearchBox').css('text-decoration', 'none');              // Remove the line through the text
+	            $('#packageSearchBox').css('cursor', 'auto');                       // Set cursor to normal
+	            $('#removePackage').css('display', 'none');                         // Hide the x
 	        });
 	    }
-	}, function () {
-	    if ($('#packageSearchBox').prop('disabled')) {
-	        $('#packageSearchBox').css('background-color', '#EBEBE4');
-	        $('#packageSearchBox').css('text-decoration', 'none');
-	        $('#packageSearchBox').css('cursor', 'auto');
-	        $('#removePackage').css('display', 'none');
+	}, function () {                                                                // On hover out
+	    if ($('#packageSearchBox').prop('disabled')) {                              // Only if the search box is disabled
+	        $('#packageSearchBox').css('background-color', '#EBEBE4');              // Set background colour to grey
+	        $('#packageSearchBox').css('text-decoration', 'none');                  // Remove the line through the text
+	        $('#packageSearchBox').css('cursor', 'auto');                           // Set the cursor to normal
+	        $('#removePackage').css('display', 'none');                             // Hide the x
 	    }
 	});
 
     // Appends ids to the checkboxes of the Knockout JS result divs
-	updateResultDivsNames();
+	updateResultDivsNames();                                                        // Call a function to append needed ids to result checkboxes for the package list in the package sidebar
 });
 
-// Function to update in real-life the package floating div
+// Function to update the package list in the package sidebar
 function updatePackage(packaged, cboxID){
-	$('#packageUl').empty();
-	var packagedUL = $('#packageUl');
-	$.each(packaged, function(i){
-		var li = $('<li/>')
-			.addClass('ui-menu-item')
-			.attr('role', 'menuitem')
-			.appendTo(packagedUL);
-		var aaa = $('<a/>')
-			.addClass('ui-all')
-			.attr('data-id', cboxID[i])
-			.text(packaged[i])
-			.appendTo(li);
+	$('#packageUl').empty();                                                        // Empty the list
+	var packagedUL = $('#packageUl');                                               // Put it into a var
+	$.each(packaged, function(i){                                                   // For each result title in the array
+		var li = $('<li/>')                                                         // Create a list item
+			.addClass('ui-menu-item')                                               // Add the specific class
+			.attr('role', 'menuitem')                                               // Set role to menuitem
+			.appendTo(packagedUL);                                                  // Append to the html list
+		var aaa = $('<a/>')                                                         // Create hyperlink
+			.addClass('ui-all')                                                     // Add the specific class
+			.attr('data-id', cboxID[i])                                             // Set data-id attribute to the result checkbox id of the result the title reffers to
+			.text(packaged[i])                                                      // Set the result title as text
+			.appendTo(li);                                                          // Append to the list item just created
 	});
-	$('#packageCounter').text(packaged.length);
-	if(packaged.length == 0 || packaged.length > 1){
+	$('#packageCounter').text(packaged.length);                                     // Set the selected results counter to the length of the array
+	if(packaged.length == 0 || packaged.length > 1){                                // Toggle between 'package' and 'packages' as part of the sentence in the package sidebar
 		$('#packageSHidden').show();
 	} else {
 		$('#packageSHidden').hide();		
@@ -349,9 +349,11 @@ function updatePackage(packaged, cboxID){
 
 // Appends ids to the checkboxes of the KO result divs
 function updateResultDivsNames() {
-    var i;
-    var resultChildren = $('#results').children().length - 2;
-    for(i = 1; i < resultChildren - 1; i++){
-        $('#results').children().eq(i).children('input').attr('id', "cb" + i);
+    var i;                                                                          // Counter var
+    var pgNum = $("#pageNum").text();                                               // Page number var
+    var maxResPerPage = 10;                                                         // Maximum results per page var
+    var resultChildren = $('#results').children().length - 2;                       // Get amount of results; minus 2 as the results div has two info children
+    for(i = 1; i < resultChildren - 1; i++){                                        // For each child
+        $('#results').children().eq(i).children('input').attr('id', "cb" + (i+pgNum*maxResPerPage));      // Append a checkbox with a unique id
     };
 }

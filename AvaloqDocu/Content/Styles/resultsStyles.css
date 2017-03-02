@@ -571,7 +571,7 @@ li.packageContent {
     padding-top: 2px;
 }
 
-#onHover {
+#onHoverPackageSidebarDiv {
     position: relative;
     float: left;
     height: 28px;
