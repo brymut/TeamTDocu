@@ -64,6 +64,12 @@ a.ui-all {
     padding-left: 0px;
 }
 
+.col50percent {
+    width: 50%;
+    float: left;
+    margin-right: 0px;
+}
+
 .resultdiv {
 	position: relative;
 	float: left;
@@ -191,7 +197,7 @@ li.ui-menu-item:before {
 li.ui-menu-item:hover:before {
 	content: "×";
 	font-size: 12px;
-	color: red;
+	color: rgba(255,0,0,0.7);
 	padding-right: 3.8px;
 }
 
@@ -331,8 +337,9 @@ li.packageContent {
 	background-size: 20px 20px;
     background-position: 5px 3px; 
     background-repeat: no-repeat;
-    padding: 4px 20px 12px 40px;
+    padding: 4px 0px 0px 40px;
 	-webkit-padding-before: 12px;
+    -webkit-padding-after: 12px;
     transition: width 0.4s ease-in-out;
 }
 
@@ -397,7 +404,7 @@ li.packageContent {
 
 #resetButtonDiv {
 	float: left;
-	margin-left: 100px;
+	margin-left: 40%;
 }
 
 #updateButton {
@@ -585,8 +592,9 @@ li.packageContent {
     border: 2px solid #ccc;
     border-radius: 8px;
     margin-top: 1px;
-    padding: 4px 20px 12px 5px;
+    padding: 4px 20px 0px 5px;
 	-webkit-padding-before: 12px;
+    -webkit-padding-after: 12px;
 }
 
 #removePackage {
@@ -623,9 +631,9 @@ li.packageContent {
 	transition: all 0.1s ease;	
 }
 
-#packageSearchBoxModal {
+#packageModalSearchBox {
 	float: right;
-	height: 18px;
+	height: 24px;
     width: 180px;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -633,8 +641,9 @@ li.packageContent {
 	background-size: 16px 16px;
     background-position: 5px 3px; 
     background-repeat: no-repeat;
-    padding: 4px 20px 12px 23px;
+    padding: 4px 20px 0px 23px;
 	-webkit-padding-before: 12px;
+    -webkit-padding-after: 12px;
 }
 
 #packageUl {
@@ -643,7 +652,7 @@ li.packageContent {
 
 #addToPackageButton {
     margin-top: 5px;
-    margin-left: 35px;
+    margin-left: 15%;
     background-image: url('../Icons/addtopackageicon.png');
     background-size: 35px 35px;
     background-position: 8px 5px; 
@@ -666,8 +675,9 @@ li.packageContent {
     width: 300px;
     border: 2px solid #ccc;
     border-radius: 4px;
-    padding: 4px 20px 12px 10px;
+    padding: 0px 20px 0px 10px;
 	-webkit-padding-before: 12px;
+    -webkit-padding-after: 12px;
 }
 
 @-moz-document url-prefix() {

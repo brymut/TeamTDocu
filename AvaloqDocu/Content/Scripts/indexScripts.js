@@ -190,7 +190,7 @@
     });
     $(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {
         $("#advancedSearchForm").trigger("reset");
-        $('#fromDateInput, #toDateInput').prop('disabled', false);
+        $('#fromDateInput, #toDateInput').prop('disabled', false);                      // Make sure to enable the date fields in case they were disabled
         $(this).trigger('notify-hide');
     });
     $('#resetButton').click(function () {

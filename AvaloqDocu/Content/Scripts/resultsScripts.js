@@ -191,7 +191,7 @@ $(document).ready(function () {
 
     // Code to colour red and put a line through the titles of the results displayed in the package sidebar after being selected in the results div
 	$(document).on("mouseenter", "li.ui-menu-item", function () {
-	    $($(this).children('a')[0]).css("color", "red");
+	    $($(this).children('a')[0]).css("color", "rgba(255,0,0,0.7)");
 	    $($(this).children('a')[0]).css("text-decoration", "line-through");
 	});
 	$(document).on("mouseleave", "li.ui-menu-item", function () {
@@ -221,7 +221,8 @@ $(document).ready(function () {
 	  $(this).trigger('notify-hide');
 	});
 	$(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {       // Handler for clicking the yes button on the reset notification box
-		$("#advancedSearchForm").trigger("reset");
+	    $("#advancedSearchForm").trigger("reset");
+	    $('#fromDateInput, #toDateInput').prop('disabled', false);                  // Make sure to enable the date fields in case they were disabled
 		$(this).trigger('notify-hide');
 	});
 	$('#resetButton').click(function() {                                            // Code to trigger the reset box
@@ -262,7 +263,7 @@ $(document).ready(function () {
 
     // Code to synchronize the two package search boxes
 	$('#packageSearchBox').change(function () {
-	    $('#packageSearchBoxModal').val($('#packageSearchBox').val());
+	    $('#packageModalSearchBox').val($('#packageSearchBox').val());
 	});
 
     // Code to catch enter key pressed on package search box
@@ -273,9 +274,9 @@ $(document).ready(function () {
 	});
 
     // Code to change package modal title on enter key pressed inside modal searchbox
-	$("#packageSearchBoxModal").keyup(function (event) {
+	$("#packageModalSearchBox").keyup(function (event) {
 	    if (event.keyCode == 13) {                                                                      // If the key was Enter
-	        $('#packageModalTitle').text('Results for "' + $('#packageSearchBoxModal').val() + '"');    // Update the package modal title
+	        $('#packageModalTitle').text('Results for "' + $('#packageModalSearchBox').val() + '"');    // Update the package modal title
 	    }
 	});
 
@@ -320,6 +321,11 @@ $(document).ready(function () {
 	    }
 	});
 
+    // Handles a problem IE has with modals
+    if (detectIE() != false) {
+        $('.modal').removeClass('fade');
+    }
+
     // Appends ids to the checkboxes of the Knockout JS result divs
 	updateResultDivsNames();                                                        // Call a function to append needed ids to result checkboxes for the package list in the package sidebar
 });
@@ -356,4 +362,31 @@ function updateResultDivsNames() {
     for(i = 1; i < resultChildren - 1; i++){                                        // For each child
         $('#results').children().eq(i).children('input').attr('id', "cb" + (i+pgNum*maxResPerPage));      // Append a checkbox with a unique id
     };
+}
+
+// Function to determine if the browser is IE, source: stackoverflow
+function detectIE() {
+    var ua = window.navigator.userAgent;
+
+    var msie = ua.indexOf('MSIE ');
+    if (msie > 0) {
+        // IE 10 or older => return version number
+        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+    }
+
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) {
+        // IE 11 => return version number
+        var rv = ua.indexOf('rv:');
+        return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+    }
+
+    var edge = ua.indexOf('Edge/');
+    if (edge > 0) {
+        // Edge (IE 12+) => return version number
+        return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+    }
+
+    // Other browser
+    return false;
 }
