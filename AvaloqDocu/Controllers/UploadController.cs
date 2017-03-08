@@ -15,37 +15,50 @@ namespace AvaloqDocu.Controllers
             return View();
         }
 
+        [HttpGet]
+        public void DeleteFile(string name)
+        {
+            var path = Server.MapPath("~/UploadFiles/" + name);
+
+            if (System.IO.File.Exists(path))
+            {
+                // var uservice = new UploadService();
+                // uservice.Delete(path);
+                System.IO.File.Delete(path);
+            }
+        }
+
         [HttpPost]
         public ActionResult UploadFiles()
         {
             foreach (string file in Request.Files)
             {
-                var statuses = new List<FileMetadata>();
+                var statuses = new BlueimpJsonResult();
+                statuses.files = new List<FileMetadata>();
                 var headers = Request.Headers;
 
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     var f = Request.Files[i];
-                    f.SaveAs(Server.MapPath("~/App_Data/Uploads/") + f.FileName);
+                    f.SaveAs(Server.MapPath("~/UploadFiles/") + f.FileName);
 
-                    var uservice = new UploadService();
-                    uservice.Create(f);
+                    // var uservice = new UploadService();
+                    // uservice.Create(f);
 
-                    statuses.Add(new FileMetadata()
+                    statuses.files.Add(new FileMetadata()
                     {
                         name = f.FileName,
                         size = f.ContentLength,
-                        type = f.ContentType,
-                        url = "/App_Data/Uploads/" + f.FileName,
-                        delete_url = "/App_Data/Delete/" + f.FileName,
-                        delete_type = "GET",
+                        url = "/UploadFiles/" + f.FileName,
+                        deleteUrl = "/Upload/DeleteFile?name=" + f.FileName,
+                        deleteType = "GET",
+                        thumbnailUrl = "null"
                     });
                 }
                 JsonResult result = Json(statuses);
                 result.ContentType = "text/plain";
                 return result;
             }
-
             return Json(new List<FileMetadata>());
         }
     }
@@ -54,10 +67,14 @@ namespace AvaloqDocu.Controllers
     {
         public string name { get; set; }
         public int size { get; set; }
-        public string type { get; set; }
         public string url { get; set; }
-        public string delete_url { get; set; }
-        public string thumbnail_url { get; set; }
-        public string delete_type { get; set; }
+        public string thumbnailUrl { get; set; }
+        public string deleteUrl { get; set; }
+        public string deleteType { get; set; }
+    }
+
+    public class BlueimpJsonResult
+    {
+        public List<FileMetadata> files { get; set; }
     }
 }

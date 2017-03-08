@@ -29,18 +29,18 @@ namespace AvaloqDocu.Models
         /// <param name="SubType"
         /// <param name="LastModified"
         /// <param name="Filepath"
-        public Document(string Title = null, string Subtitle = null, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModified = null, FilePath Filepath = null)
-        {
-            this.Title = Title;
-            this.Subtitle = Subtitle;
-            this.DocuID = DocuID;
-            this.Release = Release;
-            this.FunctionalArea = FunctionalArea;
-            this.DocuType = DocuType;
-            this.SubType = SubType;
-            this.LastModified = LastModified ?? DateTime.MinValue;
-            this.FilePath = FilePath;
-        }
+        //public Document(string Title = null, string Subtitle = null, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModified = null, FilePath Filepath = null)
+        //{
+        //    this.Title = Title;
+        //    this.Subtitle = Subtitle;
+        //    this.DocuID = DocuID;
+        //    this.Release = Release;
+        //    this.FunctionalArea = FunctionalArea;
+        //    this.DocuType = DocuType;
+        //    this.SubType = SubType;
+        //    this.LastModified = LastModified ?? DateTime.MinValue;
+        //    this.FilePath = FilePath;
+        //}
         [Key]
         public int DocumentID { get; set; }
         public string Title { get; set; }

@@ -7,13 +7,16 @@ namespace AvaloqDocu.PresentationTransferObjects
 {
     public class ResultPTO
     {
-        //public int DocumentId { get; set; }
+        public int DocumentID { get; set; }
         public string Title { get; set; }
-        public string Author { get; set; }
-        //public string FilePath { get; set; }
-        //public string  FileName { get; set; }
-        //public string Description { get; set; }
-        //public DateTime UploadDate { get; set; }
-        public DateTime CreationDate { get; set; }
+        public string Subtitle { get; set; }
+        public int DocuID { get; set; }
+        public string Release { get; set; }
+        public string FunctionalArea { get; set; }
+        public string DocuType { get; set; }
+        public string SubType { get; set; }
+        public DateTime LastModified { get; set; }
+        public string FilePath { get; set; }
+        public int FileSize { get; set; }
     }
 }

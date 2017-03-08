@@ -1,12 +1,12 @@
 ﻿$(document).ready(function () {
     // Code to swap between search and upload views and to handle IE's lack of support for CSS transforms
-    $('.cardFlip').click(function () {
-        if (detectIE() == false) {
-            $('#switchModeDiv').toggleClass('flipped');
-            setTimeout(function () { $('#mainSearchDiv').toggleClass('hideme'); }, 300);
-        } else {
+    $('.cardflip').click(function () {                                                      // On click of the 'to upload mode' or the 'back to search mode' buttons 
+        if (detectIE() == false) {                                                          // If the browser is not IE
+            $('#switchModeDiv').toggleClass('flipped');                                     // Add or remove the class 'flipped'
+            setTimeout(function () { $('#mainSearchDiv').toggleClass('hideme'); }, 300);    // Ensure smoothness by adding a delay before hiding/displaying the main search div
+        } else {                                                                            // If browser is IE, skip the card flip effect
             $('#mainSearchDiv').toggle(20);
-            $('#uploadMode').toggleClass('back');
+            $('#uploadMode').toggleClass('back');                                           // Identifies whether to hide or show the upload mode
             if ($('#uploadMode').hasClass('back')) {
                 $('#uploadMode').hide();
             } else {
@@ -20,6 +20,14 @@
         $('#toUploadMode, #uploadToSearch').css('background-color', '#ffffff');
     }, function () {
         $('#toUploadMode, #uploadToSearch').css('background-color', 'rgba(255, 255, 255, 0.9)');
+    });
+
+    // Code to handle delete buttons of uploaded files
+    $(document).on("click", ".delete", function () {                            // For all elements of class delete now and in the future, add event listener for clicks
+        $(this).closest("tr").removeClass("template-download").addClass("tocancel").html("<td><font color='red'>Element deleted.</font></td><td></td><td></td>");
+    });                                                                         // Remove the class template-download, add the class tocancel and change the content of the row with an "Element deleted" warning.
+    $("#cancelAllUploads").click(function () {                                  // On click of the cancelAllUploads button
+        $("#uploadTableBody").children(".tocancel").remove();                   // Clear all children of the upload table which represent deleted items; this button also clears failed uploads and item that have been added but not uploaded, however this functionality is part of the JQuery Blue Imp File Upload plugin
     });
 
     // Code to center main search div on load
@@ -87,34 +95,34 @@
 
 
     // Attach JQuery callendar to date fields
-    $('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'yy-mm-dd' });
+    $('#fromDateInput, #toDateInput').datepicker({ dateFormat: 'dd-mm-yy' });
 
     // Code controlling the quick date selection radio buttons
-    $('input[type=radio][name=dateRadio]').change(function () {
-        var dateVal = $('input[name="dateRadio"]:checked').val();
-        if (dateVal != 0) {
-            $('#fromDateInput, #toDateInput').prop('disabled', true);
-            var d = new Date();
+    $('input[type=radio][name=dateRadio]').change(function () {                                 // On selecting a radio button from the date group
+        var dateVal = $('input[name="dateRadio"]:checked').val();                               // Identify the selected chechbox
+        if (dateVal != 0) {                                                                     // If not 'Custom date'
+            $('#fromDateInput, #toDateInput').prop('disabled', true);                           // Disable the manual input fields
+            var d = new Date();                                                                 // Get the date
             var fromDate;
             var toDate;
             var month;
             var day;
-            if (dateVal == 1) {
-                month = d.getMonth() + 1;
-                day = d.getDate();
-                toDate = (day < 10 ? '0' : '') + day + '-' +
+            if (dateVal == 1) {                                                                 // If 'Last week'
+                month = d.getMonth() + 1;                                                       // Get current month, plus 1 as they start from 0
+                day = d.getDate();                                                              // Get current day
+                toDate = (day < 10 ? '0' : '') + day + '-' +                                    // Build the To date
                 (month < 10 ? '0' : '') + month + '-' +
                 d.getFullYear();
-                d.setDate(d.getDate() - 7);
+                d.setDate(d.getDate() - 7);                                                     // Subtract 7 days as the target date is a week ago
                 month = d.getMonth() + 1;
                 day = d.getDate();
-                fromDate = (day < 10 ? '0' : '') + day + '-' +
+                fromDate = (day < 10 ? '0' : '') + day + '-' +                                  // Build the From date
                 (month < 10 ? '0' : '') + month + '-' +
                 d.getFullYear();
-                $('#fromDateInput').val(fromDate);
+                $('#fromDateInput').val(fromDate);                                              // Set the two dates inside the designated fields
                 $('#toDateInput').val(toDate);
             }
-            if (dateVal == 2) {
+            if (dateVal == 2) {                                                                 // Identical process as above please refer to the previous comments
                 month = d.getMonth() + 1;
                 day = d.getDate();
                 toDate = (day < 10 ? '0' : '') + day + '-' +
@@ -128,7 +136,7 @@
                 $('#fromDateInput').val(fromDate);
                 $('#toDateInput').val(toDate);
             }
-            if (dateVal == 3) {
+            if (dateVal == 3) {                                                                 // Identical process as above please refer to the previous comments
                 month = d.getMonth() + 1;
                 day = d.getDate();
                 toDate = (day < 10 ? '0' : '') + day + '-' +
@@ -142,15 +150,15 @@
                 $('#fromDateInput').val(fromDate);
                 $('#toDateInput').val(toDate);
             }
-        } else {
-            $('#fromDateInput, #toDateInput').prop('disabled', false);
+        } else {                                                                                // If Custom date was selected
+            $('#fromDateInput, #toDateInput').prop('disabled', false);                          // Unlock the date fields
         }
     });
 
     // Code checking if the from date is before the to date
     $('#advancedSubmitButton').click(function () {
         if (Date.parse($('#fromDateInput').val()) > Date.parse($('#toDateInput').val())) {
-            alert('The "From Date Modified" field should be less than the "To Date Modified" field.');
+            alert('The "From Date Modified" date should be before the "To Date Modified" date.');
         } else {
             $('#advancedSearchForm').submit();
         }
@@ -182,7 +190,7 @@
     });
     $(document).on('click', '.notifyjs-resetConfirm-base .yes', function () {
         $("#advancedSearchForm").trigger("reset");
-        $('#fromDateInput, #toDateInput').prop('disabled', false);
+        $('#fromDateInput, #toDateInput').prop('disabled', false);                      // Make sure to enable the date fields in case they were disabled
         $(this).trigger('notify-hide');
     });
     $('#resetButton').click(function () {
@@ -197,6 +205,8 @@
             position: "left bottom",
         });
     });
+
+
 });
 
 // Function to determine if the browser is IE, source: stackoverflow
@@ -222,7 +232,7 @@ function detectIE() {
         return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
     }
 
-    // other browser
+    // Other browser
     return false;
 }
 
