@@ -13,8 +13,13 @@ namespace AvaloqDocu.Services
 
         private IElasticClient client;
 
-        public SearchResultPTO FullTextSearch(string query, int page = 1, int pageSize = 10) ///*int page, int pageSize*/)
+        public SearchResultPTO FullTextSearch(string query, int page = 1, int pageSize = 10) 
         {
+            int offset = 1;
+            if (page > 1)
+            {
+                offset = page * pageSize;
+            }
 
             // client to interact with elasticSearch
             client = ElasticSearchConfig.GetClient();
@@ -26,11 +31,11 @@ namespace AvaloqDocu.Services
                                     .Query(query)
                                         .Fields(f => f
                                             .Fields(f1 => f1.Title, f2 => f2.Subtitle))))
-                            .From(page * pageSize)           //pagination options
+                            .From(offset)           //pagination options
                             .Size(pageSize));
 
             // return a result object containing resulting documents from Query along with some more
-            // information about the query
+            // information about the query results
             return new SearchResultPTO
             {
                 Total = (int)result.Total,
@@ -41,101 +46,88 @@ namespace AvaloqDocu.Services
             };
         }
 
-        public SearchResultPTO FilterSearch(string query, int page = 1, int pageSize = 10, string Title = null, string Subtitle = null, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModifiedTo = null, DateTime? LastModifiedFrom = null)
+        public SearchResultPTO FilterSearch(string query, int page = 1, int pageSize = 10, bool titleOnly = false, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModifiedTo = null, DateTime? LastModifiedFrom = null)
         {
-            if (LastModifiedFrom == null)
+            var filters = new List<Func<QueryContainerDescriptor<Document>, QueryContainer>>();
+
+
+            if (DocuID != 0)
             {
-                LastModifiedFrom = DateTime.MinValue;
+                filters.Add(r2 => r2.Match(q2 => q2
+                                           .Query(DocuID.ToString())
+                                                .Field(f3 => f3.DocuID)));
             }
-            if (LastModifiedTo == null)
+
+            if (FunctionalArea != null)
             {
-                LastModifiedTo = DateTime.MaxValue;
+                filters.Add(r2 => r2.Match(q2 => q2
+                                            .Query(FunctionalArea)
+                                                 .Field(f3 => f3.FunctionalArea)));
             }
+
+            if (Release != null)
+            {
+                if (Release != "release independent")
+                {
+                    Release += ".0.0.0";
+                }
+                filters.Add(r2 => r2.Match(q2 => q2
+                                           .Query(Release)
+                                                .Field(f3 => f3.Release)));
+            }
+            if (LastModifiedFrom != null)
+            {
+                filters.Add(r2 => r2.DateRange(d => d
+                                                .Field(d1 => d1.LastModified)
+                                                .GreaterThanOrEquals(LastModifiedFrom)));
+            }
+
+            if (LastModifiedTo != null)
+            {
+                filters.Add(r2 => r2.DateRange(d => d
+                                                .Field(d1 => d1.LastModified)
+                                                .LessThanOrEquals(LastModifiedTo)));
+            }
+
+            if (DocuType != null)
+            {
+                filters.Add(r2 => r2.Match(q2 => q2
+                                             .Query(DocuType)
+                                             .Field(f3 => f3.DocuType)));
+            }
+
+
+            if (SubType != null)
+            {
+                filters.Add(r2 => r2.Match(q2 => q2
+                                          .Query(SubType)
+                                          .Field(f3 => f3.SubType)));
+            }
+
+
 
 
             client = ElasticSearchConfig.GetClient();
 
-            var result = client.Search<Document>(x => x
+            int offset = 1;
+            if (page > 1)
+            {
+                offset = page * pageSize;
+            }
 
+            var result = client.Search<Document>(x => x
                             .Query(q => q
                                 .MultiMatch(mp => mp
                                     .Query(query)
                                         .Fields(f => f
                                             .Fields(f1 => f1.Title, f2 => f2.Subtitle))))
-                                            .PostFilter(r => r
-                                                .Bool(r1 => r1
-                                                    .Must(r2 =>
-                                                    {
-                                                        if (DocuID == 0)
-                                                        {
-                                                            return r2.MatchAll();
-                                                        }
-                                                        else
-                                                        {
-                                                            return r2.Match(q2 => q2
-                                                            .Query(DocuID.ToString())
-                                                                .Field(f3 => f3.DocuID));
-                                                        }
-                                                    })
-                                                    .Must(r3 =>
-                                                    {
-                                                        if (Release == null)
-                                                        {
-                                                            return r3.MatchAll();
-                                                        }
-                                                        else
-                                                        {
-                                                            return r3.Match(q2 => q2
-                                                            .Query(Release)
-                                                                .Field(f3 => f3.Release));
-                                                        }
-                                                    })
-                                                    .Must(r4 =>
-                                                    {
-                                                        if (FunctionalArea == null)
-                                                        {
-                                                            return r4.MatchAll();
-                                                        }
-                                                        else
-                                                        {
-                                                            return r4.Match(q2 => q2
-                                                            .Query(FunctionalArea)
-                                                                .Field(f3 => f3.FunctionalArea));
-                                                        }
-                                                    })
-                                                    .Must(r5 =>
-                                                    {
-                                                        if (DocuType == null)
-                                                        {
-                                                            return r5.MatchAll();
-                                                        }
-                                                        else
-                                                        {
-                                                            return r5.Match(q2 => q2
-                                                            .Query(DocuType)
-                                                                .Field(f3 => f3.DocuType));
-                                                        }
-                                                    })
-                                                    .Must(r6 =>
-                                                    {
-                                                        if (SubType == null)
-                                                        {
-                                                            return r6.MatchAll();
-                                                        }
-                                                        else
-                                                        {
-                                                            return r6.Match(q2 => q2
-                                                            .Query(SubType)
-                                                                .Field(f3 => f3.SubType));
-                                                        }
-                                                    })
-                                                    .Must(r7 => r7
-                                                        .DateRange(d => d
-                                                            .GreaterThanOrEquals(LastModifiedFrom)
-                                                            .LessThanOrEquals(LastModifiedTo)))))
+                               .PostFilter(r => r
+                                    .Bool(r1 => r1.Must(filters)))
+                               .From(offset)           //pagination options
+                               .Size(pageSize)
+             );
 
-                            .From(page * pageSize)           //pagination options
-                            .Size(pageSize));
+            //var final = postFilter.OrderByDescending(r1 => r1.LastModified);
 
 
             return new SearchResultPTO
