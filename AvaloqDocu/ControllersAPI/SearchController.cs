@@ -24,10 +24,10 @@ namespace AvaloqDocu.ControllersAPI
         [HttpGet]
         [Route("GetFilterSearch")]
         //public IEnumerable<ResultPTO> GetFilterSearchResults(string query /* other filters here - possibly pass model instead of individual parameters */)
-        public SearchResultPTO GetFilterSearchResults(string query, int page = 1, int pageSize = 10, string Title = null, string Subtitle = null, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModifiedTo = null, DateTime? LastModifiedFrom = null)
+        public SearchResultPTO GetFilterSearchResults(string query, int page = 1, int pageSize = 10, bool titleOnly = false, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModifiedTo = null, DateTime? LastModifiedFrom = null)
         {
             var ss = new SearchService();
-            return ss.FilterSearch(query, page, pageSize, Title, Subtitle, DocuID, Release, FunctionalArea, DocuType, SubType, LastModifiedTo, LastModifiedFrom);
+            return ss.FilterSearch(query, page, pageSize, titleOnly, DocuID, Release, FunctionalArea, DocuType, SubType, LastModifiedTo, LastModifiedFrom);
         }
     }
 }
