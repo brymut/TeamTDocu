@@ -13,7 +13,7 @@ namespace AvaloqDocu.Services
 
         private IElasticClient client;
 
-        public SearchResultPTO FullTextSearch(string query, int page = 1, int pageSize = 10) 
+        public SearchResultPTO FullTextSearch(string query, int page = 1, int pageSize = 10)
         {
             int offset = 1;
             if (page > 1)
@@ -46,7 +46,7 @@ namespace AvaloqDocu.Services
             };
         }
 
-        public SearchResultPTO FilterSearch(string query, int page = 1, int pageSize = 10, bool titleOnly = false, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModifiedTo = null, DateTime? LastModifiedFrom = null)
+        public SearchResultPTO FilterSearch(string query, int page = 1, int pageSize = 10, bool titleOnly = false, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModifiedTo = null, DateTime? LastModifiedFrom = null, string sortBy = null)
         {
             var filters = new List<Func<QueryContainerDescriptor<Document>, QueryContainer>>();
 
@@ -116,6 +116,24 @@ namespace AvaloqDocu.Services
             }
 
             var result = client.Search<Document>(x => x
+
+                            .Sort(sort =>
+                            {
+
+                                if (sortBy == "LastModified")
+                                {
+                                    return sort.Descending(r => r.LastModified);
+                                }
+                                else if (sortBy == "DocuID")
+                                {
+                                    return sort.Descending(r => r.DocuID);
+                                }
+
+                                else
+                                {
+                                    return sort.Descending("_score");
+                                }
+                            })
                             .Query(q => q
                                 .MultiMatch(mp => mp
                                     .Query(query)
