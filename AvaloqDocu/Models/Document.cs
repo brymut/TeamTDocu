@@ -5,12 +5,15 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Nest;
 
 namespace AvaloqDocu.Models
 {
     /// <summary>
     /// 
     /// </summary>
+    /// 
+    [ElasticsearchType(IdProperty = "DocumentID")]
     public class Document
     {
 
@@ -49,8 +52,11 @@ namespace AvaloqDocu.Models
         public string Subtitle { get; set; }
         public int DocuID { get; set; }
         public string Release { get; set; }
+        [Text(Analyzer = "keyword")]
         public string FunctionalArea { get; set; }
+        [Text(Analyzer = "keyword")]
         public string DocuType { get; set; }
+        [Text(Analyzer = "keyword")]
         public string SubType { get; set; }
         public DateTime LastModified { get; set; }
         public int FilePathId { get; set; }
