@@ -93,6 +93,10 @@
     <Compile Include="Controllers\UploadControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Services\FilterServiceTests.cs" />
+    <Compile Include="Services\PackageServiceTests.cs" />
+    <Compile Include="Services\SearchServiceTests.cs" />
+    <Compile Include="Services\UploadServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
