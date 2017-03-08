@@ -55,5 +55,31 @@ namespace AvaloqDocu.Services
                 dc.SaveChanges();
             }
         }
+
+        public PackageSearchPTO GetPackages(string query, int page)
+        {
+            using (var dc = new DocuContext())
+            {
+                var result = new PackageSearchPTO();
+                var packages = dc.Packages.Where(s => s.Name.Contains(query));
+                result.count = packages.Count();
+                var packs = new List<PackagePTO>();
+                packages = packages.OrderBy(n => n.Name).Skip((page - 1) * 5).Take(5);
+                foreach (var p in packages.ToList())
+                {
+                    var pto = new PackagePTO
+                    {
+                        Name = p.Name,
+                        PackageId = p.PackageId,
+                        NumberOfDocuments = 0,
+                        Documents = dc.PackageDocuments.Where(d => d.PackageId == p.PackageId).Select(s => s.Document.Title).ToList()
+                    };
+                    packs.Add(pto);
+                }
+                result.packages = packs;
+                return result;
+            }
+        }
+
     }
 }

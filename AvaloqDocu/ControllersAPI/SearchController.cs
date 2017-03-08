@@ -15,15 +15,16 @@ namespace AvaloqDocu.ControllersAPI
     {
         [HttpGet]
         [Route("GetFreeTextSearch")]
-        public SearchResultPTO GetFreeTextSearchResults(string query, int page = 1, int pageSize = 10)
+        public SearchResultPTO GetFreeTextSearch(string query, int page = 1, int pageSize = 10)
         {
             var ss = new SearchService();
             return ss.FullTextSearch(query, page, pageSize);
+            //return ss.TempSearch();
         }
 
         [HttpGet]
         [Route("GetFilterSearch")]
-        public IEnumerable<ResultPTO> GetFilterSearchResults(string query /* other filters here - possibly pass model instead of individual parameters */)
+        public IEnumerable<ResultPTO> GetFilterSearch(string query /* other filters here - possibly pass model instead of individual parameters */)
         {
             var ss = new SearchService();
             return ss.FilterSearch(query);

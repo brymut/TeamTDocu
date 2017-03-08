@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Elasticsearch.Net, Version=5.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Elasticsearch.Net.5.0.1\lib\net45\Elasticsearch.Net.dll</HintPath>
@@ -194,6 +198,7 @@
     <Compile Include="Models\Package.cs" />
     <Compile Include="Models\PackageDocument.cs" />
     <Compile Include="PresentationTransferObjects\FilterDropdownPTO.cs" />
+    <Compile Include="PresentationTransferObjects\PackageSearchPTO.cs" />
     <Compile Include="PresentationTransferObjects\SearchResultPTO.cs" />
     <Compile Include="PresentationTransferObjects\PackagePTO.cs" />
     <Compile Include="Services\FilterService.cs" />

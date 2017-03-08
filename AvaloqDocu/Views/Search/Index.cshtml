@@ -176,12 +176,16 @@
     <div id="accordionPackage">
         <h3>Current document package</h3>
         <div id="packageDiv">
-            <div id="onHover">
-                <input id="packageSearchBox" type="text" name="packagesearch" placeholder="Type in package name..">
+            @*<div id="onHover">
+                <input id="packageSearchBox" type="text" name="packagesearch" data-bind="disabled: packageSelected() == true, value: packageQuery" placeholder="Type in package name.." />
                 <p id="removePackage">x</p>
-            </div>
-            <button id="packageSelect" data-toggle="modal" data-target="#packageModal" data-backdrop="static"></button>
-            <ul id="packageUl"></ul>
+            </div>*@
+            <input id="packageSearchBox" type="text" name="packageSearch" data-bind="visible: packageSelected() == false, value: packageQuery" placeholder="Type in package name.." />
+            <h3 data-bind="visible: packageSelected, text: packageQuery"></h3>
+            <button id="packageSelect" data-bind="visible: packageSelected() == false, click: searchPackages" data-toggle="modal" data-target="#packageModal" data-backdrop="static"></button>
+            <ul id="packageUl" data-bind="foreach: selectedPackageDocuments">
+                <li data-bind="text: $data"></li>
+            </ul>
             <p class="packagetext">You have selected&nbsp;</p>
             <p class="packagetext" id="packageCounter"></p>
             <p class="packagetext">&nbsp;document</p>
@@ -210,7 +214,10 @@
                         <p>Excerpts go here.</p>
                     </div><hr />
                 </div>
+
                 <div class="modal-footer">
+
+                    
                     <ul class="pagination">
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
@@ -232,7 +239,13 @@
                     <input id="packageSearchBoxModal" type="text" name="packagesearch" placeholder="Package name..">
                 </div>
                 <div class="modal-body">
-                    <button id="packageCollapseButton1" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv1">Docu Package</button>
+                    <!-- ko foreach: packages -->
+                        <button class="collapsebutton" data-bind="click: $root.expandPackage.bind($data), text: Name"></button>
+                        <ul class="packageContents tripleColUl" data-bind="foreach: Documents, visible: $root.selectedPackageId() == PackageId">
+                            <li data-bind="text: $data"></li>
+                        </ul>
+                    <!-- /ko -->
+                    @*<button id="packageCollapseButton1" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv1">Docu Package</button>
                     <div id="packageCollapseDiv1" class="collapse">
                         <ul class="packageContents tripleColUl">
                             <li class="packageContent">avaloq.pdf</li>
@@ -273,17 +286,24 @@
                             <li class="packageContent">glasgow-uni-project.pdf</li>
                             <li class="packageContent">others.pdf</li>
                         </ul>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="modal-footer">
-                    <ul class="pagination">
+                    <div data-bind="visible: Math.ceil(packageCount() / 5) > 1">
+                        <ul class="pagination">
+                            <!-- ko foreach: packagePages -->
+                            <li><a data-bind="click: $root.changePackagePage.bind($data, PageNumber()), text: PageNumber, css: { active: PageNumber() == $root.packagePage() }"></a></li>
+                            <!-- /ko -->
+                        </ul>
+                    </div>
+                    @*<ul class="pagination">
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
                         <li><a href="#">3</a></li>
                         <li><a href="#">4</a></li>
                         <li><a href="#">5</a></li>
-                    </ul>
-                    <button type="button" id="selectPackage" class="btn btn-default">Select Package</button>
+                    </ul>*@
+                    <button type="button" id="selectPackage" data-bind="click: selectPackage" class="btn btn-default">Select Package</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

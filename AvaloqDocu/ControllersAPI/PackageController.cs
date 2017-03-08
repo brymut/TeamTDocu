@@ -1,4 +1,5 @@
-﻿using AvaloqDocu.Services;
+﻿using AvaloqDocu.PresentationTransferObjects;
+using AvaloqDocu.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,14 @@ namespace AvaloqDocu.ControllersAPI
         {
             var ps = new PackageService();
             ps.AddDocumentToPackage(documentId, packageId);
+        }
+
+        [HttpGet]
+        [Route("GetPackages")]
+        public PackageSearchPTO GetPackages(string query, int page = 0)
+        {
+            var ps = new PackageService();
+            return ps.GetPackages(query, page);
         }
     }
 }

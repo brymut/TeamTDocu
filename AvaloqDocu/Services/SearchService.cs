@@ -46,5 +46,35 @@ namespace AvaloqDocu.Services
             // A search with filters.
             return null;
         }
+
+        public SearchResultPTO TempSearch()
+        {
+            using (var dc = new DocuContext())
+            {
+                var docs = dc.Documents.Where(i => i.FileSize > 0).ToList();
+                var newDocs = new List<Document>();
+                foreach (var d in docs.ToList())
+                {
+                    var d2 = new Document()
+                    {
+                        CreationDate = d.CreationDate,
+                        Description = d.Description,
+                        DocumentId = d.DocumentId,
+                        UploadDate = d.UploadDate,
+                        FilePathId = d.FilePathId,
+                        FileSize = d.FileSize,
+                        Title = d.Title
+                    };
+                    newDocs.Add(d2);
+                }
+                return new SearchResultPTO
+                {
+                    Total = docs.Count(),
+                    Page = 1,
+                    Results = newDocs,
+                    QueryTime = 999
+                };
+            }
+        }
     }
 }

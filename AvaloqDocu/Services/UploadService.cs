@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using AvaloqDocu.Models;
 
 namespace AvaloqDocu.Services
 {
@@ -15,23 +14,32 @@ namespace AvaloqDocu.Services
         {
             using (var dc = new DocuContext())
             {
-                var document = new Document { };
+                var document = new Models.Document { };
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    document.UploadDate = DateTime.Today.Date;
-                    document.CreationDate = DateTime.Today.Date;
-                    document.Description = "foo";
+                    document.DocuID = 0;
+                    document.Subtitle = "null";
+                    document.Release = "null";
+                    document.LastModified = DateTime.Now;
+                    document.Subtitle = "foo";
                     document.FileSize = upload.ContentLength;
                     document.Title = upload.FileName;
-                    var filepath = new FilePath
+                    var filepath = new Models.FilePath
                     {
                         FileName = Path.GetFileName(upload.FileName),
                     };
-                    dc.FilePaths.Add(filepath);
-                    dc.SaveChanges();
-                    document.FilePathId = filepath.FilePathId;
+                    document.FilePath = filepath;
                 }
                 dc.Documents.Add(document);
+                dc.SaveChanges();
+            }
+        }
+
+        public void Delete(string path)
+        {
+            using (var dc = new DocuContext())
+            {
+                dc.Documents.Remove(dc.Documents.Find(path));
                 dc.SaveChanges();
             }
         }
