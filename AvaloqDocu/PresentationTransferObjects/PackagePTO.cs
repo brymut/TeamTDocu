@@ -10,6 +10,6 @@ namespace AvaloqDocu.PresentationTransferObjects
         public int PackageId { get; set; }
         public string Name { get; set; }
         public int NumberOfDocuments { get; set; }
-        public IEnumerable<string> Documents { get; set; }
+        public IEnumerable<BasicDocumentPTO> Documents { get; set; }
     }
 }

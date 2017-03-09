@@ -201,6 +201,7 @@
     <Compile Include="Models\FilePath.cs" />
     <Compile Include="Models\Package.cs" />
     <Compile Include="Models\PackageDocument.cs" />
+    <Compile Include="PresentationTransferObjects\BasicDocumentPTO.cs" />
     <Compile Include="PresentationTransferObjects\FilterDropdownPTO.cs" />
     <Compile Include="PresentationTransferObjects\PackageSearchPTO.cs" />
     <Compile Include="PresentationTransferObjects\SearchResultPTO.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="App_Start\ElasticSearchConfig.cs" />
     <Compile Include="Services\UploadService.cs" />
     <Compile Include="Enums\ReleaseEnum.cs" />
+    <Compile Include="ViewModels\AddDocumentsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Icons\addtopackageicon.png" />

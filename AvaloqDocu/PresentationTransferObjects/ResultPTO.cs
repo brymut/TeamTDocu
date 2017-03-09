@@ -18,5 +18,7 @@ namespace AvaloqDocu.PresentationTransferObjects
         public DateTime LastModified { get; set; }
         public string FilePath { get; set; }
         public int FileSize { get; set; }
+        public bool InPackage { get; set; }
+        public bool PrevInPackage { get; set; }
     }
 }

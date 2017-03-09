@@ -29,38 +29,19 @@
                     </div>
                     <div id="releaseDiv" class="row">
                         <label for="releaseDropdown">Release</label>
-                        <select id="releaseDropdown" name="release" class="form-control">
-                            <option value="0">-------------------------------</option>
-                            <option value="4">4.0</option>
-                            <option value="3">3.0</option>
-                            <option value="2">2.0</option>
-                            <option value="1">1.0</option>
-                        </select>
+                        <select id="releaseDropdown" name="release" class="form-control" data-bind="options: releaseOptions, optionsText: 'Name', value: selectedRelease, optionsCaption: 'Choose...', optionsValue: 'FilterId'"></select>
                     </div>
                     <div id="funcAreaDiv" class="row">
                         <label class="" for="funcAreaMultiple">Functional Area</label>
-                        <select id="funcAreaMultiple" name="funcarea" class="form-control" multiple>
-                            <option value="0">.......Avaloq Banking System.......</option>
-                            <option value="1">Accounting and Position Keeping</option>
-                            <option value="2">AFP Front Office</option>
-                            <option value="3">AFP Mobile</option>
-                        </select>
+                        <select id="funcAreaMultiple" name="funcarea" class="form-control" data-bind="options: functionalAreaOptions, optionsText: 'Name', selectedOptions: selectedFunctionalAreas, optionsValue: 'FilterId'" multiple></select>
                     </div>
                         <div id="docuTypeDiv" class="row">
                         <label for="docuTypeDropdown">Docu Type</label>
-                        <select id="docuTypeDropdown" name="docutype" class="form-control">
-                            <option value="0">-------------------------------</option>
-                            <option value="1">PDF</option>
-                            <option value="2">HTML</option>
-                        </select>
+                        <select id="docuTypeDropdown" name="docutype" class="form-control" data-bind="options: docuTypeOptions, optionsText: 'Name', value: selectedDocuType, optionsCaption: 'Choose...', optionsValue: 'FilterId'"></select>
                     </div>
                     <div id="subtypeDiv" class="row">
                         <label for="subtypeDropdown">Subtype</label>
-                        <select id="subtypeDropdown" name="subtype" class="form-control">
-                            <option value="0">-------------------------------</option>
-                            <option value="1">Team 1</option>
-                            <option value="2">Team 2</option>
-                        </select>
+                        <select id="subtypeDropdown" name="subtype" class="form-control" data-bind="options: docuSubTypeOptions, optionsText: 'Name', value: selectedDocuSubType, optionsCaption: 'Choose...', optionsValue: 'FilterId', attr: { disabled: !(selectedDocuType() > 0) }"></select>
                     </div>
                     <div id="lastModifiedDiv" class="row">
                         <label>Last Modified</label>
@@ -116,7 +97,7 @@
         </div>
         <!-- ko foreach: results -->
         <div class="resultdiv">
-                <span class="resultcheckboxspan"><input class="resultcheckbox" value="package" type="checkbox" /></span>
+                <span class="resultcheckboxspan"><input class="resultcheckbox" value="package" type="checkbox" data-bind="checked: InPackage, click: $root.addToPackage.bind($data)"/></span>
                 <h3 data-bind="text: Title" class="resultdivtitle"></h3>
                 <p data-bind="text: $root.formatDate(LastModified)" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
                 <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
@@ -168,19 +149,27 @@
                     <input id="packageSearchBox" type="text" name="packagesearch" data-bind="visible: packageSelected() == false, value: packageQuery" placeholder="Type in package name..">
                     <p id="removePackage">x</p>
                 </div>*@
-                <input id="packageSearchBox" type="text" name="packageSearch" data-bind="visible: packageSelected() == false, value: packageQuery" placeholder="Type in package name.." />
-                <h3 data-bind="visible: packageSelected, text: packageQuery"></h3>
+                <div id="onHoverPackageSidebarDiv">
+                    <input id="packageSearchBox" type="text" name="packageSearch" data-bind="attr: { disabled: packageSelected }, value: packageQuery" placeholder="Type in package name.." />
+                    <p id="removePackage" data-bind="click: deselectPackage">x</p>
+                </div>
+                @*<h3 data-bind="visible: packageSelected, text: selectedPackageName"></h3>*@
                 <button id="packageSelect" data-bind="visible: packageSelected() == false, click: searchPackages" data-toggle="modal" data-target="#packageModal" data-backdrop="static"></button>
+                <br /><br />
                 <ul id="packageUl" data-bind="foreach: selectedPackageDocuments">
-                    <li data-bind="text: $data"></li>
+                    <li data-bind="text: $data.Title"></li>
+                </ul>
+                <p class="packagetext" data-bind="visible: documentsToAdd().length > 0">Pending Additions</p><br />
+                <ul id="packageUl" data-bind="foreach: documentsToAdd">
+                    <li data-bind="text: $data.Title"></li>
                 </ul>
                 <p class="packagetext">You have selected&nbsp;</p>
                 <p class="packagetext" id="packageCounter"></p>
                 <p class="packagetext">&nbsp;document</p>
                 <p class="packagetext" id="packageSHidden">s&nbsp;</p>
                 <p>for download.</p>
-                <button id="addToPackageButton" title="Add to package" class="packagedownload"></button>
-                <button id="downloadPackageButton" title="Download package" class="packagedownload"></button>
+                <button id="addToPackageButton" title="Add to package" class="packagedownload" data-bind="click: saveToPackage, visible: selectedPackageId() > 0 && documentsToAdd().length > 0"></button>
+                <button id="downloadPackageButton" title="Download package" class="packagedownload" data-bind="click: downloadPackage, visible: selectedPackageId() > 0 && selectedPackageDocuments().length > 0 && documentsToAdd().length == 0"></button>
                 <button id="createNewPackageButton" title="Create new package" data-toggle="modal" data-target="#createNewPackageModal" data-backdrop="static" class="packagedownload"></button>
             </div>
         </div>
@@ -231,7 +220,7 @@
                     <!-- ko foreach: packages -->
                         <button class="collapsebutton" data-bind="click: $root.expandPackage.bind($data), text: Name"></button>
                         <ul class="packageContents tripleColUl" data-bind="foreach: Documents, visible: $root.selectedPackageId() == PackageId">
-                            <li data-bind="text: $data"></li>
+                            <li data-bind="text: $data.Title"></li>
                         </ul>
                     <!-- /ko -->
                     @*<button id="packageCollapseButton1" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv1">Docu Package</button>

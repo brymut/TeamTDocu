@@ -20,5 +20,29 @@ namespace AvaloqDocu.ControllersAPI
             var fService = new FilterService();
             return fService.GetReleaseOptions();
         }
+
+        [HttpGet]
+        [Route("GetFunctionalAreas")]
+        public IEnumerable<FilterDropdownPTO> GetFunctionalAreas()
+        {
+            var fService = new FilterService();
+            return fService.GetFunctionalAreas();
+        }
+
+        [HttpGet]
+        [Route("GetDocuTypes")]
+        public IEnumerable<FilterDropdownPTO> GetDocuTypes()
+        {
+            var fService = new FilterService();
+            return fService.GetDocuTypes();
+        }
+
+        [HttpGet]
+        [Route("GetDocuSubTypes")]
+        public IEnumerable<FilterDropdownPTO> GetDocuSubTypes(int docuType)
+        {
+            var fService = new FilterService();
+            return fService.GetDocuSubtypes(docuType);
+        }
     }
 }

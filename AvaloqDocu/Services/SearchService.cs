@@ -52,7 +52,9 @@ namespace AvaloqDocu.Services
                     LastModified = s.LastModified,
                     Release = s.Release,
                     SubType = s.SubType,
-                    Title = s.Title
+                    Title = s.Title,
+                    InPackage = false,
+                    PrevInPackage = false
                 }),
                 QueryTime = result.Took,
                 // add the aggregations later on
@@ -177,7 +179,9 @@ namespace AvaloqDocu.Services
                     LastModified = s.LastModified,
                     Release = s.Release,
                     SubType = s.SubType,
-                    Title = s.Title
+                    Title = s.Title,
+                    InPackage = false,
+                    PrevInPackage = false
                 }),
                 QueryTime = result.Took,
                 // add the aggregations later on
@@ -204,7 +208,9 @@ namespace AvaloqDocu.Services
                         LastModified = s.LastModified,
                         Release = s.Release,
                         SubType = s.SubType,
-                        Title = s.Title
+                        Title = s.Title,
+                        InPackage = false,
+                        PrevInPackage = false
                     };
                     newDocs.Add(d2);
                 }

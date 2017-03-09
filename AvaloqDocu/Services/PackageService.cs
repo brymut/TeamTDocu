@@ -72,7 +72,7 @@ namespace AvaloqDocu.Services
                         Name = p.Name,
                         PackageId = p.PackageId,
                         NumberOfDocuments = 0,
-                        Documents = dc.PackageDocuments.Where(d => d.PackageId == p.PackageId).Select(s => s.Document.Title).ToList()
+                        Documents = dc.PackageDocuments.Where(d => d.PackageId == p.PackageId).Select(s => new BasicDocumentPTO { Title = s.Document.Title, DocumentID = s.DocumentId } ).ToList()
                     };
                     packs.Add(pto);
                 }
