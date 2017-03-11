@@ -45,6 +45,10 @@
     } else {
         $('#advancedSearchDiv').css('left', newWidthAdv + 'px');
     }
+    var newHeightAdv = ($(window).height() - $('#advancedSearchDiv').height() - $('#avaloqInverted').height()) / 2;
+    if (newHeightAdv > 0) {
+        $('#advancedSearchDiv').css('margin-top', newHeightAdv + 'px');
+    }
 
     // On resize handler to reposition divs
     $(window).resize(function () {
@@ -64,11 +68,11 @@
 
     // Code for the footer image in advanced search mode
     if(detectIE() == false){
-        $('#footer').css('top', screen.height - $('#footer').height() - 120);
-        $('#footer').css('left', screen.width - $('#footer').width());
+        $('#footer').css('top', $(window).height - $('#footer').height() - 120);
+        $('#footer').css('left', $(window).width - $('#footer').width());
     } else {
-        $('#footer').css('down', screen.height - $('#footer').height());
-        $('#footer').css('left', screen.width - $('#footer').width());
+        $('#footer').css('down', $(window).height - $('#footer').height());
+        $('#footer').css('left', $(window).width - $('#footer').width());
     }
 
     // Code to switch to advanced search mode
@@ -252,6 +256,11 @@ function onResize() {
         $('#advancedSearchDiv').css('left', '20px');
     } else {
         $('#advancedSearchDiv').css('left', newWidthAdv + 'px');
+    }
+
+    var newHeightAdv = ($(window).height() - $('#advancedSearchDiv').height() - $('#avaloqInverted').height()) / 2;
+    if (newHeightAdv > 0) {
+        $('#advancedSearchDiv').css('margin-top', newHeightAdv + 'px');
     }
 
     // Code to reposition the back to main search button
