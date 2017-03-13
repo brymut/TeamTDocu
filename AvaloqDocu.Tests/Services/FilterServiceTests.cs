@@ -59,7 +59,7 @@ namespace AvaloqDocu.Services.Tests
 
             list = f.GetDocuSubtypes((int)DocuTypeEnum.ReleaseInfo);
             Assert.AreEqual(list.Count(), Enum.GetNames(typeof(ReleaseInfoEnum)).Length);
-            Assert.IsTrue(Enum.IsDefined(typeof(ReleaseEnum), "ADP"));
+            Assert.IsTrue(Enum.IsDefined(typeof(ReleaseInfoEnum), "ADP"));
 
             list = f.GetDocuSubtypes((int)DocuTypeEnum.Support);
             Assert.AreEqual(list.Count(), Enum.GetNames(typeof(SupportEnum)).Length);
