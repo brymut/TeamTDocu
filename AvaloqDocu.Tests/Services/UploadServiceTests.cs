@@ -12,7 +12,7 @@ namespace AvaloqDocu.Services.Tests
     public class UploadServiceTests
     {
         [TestMethod()]
-        public void CreateTest()
+        public void Upload()
         {
             Assert.Fail();
         }

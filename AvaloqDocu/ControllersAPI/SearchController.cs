@@ -20,8 +20,8 @@ namespace AvaloqDocu.ControllersAPI
         public SearchResultPTO GetFreeTextSearch(string query, int page = 1, int pageSize = 10)
         {
             var ss = new SearchService();
-            //return ss.FullTextSearch(query, page, pageSize);
-            return ss.TempSearch();
+            return ss.FullTextSearch(query, page, pageSize);
+            //return ss.TempSearch();
         }
 
         [HttpGet]
