@@ -17,7 +17,7 @@ $(function () {
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         acceptFileTypes: /(\.|\/)(pdf)$/i,
-        maxFileSize: 50350
+        maxFileSize: 26214400
     });
 
     // Enable iframe cross-domain access via redirect option:
