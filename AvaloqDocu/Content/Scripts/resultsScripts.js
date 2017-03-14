@@ -1,8 +1,9 @@
 $(document).ready(function () {
-    // Initial css tweaks
+    // Initial elements appearance tweaks to scale page with resolution
     $('body').css('min-width', screen.width - 17);                                          // Set min body height to the screen width minus scrollbar width and other browser stuff
     $('#results').css('width', (screen.width - 20) * 58.3336 / 100);                        // Set results div width to ~58% of the entire screen
     $('#sidebar-left, #sidebar-right').css('width', (screen.width - 20) * 20.834 / 100);    // Set the two sidebar's width values to ~21%
+    $('#resetDiv').css('margin-left', ($('#accordionFilters').width() - 2 * ($('#resetButton').width())) / 2); // Center the reset and update buttons to be in the middle of the accordion filters div
 
 	// Change of header and positioning of divs on scrolled load
 	if($(this).scrollTop() > 1){  
