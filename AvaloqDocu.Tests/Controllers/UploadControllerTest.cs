@@ -31,11 +31,11 @@ namespace AvaloqDocu.Tests.Controllers
             controller.ControllerContext = new ControllerContext(context, new RouteData(), controller);
 
             // Act
-           // var result = controller.UploadFiles() as JsonResult;
-          //  List<FileMetadata> resultFiles = result.Data as List<FileMetadata>;
+            var result = controller.UploadFiles() as JsonResult;
+            List<FileMetadata> resultFiles = result.Data as List<FileMetadata>;
 
             // Assert
-            //Assert.IsNotNull(result);
+            Assert.IsNotNull(result);
             Assert.AreEqual(1,1);
         }
     }
