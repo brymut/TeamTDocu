@@ -37,6 +37,7 @@ namespace AvaloqDocu.Services.Tests
 
                 dc.Documents.Remove(dc.Documents.First(s => s.Title == "foo.bar"));
                 Assert.IsNull(dc.Documents.Find(b));
+                dc.SaveChanges();
             }
         }
     }
