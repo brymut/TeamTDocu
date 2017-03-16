@@ -6,16 +6,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AvaloqDocu.PresentationTransferObjects;
+using AvaloqDocu.Models;
+using System.Data.Entity;
+using Rhino.Mocks;
+using AvaloqDocu.Tests;
 
 namespace AvaloqDocu.Services.Tests
 {
     [TestClass()]
     public class PackageServiceTests
     {
+        protected MockContext MockContext;
+        protected IQueryable<Package> MockData;
+        protected IDbSet<Package> MockSet;
+
         [TestMethod()]
         public void AddPackageTest()
         {
             //Arrange
+            MockContext = MockRepository.GenerateMock<MockContext>();
+            MockSet = MockRepository.GenerateMock<IDbSet<Package>, IQueryable>();
+            MockData = new List<Package> { }.AsQueryable();
+            MockSet.Stub(m => m.Provider).Return(MockData.Provider);
+            MockSet.Stub(m => m.Expression).Return(MockData.Expression);
+            MockSet.Stub(m => m.ElementType).Return(MockData.ElementType);
+            MockSet.Stub(m => m.GetEnumerator()).Return(MockData.GetEnumerator());
+            MockContext.Stub(x => x.Packages).PropertyBehavior();
+            MockContext.Packages = MockSet;
+
             PackageService s = new PackageService();
             var name = "adifjfej23";
 
@@ -25,14 +43,10 @@ namespace AvaloqDocu.Services.Tests
             //Assert
             Assert.AreEqual(name, p.Name);
             Assert.AreEqual(p.NumberOfDocuments, 0);
-            
-            //Finish
-            using (var dc = new DocuContext())
-            {
-                Assert.IsNotNull(dc.Packages.Find(name));
-                dc.Packages.Remove(dc.Packages.Find(name));
-                dc.SaveChanges();
-            }
+
+            var pRepository = new PackageRepository(MockContext);
+            IEnumerable<Package> result = pRepository.GetPackages();
+            Assert.AreEqual(result.Count(), 1);         
         }
 
         [TestMethod()]
@@ -70,5 +84,20 @@ namespace AvaloqDocu.Services.Tests
                 dc.PackageDocuments.Remove(dc.PackageDocuments.Find(p.PackageId, testDocument.DocumentID));
                 dc.SaveChanges();
             }
+        }
     }
+
+    public class PackageRepository
+    {
+        private MockContext Context;
+        public PackageRepository(MockContext context)
+        {
+            Context = context;
+        }
+
+        public IEnumerable<Package> GetPackages()
+        {
+            return Context.Packages.ToList();
+        }
+    }   
 }
