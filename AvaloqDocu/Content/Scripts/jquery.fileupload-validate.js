@@ -74,8 +74,8 @@
             // Error and info messages:
             messages: {
                 maxNumberOfFiles: 'Maximum number of files exceeded',
-                acceptFileTypes: 'File type not allowed',
-                maxFileSize: 'File is too large',
+                acceptFileTypes: 'File is not PDF format',
+                maxFileSize: 'File is too large (Max size: 25mb)',
                 minFileSize: 'File is too small'
             }
         },

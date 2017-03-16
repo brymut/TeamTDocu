@@ -22,8 +22,8 @@ namespace AvaloqDocu.Controllers
 
             if (System.IO.File.Exists(path))
             {
-                // var uservice = new UploadService();
-                // uservice.Delete(path);
+                 var uservice = new UploadService();
+                 uservice.Delete(path);
                 System.IO.File.Delete(path);
             }
         }
@@ -42,8 +42,8 @@ namespace AvaloqDocu.Controllers
                     var f = Request.Files[i];
                     f.SaveAs(Server.MapPath("~/UploadFiles/") + f.FileName);
 
-                    // var uservice = new UploadService();
-                    // uservice.Create(f);
+                     var uservice = new UploadService();
+                     uservice.Create(f);
 
                     statuses.files.Add(new FileMetadata()
                     {

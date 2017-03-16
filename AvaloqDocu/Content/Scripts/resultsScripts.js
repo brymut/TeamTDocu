@@ -1,8 +1,9 @@
 $(document).ready(function () {
-    // Initial css tweaks
+    // Initial elements appearance tweaks to scale page with resolution
     $('body').css('min-width', screen.width - 17);                                          // Set min body height to the screen width minus scrollbar width and other browser stuff
     $('#results').css('width', (screen.width - 20) * 58.3336 / 100);                        // Set results div width to ~58% of the entire screen
     $('#sidebar-left, #sidebar-right').css('width', (screen.width - 20) * 20.834 / 100);    // Set the two sidebar's width values to ~21%
+    $('#resetDiv').css('margin-left', ($('#accordionFilters').width() - 2 * ($('#resetButton').width())) / 2); // Center the reset and update buttons to be in the middle of the accordion filters div
 
 	// Change of header and positioning of divs on scrolled load
 	if($(this).scrollTop() > 1){  
@@ -238,11 +239,22 @@ $(document).ready(function () {
 		});
 	});
 
-	$('.downloadbutton').click(function () {                                        // Code to trigger the document download notification
+	$('.downloadbutton').click(function () {                                        // Code to trigger a document download started notification
 		$.notify("Item has started downloading", { className: "success", autoHideDelay: 1000, position: "right bottom" });
 	});
-	$('.linkbutton').click(function () {                                            // Code to trigger the link copied notification
+	$('.linkbutton').click(function () {                                            // Code to trigger a link copied notification
 		$.notify("Link copied to clipboard", { className: "info", autoHideDelay: 1000, position: "right bottom" });
+	}); 
+	$('#acceptNewPackageName').click(function () {                                  // Code to trigger a new package created notification
+	    if ($('#newPackageNameBox').val() != '') {                                  // If a name was given
+	        $.notify("Package created", { className: "success", autoHideDelay: 1000, position: "right bottom" });
+	    }
+	});
+	$('#addToPackageButton').click(function () {                                    // Code to trigger an added to package notification
+	    $.notify("Documents have been added to package", { className: "success", autoHideDelay: 1000, position: "right bottom" });
+	});
+	$('#downloadPackageButton').click(function () {                                 // Code to trigger a package download started notification
+	    $.notify("Package download is starting", { className: "success", autoHideDelay: 1000, position: "right bottom" });
 	});
 
     // Package select code via Bootstrap JS Modal

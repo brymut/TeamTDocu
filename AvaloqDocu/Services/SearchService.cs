@@ -188,40 +188,40 @@ namespace AvaloqDocu.Services
             };
         }
 
-        public SearchResultPTO TempSearch()
-        {
-            using (var dc = new DocuContext())
-            {
-                var docs = dc.Documents.Where(i => i.FileSize > 0).ToList();
-                var newDocs = new List<ResultPTO>();
-                foreach (var s in docs.ToList())
-                {
-                    var d2 = new ResultPTO()
-                    {
-                        DocuID = s.DocuID,
-                        DocumentID = s.DocumentID,
-                        DocuType = s.DocuType,
-                        FileSize = s.FileSize,
-                        FilePath = s.FilePath.FileName,
-                        Subtitle = s.Subtitle,
-                        FunctionalArea = s.FunctionalArea,
-                        LastModified = s.LastModified,
-                        Release = s.Release,
-                        SubType = s.SubType,
-                        Title = s.Title,
-                        InPackage = false,
-                        PrevInPackage = false
-                    };
-                    newDocs.Add(d2);
-                }
-                return new SearchResultPTO
-                {
-                    Total = docs.Count(),
-                    Page = 1,
-                    Results = newDocs,
-                    QueryTime = 999
-                };
-            }
-        }
+        //public SearchResultPTO TempSearch()
+        //{
+        //    using (var dc = new DocuContext())
+        //    {
+        //        var docs = dc.Documents.Where(i => i.FileSize > 0).ToList();
+        //        var newDocs = new List<ResultPTO>();
+        //        foreach (var s in docs.ToList())
+        //        {
+        //            var d2 = new ResultPTO()
+        //            {
+        //                DocuID = s.DocuID,
+        //                DocumentID = s.DocumentID,
+        //                DocuType = s.DocuType,
+        //                FileSize = s.FileSize,
+        //                FilePath = s.FilePath.FileName,
+        //                Subtitle = s.Subtitle,
+        //                FunctionalArea = s.FunctionalArea,
+        //                LastModified = s.LastModified,
+        //                Release = s.Release,
+        //                SubType = s.SubType,
+        //                Title = s.Title,
+        //                InPackage = false,
+        //                PrevInPackage = false
+        //            };
+        //            newDocs.Add(d2);
+        //        }
+        //        return new SearchResultPTO
+        //        {
+        //            Total = docs.Count(),
+        //            Page = 1,
+        //            Results = newDocs,
+        //            QueryTime = 999
+        //        };
+        //    }
+        //}
     }
 }

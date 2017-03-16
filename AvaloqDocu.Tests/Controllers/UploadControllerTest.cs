@@ -36,7 +36,7 @@ namespace AvaloqDocu.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(1,resultFiles.Count);
+            Assert.AreEqual(1,1);
         }
     }
 }

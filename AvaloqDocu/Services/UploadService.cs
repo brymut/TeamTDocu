@@ -10,18 +10,17 @@ namespace AvaloqDocu.Services
     public class UploadService
     {
         [HttpPost]
-        public void Create(HttpPostedFileBase upload)
+        public int Create(HttpPostedFileBase upload)
         {
             using (var dc = new DocuContext())
             {
                 var document = new Models.Document { };
                 if (upload != null && upload.ContentLength > 0)
                 {
-                    document.DocuID = 0;
                     document.Subtitle = "null";
                     document.Release = "null";
                     document.LastModified = DateTime.Now;
-                    document.Subtitle = "foo";
+                    document.Subtitle = "null";
                     document.FileSize = upload.ContentLength;
                     document.Title = upload.FileName;
                     var filepath = new Models.FilePath
@@ -32,6 +31,7 @@ namespace AvaloqDocu.Services
                 }
                 dc.Documents.Add(document);
                 dc.SaveChanges();
+                return document.DocumentID;
             }
         }
 
@@ -39,7 +39,7 @@ namespace AvaloqDocu.Services
         {
             using (var dc = new DocuContext())
             {
-                dc.Documents.Remove(dc.Documents.Find(path));
+                dc.Documents.Remove(dc.Documents.First(s => s.FilePath.FileName == path));
                 dc.SaveChanges();
             }
         }
