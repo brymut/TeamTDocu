@@ -47,6 +47,8 @@ function SearchViewModel() {
 
     self.filters = ko.observable(false);
 
+    self.createPackageName = ko.observable("");
+
     self.init = function () {
         $.ajax({
             url: "/api/filter/GetReleaseOptions",
@@ -120,7 +122,6 @@ function SearchViewModel() {
     self.selectedRelease.subscribe(function (newValue) {
         if (self.filters() || newValue != undefined) {
             self.filters(true);
-            console.log("release " + newValue);
             self.filterSearch();
         }
     })
@@ -130,7 +131,6 @@ function SearchViewModel() {
         console.log(self.selectedFunctionalAreas());
         if (self.filters() || newValue != undefined) {
             self.filters(true);
-            console.log("fa " + newValue);
             self.filterSearch();
         }
     })
@@ -138,11 +138,11 @@ function SearchViewModel() {
     self.selectedDocuType.subscribe(function (newValue) {
         if (self.filters() || newValue != undefined) {
             self.filters(true);
-            console.log("type " + newValue);
             self.filterSearch();
         }
         self.selectedDocuSubType(0);
         self.docuSubTypeOptions([]);
+        self.loadDocuSubTypes();
     })
 
     self.selectedDocuSubType.subscribe(function (newValue) {
@@ -182,7 +182,7 @@ function SearchViewModel() {
                                             + "&titleOnly=false"
                                             + "&DocuID=0"
                                             + "&Release=" + self.selectedRelease()
-                                            + "&FunctionalArea=" + self.selectedFunctionalAreas()
+                                            /*+ "&FunctionalArea=null" + self.selectedFunctionalAreas()*/
                                             + "&DocuType=" + self.selectedDocuType()
                                             + "&DocuSubType=" + self.selectedDocuSubType(),
             type: "GET",
@@ -348,6 +348,7 @@ function SearchViewModel() {
         })
     }
 
+    // Can't download with ajax apparently - needs replaced
     self.downloadPackage = function () {
         $.ajax({
             url: "/api/package/DownloadPackage?packageId=" + self.selectedPackageId(),
@@ -362,6 +363,28 @@ function SearchViewModel() {
                 console.log(ajaxOptions);
                 console.log(xhr);
 
+            }
+        })
+    }
+
+    self.createPackage = function () {
+        $.ajax({
+            url: "/api/package/PostNewPackage?name=" + self.createPackageName(),
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                self.selectedPackageId(data);
+                self.selectedPackageName(self.createPackageName());
+                self.createPackageName("");
+                self.selectedPackageDocuments([]);
+                self.packageQuery(self.selectedPackageName());
+                self.packageSelected(true);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(thrownError);
+                console.log(ajaxOptions);
+                console.log(xhr);
             }
         })
     }
