@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
 using AvaloqDocu.Models;
-using System.Data.Entity.ModelConfiguration.Conventions;
 namespace AvaloqDocu.Tests
 {
     public class MockContext : DbContext
@@ -17,10 +12,5 @@ namespace AvaloqDocu.Tests
         public virtual IDbSet<Package> Packages { get; set; }
         public virtual IDbSet<PackageDocument> PackageDocuments { get; set; }
         public virtual IDbSet<FilePath> FilePaths { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
     }
 }

@@ -17,23 +17,55 @@ namespace AvaloqDocu.Services.Tests
     public class PackageServiceTests
     {
         protected MockContext MockContext;
-        protected IQueryable<Package> MockData;
-        protected IDbSet<Package> MockSet;
+        protected IQueryable<Package> MockPackageData;
+        protected IDbSet<Package> MockPackageSet;
+        protected IQueryable<Document> MockDocumentData;
+        protected IDbSet<Document> MockDocumentSet;
+        protected IQueryable<PackageDocument> MockPDData;
+        protected IDbSet<PackageDocument> MockPDSet;
+
+        public void setUp()
+        {
+            MockContext = MockRepository.GenerateMock<MockContext>();
+
+            MockPackageSet = MockRepository.GenerateMock<IDbSet<Package>, IQueryable>();
+            MockPDSet = MockRepository.GenerateMock<IDbSet<PackageDocument>, IQueryable>();
+            MockDocumentSet = MockRepository.GenerateMock<IDbSet<Document>, IQueryable>();
+
+            MockPackageData = new List<Package> {}.AsQueryable();
+            MockPackageSet.Stub(m => m.Provider).Return(MockPackageData.Provider);
+            MockPackageSet.Stub(m => m.Expression).Return(MockPackageData.Expression);
+            MockPackageSet.Stub(m => m.ElementType).Return(MockPackageData.ElementType);
+            MockPackageSet.Stub(m => m.GetEnumerator()).Return(MockPackageData.GetEnumerator());
+            MockContext.Stub(x => x.Packages).PropertyBehavior();
+            MockContext.Packages = MockPackageSet;
+
+            MockDocumentData = new List<Document> {
+            new Document{Title = "Test Document", Subtitle = "A document as a test"},
+            new Document{Title = "Test Document 2", Subtitle = "A document as a test"}
+            }.AsQueryable();
+            MockDocumentSet.Stub(m => m.Provider).Return(MockDocumentData.Provider);
+            MockDocumentSet.Stub(m => m.Expression).Return(MockDocumentData.Expression);
+            MockDocumentSet.Stub(m => m.ElementType).Return(MockDocumentData.ElementType);
+            MockDocumentSet.Stub(m => m.GetEnumerator()).Return(MockDocumentData.GetEnumerator());
+            MockContext.Stub(x => x.Documents).PropertyBehavior();
+            MockContext.Documents = MockDocumentSet;
+
+            MockPDData = new List<PackageDocument> {}.AsQueryable();
+            MockPDSet.Stub(m => m.Provider).Return(MockPDData.Provider);
+            MockPDSet.Stub(m => m.Expression).Return(MockPDData.Expression);
+            MockPDSet.Stub(m => m.ElementType).Return(MockPDData.ElementType);
+            MockPDSet.Stub(m => m.GetEnumerator()).Return(MockPDData.GetEnumerator());
+            MockContext.Stub(x => x.PackageDocuments).PropertyBehavior();
+            MockContext.PackageDocuments = MockPDSet;
+        }
+
 
         [TestMethod()]
         public void AddPackageTest()
         {
             //Arrange
-            MockContext = MockRepository.GenerateMock<MockContext>();
-            MockSet = MockRepository.GenerateMock<IDbSet<Package>, IQueryable>();
-            MockData = new List<Package> { }.AsQueryable();
-            MockSet.Stub(m => m.Provider).Return(MockData.Provider);
-            MockSet.Stub(m => m.Expression).Return(MockData.Expression);
-            MockSet.Stub(m => m.ElementType).Return(MockData.ElementType);
-            MockSet.Stub(m => m.GetEnumerator()).Return(MockData.GetEnumerator());
-            MockContext.Stub(x => x.Packages).PropertyBehavior();
-            MockContext.Packages = MockSet;
-
+            setUp();
             PackageService s = new PackageService();
             var name = "adifjfej23";
 
@@ -44,60 +76,33 @@ namespace AvaloqDocu.Services.Tests
             Assert.AreEqual(name, p.Name);
             Assert.AreEqual(p.NumberOfDocuments, 0);
 
-            var pRepository = new PackageRepository(MockContext);
-            IEnumerable<Package> result = pRepository.GetPackages();
+            var Repository = new DocuRepository(MockContext);
+            IEnumerable<Package> result = Repository.GetPackages();
             Assert.AreEqual(result.Count(), 1);         
         }
 
         [TestMethod()]
-        public void AddDocumentToPackageTest()
+        public void AddDocumentsToPackagesTest()
         {
-            using (var dc = new DocuContext())
-            {
-                //Arrange
-                PackageService s = new PackageService();
-                Models.Document d = new Models.Document();
-                var name = "abcdefgh123";
+            //Arrange
+            setUp();
+            PackageService s = new PackageService();
 
-                var testDocument = new Models.Document
-                {
-                    Title = "Test Document",
-                    DocumentID = -1,
-                    Subtitle = "A document as a test",
-                };
-                dc.Documents.Add(testDocument);
-                dc.SaveChanges();
-                //Act
-                PackagePTO p = s.AddPackage(name);
-                s.AddDocumentToPackage(testDocument.DocumentID, p.PackageId);
+            //Act
+            var Repository = new DocuRepository(MockContext);
+            PackagePTO p = s.AddPackage("foo");
+            PackagePTO p2 = s.AddPackage("bar");
+            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document").DocumentID, p.PackageId);
+            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document 2").DocumentID, p.PackageId);
+            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document 2").DocumentID, p2.PackageId);
 
-                //Assert
-                Assert.AreEqual(p.NumberOfDocuments, 1);
-                Assert.AreEqual(p.Documents.Count(), 1);
-                Assert.AreEqual(p.Documents.ElementAt(0), testDocument);
+            //Assert
+            Assert.AreEqual(p.NumberOfDocuments, 2);
+            Assert.AreEqual(p.Documents.Count(), 2);
+            Assert.AreEqual(Repository.GetPDs().Count(), 3);
+            Assert.AreEqual(Repository.GetPDsByDocName("Test Document").Count(), 1);
 
-                Assert.IsNotNull(dc.Documents.Find(testDocument.DocumentID));
-                Assert.IsNotNull(dc.PackageDocuments.Find(p.PackageId, testDocument.DocumentID));
-
-                //Finish
-                dc.Documents.Remove(dc.Documents.Find(testDocument.DocumentID));
-                dc.PackageDocuments.Remove(dc.PackageDocuments.Find(p.PackageId, testDocument.DocumentID));
-                dc.SaveChanges();
-            }
+            Assert.AreEqual(Repository.GetPDsByDocName("Test Document 2").Count(), 2);
         }
     }
-
-    public class PackageRepository
-    {
-        private MockContext Context;
-        public PackageRepository(MockContext context)
-        {
-            Context = context;
-        }
-
-        public IEnumerable<Package> GetPackages()
-        {
-            return Context.Packages.ToList();
-        }
-    }   
 }
