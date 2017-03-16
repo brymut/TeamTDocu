@@ -47,14 +47,12 @@ $(document).ready(function () {
 	});
 
 	// Colouring of results div border in yellow
-	$('.resultdiv').hover(function(){                                                           // On hover on a results
-		$(this).css("border-color", "#efc47D");                                                 // Colour its side borders in yellow
-	}, function(){                                                                              // On hover out
-		$(this).css("border-color", "#1F559F");                                                 // Colour back to blue
-	});
-
-    // Code to hide the separator in the last results div
-	$('.resultdiv').children().last().css('display', 'none');
+    $(document).on("mouseenter", ".resultdiv", function () {                                    // On hover on a result div
+        $(this).css("border-color", "#efc47D");                                                 // Colour its side borders in yellow
+    });
+    $(document).on("mouseleave", ".resultdiv", function () {                                    // On hover on a result div
+        $(this).css("border-color", "#1F559F");                                                 // Colour its side borders in yellow
+    });
 
     // Code controlling the quick date selection radio buttons
 	$('input[type=radio][name=dateRadio]').change(function () {                                 // On selecting a radio button from the date group
@@ -178,12 +176,12 @@ $(document).ready(function () {
 		$(this).prop('checked', false);
 	});
 	
-	$( ".resultcheckbox" ).change(function(){                                                       // On tick/untick
-		var index = packaged.indexOf($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text());  // Check if the title of the result is already in the packaged array
-		if(index == -1){                                                                            // If the title was not in the array, then this is a checkbox tick event
+    $(document).on("change", ".resultcheckbox", function () {                                       // On tick/untick
+        var index = cboxID.indexOf($(this).attr('id'));                                             // Check if the cbox id of the result is already in the cboxID array
+		if(index == -1){                                                                            // If the checkbox was not in the array, then this is a checkbox tick event
 			packaged.push($($($($($(this)[0]).parent()[0]).parent()[0]).children("h3")[0]).text()); // Add it to the array
 			cboxID.push($($(this)[0]).attr('id'));                                                  // Add the corresponding checkbox id to the cbox array
-		} else {                                                                                    // If the title was in the array, then this is a checkbox untick event
+		} else {                                                                                    // If the checkbox was in the array, then this is a checkbox untick event
 			packaged.splice(index, index+1);                                                        // Remove title from the package array
 			cboxID.splice(index, index+1);                                                          // Remove id from the checkbox id array
 		}
@@ -339,7 +337,9 @@ $(document).ready(function () {
     }
 
     // Appends ids to the checkboxes of the Knockout JS result divs
-	updateResultDivsNames();                                                        // Call a function to append needed ids to result checkboxes for the package list in the package sidebar
+    $(document).on('DOMSubtreeModified', '#results', function () {                  // On change of the children of the results div (new results being added)
+        updateResultCheckboxIds();                                                  // Call a function to append needed ids to result checkboxes for the package list in the package sidebar
+    });                                                        
 });
 
 // Function to update the package list in the package sidebar
@@ -366,13 +366,13 @@ function updatePackage(packaged, cboxID){
 }
 
 // Appends ids to the checkboxes of the KO result divs
-function updateResultDivsNames() {
+function updateResultCheckboxIds() {
     var i;                                                                          // Counter var
     var pgNum = $("#pageNum").text();                                               // Page number var
     var maxResPerPage = 10;                                                         // Maximum results per page var
     var resultChildren = $('#results').children().length - 2;                       // Get amount of results; minus 2 as the results div has two info children
-    for(i = 1; i < resultChildren - 1; i++){                                        // For each child
-        $('#results').children().eq(i).children('input').attr('id', "cb" + (i+pgNum*maxResPerPage));      // Append a checkbox with a unique id
+    for (i = 1; i <= resultChildren; i++) {                                         // For each child
+        $('#results').children().eq(i).children('span').children('input').attr('id', "cb" + (i + (pgNum-1) * maxResPerPage));      // Append a checkbox with a unique id
     };
 }
 

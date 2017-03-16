@@ -78,7 +78,7 @@ a.ui-all {
     border-top: unset;
     border-right: thick solid;
 	border-left: thick solid;
-    border-color: grey;
+    border-color: #1F559F;
 	transition: all 0.4s ease;
 }
 
@@ -181,10 +181,13 @@ a.ui-all {
 }
 
 .resultsseparator {
-    margin-top: 120px;
-    border: 0;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
     height: 1px;
     background: #1F559F;
+    background: linear-gradient(to right, #CCC, #1F559F, #CCC);
     background: -webkit-gradient(linear, 0 0, 100% 0, from(#CCC), to(#CCC), color-stop(50%, #1F559F));
 }
 
