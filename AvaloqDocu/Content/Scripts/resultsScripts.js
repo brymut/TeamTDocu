@@ -239,11 +239,22 @@ $(document).ready(function () {
 		});
 	});
 
-	$('.downloadbutton').click(function () {                                        // Code to trigger the document download notification
+	$('.downloadbutton').click(function () {                                        // Code to trigger a document download started notification
 		$.notify("Item has started downloading", { className: "success", autoHideDelay: 1000, position: "right bottom" });
 	});
-	$('.linkbutton').click(function () {                                            // Code to trigger the link copied notification
+	$('.linkbutton').click(function () {                                            // Code to trigger a link copied notification
 		$.notify("Link copied to clipboard", { className: "info", autoHideDelay: 1000, position: "right bottom" });
+	}); 
+	$('#acceptNewPackageName').click(function () {                                  // Code to trigger a new package created notification
+	    if ($('#newPackageNameBox').val() != '') {                                  // If a name was given
+	        $.notify("Package created", { className: "success", autoHideDelay: 1000, position: "right bottom" });
+	    }
+	});
+	$('#addToPackageButton').click(function () {                                    // Code to trigger an added to package notification
+	    $.notify("Documents have been added to package", { className: "success", autoHideDelay: 1000, position: "right bottom" });
+	});
+	$('#downloadPackageButton').click(function () {                                 // Code to trigger a package download started notification
+	    $.notify("Package download is starting", { className: "success", autoHideDelay: 1000, position: "right bottom" });
 	});
 
     // Package select code via Bootstrap JS Modal
