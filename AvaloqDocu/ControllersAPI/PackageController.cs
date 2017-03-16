@@ -16,10 +16,10 @@ namespace AvaloqDocu.ControllersAPI
     {
         [HttpPost]
         [Route("PostNewPackage")]
-        public void PostNewPackage(string name)
+        public int PostNewPackage(string name)
         {
             var ps = new PackageService();
-            ps.AddPackage(name);
+            return ps.AddPackage(name);
         }
 
         [HttpPost]

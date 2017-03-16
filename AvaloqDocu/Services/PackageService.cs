@@ -9,7 +9,7 @@ namespace AvaloqDocu.Services
 {
     public class PackageService
     {
-        public PackagePTO AddPackage(string name)
+        public int AddPackage(string name)
         {
             using (var dc = new DocuContext())
             {
@@ -20,12 +20,7 @@ namespace AvaloqDocu.Services
                 dc.Packages.Add(package);
                 dc.SaveChanges();
 
-                return new PackagePTO
-                {
-                    Name = package.Name,
-                    NumberOfDocuments = 0,
-                    PackageId = package.PackageId
-                };
+                return package.PackageId;
             }
         }
 
