@@ -43,7 +43,7 @@ namespace AvaloqDocu.Controllers
                     f.SaveAs(Server.MapPath("~/UploadFiles/") + f.FileName);
 
                      var uservice = new UploadService();
-                     uservice.Create(f);
+                     //uservice.Create(f);
 
                     statuses.files.Add(new FileMetadata()
                     {

@@ -10,7 +10,7 @@ namespace AvaloqDocu.Services
     public class UploadService
     {
         [HttpPost]
-        public int Create(HttpPostedFileBase upload)
+        public void Create(HttpPostedFileBase upload)
         {
             using (var dc = new DocuContext())
             {
@@ -31,7 +31,6 @@ namespace AvaloqDocu.Services
                 }
                 dc.Documents.Add(document);
                 dc.SaveChanges();
-                return document.DocumentID;
             }
         }
 

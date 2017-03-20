@@ -29,6 +29,11 @@ public class DocuRepository
         return Context.Documents.Where(m => m.Title == name).First();
     }
 
+    public Package GetPackageByID(int n)
+    {
+        return Context.Packages.Where(m => m.PackageId == n).First();
+    }
+
     public IEnumerable<PackageDocument> GetPDs()
     {
         return Context.PackageDocuments.ToList();
@@ -42,5 +47,10 @@ public class DocuRepository
     public IEnumerable<PackageDocument> GetPDsByDocName(string name)
     {
         return Context.PackageDocuments.Where(m => m.Document.Title == name).ToList();
+    }
+
+    public IEnumerable<PackageDocument> GetPDsByPackageName(string name)
+    {
+        return Context.PackageDocuments.Where(m => m.Package.Name == name).ToList();
     }
 }

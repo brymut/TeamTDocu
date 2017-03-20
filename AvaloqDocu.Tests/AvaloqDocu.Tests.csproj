@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocuRepository.cs" />
     <Compile Include="Controllers\SearchControllerTest.cs" />
     <Compile Include="Controllers\UploadControllerTest.cs" />
     <Compile Include="MockContext.cs" />
@@ -108,7 +109,9 @@
     <Compile Include="Services\UploadServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.config" />
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

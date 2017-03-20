@@ -70,13 +70,13 @@ namespace AvaloqDocu.Services.Tests
             var name = "adifjfej23";
 
             //Act
-            PackagePTO p = s.AddPackage(name);
+            var Repository = new DocuRepository(MockContext);
+            int p = s.AddPackage(name);
 
             //Assert
-            Assert.AreEqual(name, p.Name);
-            Assert.AreEqual(p.NumberOfDocuments, 0);
+            Assert.AreEqual(name, Repository.GetPackageByID(p).Name);
+            Assert.AreEqual(Repository.GetPDs().Count(), 0);
 
-            var Repository = new DocuRepository(MockContext);
             IEnumerable<Package> result = Repository.GetPackages();
             Assert.AreEqual(result.Count(), 1);         
         }
@@ -90,19 +90,18 @@ namespace AvaloqDocu.Services.Tests
 
             //Act
             var Repository = new DocuRepository(MockContext);
-            PackagePTO p = s.AddPackage("foo");
-            PackagePTO p2 = s.AddPackage("bar");
-            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document").DocumentID, p.PackageId);
-            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document 2").DocumentID, p.PackageId);
-            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document 2").DocumentID, p2.PackageId);
+            int p = s.AddPackage("foo");
+            int p2 = s.AddPackage("bar");
+            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document").DocumentID, p);
+            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document 2").DocumentID, p);
+            s.AddDocumentToPackage(Repository.GetDocumentByName("Test Document 2").DocumentID, p2);
 
             //Assert
-            Assert.AreEqual(p.NumberOfDocuments, 2);
-            Assert.AreEqual(p.Documents.Count(), 2);
             Assert.AreEqual(Repository.GetPDs().Count(), 3);
             Assert.AreEqual(Repository.GetPDsByDocName("Test Document").Count(), 1);
-
             Assert.AreEqual(Repository.GetPDsByDocName("Test Document 2").Count(), 2);
+            Assert.AreEqual(Repository.GetPDsByDocName("foo").Count(), 2);
+            Assert.AreEqual(Repository.GetPDsByDocName("bar").Count(), 1);
         }
     }
 }
