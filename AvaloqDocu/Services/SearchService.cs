@@ -15,10 +15,10 @@ namespace AvaloqDocu.Services
 
         public SearchResultPTO FullTextSearch(string query, int page = 1, int pageSize = 10)
         {
-            int offset = 1;
+            int offset = 0;
             if (page > 1)
             {
-                offset = page * pageSize;
+                offset = (page - 1) * pageSize;
             }
 
             // client to interact with elasticSearch
@@ -31,6 +31,15 @@ namespace AvaloqDocu.Services
                                     .Query(query)
                                         .Fields(f => f
                                             .Fields(f1 => f1.Title, f2 => f2.Subtitle))))
+                            .Highlight(h => h
+                                .PreTags("<bold style=\"color: blue; \">")
+                                .PostTags("</bold>")
+                                .Fields(fs => fs
+                                   .Field(p => p.Title)                // Highlight strings in title and Subtitle fields
+                                   .Type("plain"),                     // that match the query
+                                    fs => fs
+                                    .Field(p => p.Subtitle)
+                                    .Type("plain")))
                             .From(offset)           //pagination options
                             .Size(pageSize));
 
@@ -40,21 +49,22 @@ namespace AvaloqDocu.Services
             {
                 Total = (int)result.Total,
                 Page = page,
-                Results = result.Documents.Select(s => new ResultPTO()
+                Results = result.Hits.Select(h => new ResultPTO()
                 {
-                    DocuID = s.DocuID,
-                    DocumentID = s.DocumentID,
-                    DocuType = s.DocuType,
-                    FileSize = s.FileSize,
-                    FilePath = s.FilePath.FileName,
-                    Subtitle = s.Subtitle,
-                    FunctionalArea = s.FunctionalArea,
-                    LastModified = s.LastModified,
-                    Release = s.Release,
-                    SubType = s.SubType,
-                    Title = s.Title,
-                    InPackage = false,
-                    PrevInPackage = false
+                    DocuID = h.Source.DocuID,
+
+                    DocumentID = h.Source.DocumentID,
+                    FileSize = h.Source.FileSize,
+                    FilePath = "",
+                    Title = (h.Highlights.Values.Count > 1) ? h.Highlights.Values.ElementAt(1).Highlights.First() : h.Source.Title,
+                    Subtitle = (h.Highlights.Values.Count > 0) ? h.Highlights.Values.First().Highlights.First() : h.Source.Subtitle,
+                    FunctionalArea = h.Source.FunctionalArea,
+                    LastModified = h.Source.LastModified,
+                    Release = h.Source.Release,
+                    SubType = h.Source.SubType,
+                    InPackage = h.Source.InPackage,
+                    PrevInPackage = h.Source.PrevInPackage
+
                 }),
                 QueryTime = result.Took,
                 // add the aggregations later on
@@ -130,6 +140,11 @@ namespace AvaloqDocu.Services
                 offset = page * pageSize;
             }
 
+            if (query == null)
+            {
+                query = " ";
+            }
+
             var result = client.Search<Document>(x => x
 
                             .Sort(sort =>
@@ -154,34 +169,43 @@ namespace AvaloqDocu.Services
                                     .Query(query)
                                         .Fields(f => f
                                             .Fields(f1 => f1.Title, f2 => f2.Subtitle))))
+                               .Highlight(h => h
+                                .PreTags("<bold style=\"color: blue; \">")
+                                .PostTags("</bold>")
+                                .Fields(fs => fs
+                                   .Field(p => p.Title)                // Highlight strings in title and Subtitle fields
+                                   .Type("plain"),                     // that match the query
+                                    fs => fs
+                                    .Field(p => p.Subtitle)
+                                    .Type("plain")))
                                .PostFilter(r => r
                                     .Bool(r1 => r1.Must(filters)))
                                .From(offset)           //pagination options
                                .Size(pageSize)
              );
 
-            //var final = postFilter.OrderByDescending(r1 => r1.LastModified);
 
 
             return new SearchResultPTO
             {
                 Total = (int)result.Total,
                 Page = page,
-                Results = result.Documents.Select(s => new ResultPTO()
+                Results = result.Hits.Select(h => new ResultPTO()
                 {
-                    DocuID = s.DocuID,
-                    DocumentID = s.DocumentID,
-                    DocuType = s.DocuType,
-                    FileSize = s.FileSize,
-                    FilePath = s.FilePath.FileName,
-                    Subtitle = s.Subtitle,
-                    FunctionalArea = s.FunctionalArea,
-                    LastModified = s.LastModified,
-                    Release = s.Release,
-                    SubType = s.SubType,
-                    Title = s.Title,
-                    InPackage = false,
-                    PrevInPackage = false
+                    DocuID = h.Source.DocuID,
+
+                    DocumentID = h.Source.DocumentID,
+                    FileSize = h.Source.FileSize,
+                    FilePath = "",
+                    Title = (h.Highlights.Values.Count > 1) ? h.Highlights.Values.ElementAt(1).Highlights.First() : h.Source.Title,
+                    Subtitle = (h.Highlights.Values.Count > 0) ? h.Highlights.Values.First().Highlights.First() : h.Source.Subtitle,
+                    FunctionalArea = h.Source.FunctionalArea,
+                    LastModified = h.Source.LastModified,
+                    Release = h.Source.Release,
+                    SubType = h.Source.SubType,
+                    InPackage = h.Source.InPackage,
+                    PrevInPackage = h.Source.PrevInPackage
+
                 }),
                 QueryTime = result.Took,
                 // add the aggregations later on
@@ -208,9 +232,7 @@ namespace AvaloqDocu.Services
         //                LastModified = s.LastModified,
         //                Release = s.Release,
         //                SubType = s.SubType,
-        //                Title = s.Title,
-        //                InPackage = false,
-        //                PrevInPackage = false
+        //                Title = s.Title
         //            };
         //            newDocs.Add(d2);
         //        }
