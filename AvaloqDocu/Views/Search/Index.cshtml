@@ -97,13 +97,13 @@
         </div>
         <!-- ko foreach: results -->
         <div class="resultdiv">
-                <span class="resultcheckboxspan"><input class="resultcheckbox" value="package" type="checkbox" data-bind="checked: InPackage, click: $root.addToPackage.bind($data)"/></span>
-                <h3 data-bind="text: Title" class="resultdivtitle"></h3>
-                <p data-bind="text: $root.formatDate(LastModified)" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
-                <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
-                <button data-bind="attr: { 'href': FilePath }" class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
-                <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
-                <hr class="resultsseparator" />
+            <span class="resultcheckboxspan"><input class="resultcheckbox" value="package" type="checkbox" data-bind="checked: InPackage, click: $root.addToPackage.bind($data)" /></span>
+            <h3 data-bind="html: Title" class="resultdivtitle"></h3>
+            <p data-bind="text: $root.formatDate(LastModified)" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p><p data-bind="html: Subtitle" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+            <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
+            <button data-bind="attr: { 'href': FilePath }" class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
+            <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
+            <hr class="resultsseparator" />
         </div>
     <!-- /ko -->
         @*<div class="resultdiv">

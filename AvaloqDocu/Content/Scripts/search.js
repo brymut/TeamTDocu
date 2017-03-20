@@ -15,6 +15,7 @@ function PackageDocument(item) {
     var self = this;
     self.DocumentID = ko.observable(item.DocumentID);
     self.Title = ko.observable(item.Title);
+    self.Subtitle = ko.observable(item.Subtitle);
 }
 
 function SearchViewModel() {
@@ -39,15 +40,14 @@ function SearchViewModel() {
     self.releaseOptions = ko.observableArray([]);
     self.selectedRelease = ko.observable(0);
     self.functionalAreaOptions = ko.observableArray([]);
-    self.selectedFunctionalAreas = ko.observableArray([]);
+    self.selectedFunctionalArea = ko.observableArray(0);
     self.docuTypeOptions = ko.observableArray([]);
     self.selectedDocuType = ko.observable(0);
     self.docuSubTypeOptions = ko.observableArray([]);
     self.selectedDocuSubType = ko.observable(0);
+    self.selectedLastModifiedFrom = ko.observable();
 
     self.filters = ko.observable(false);
-
-    self.createPackageName = ko.observable("");
 
     self.init = function () {
         $.ajax({
@@ -122,15 +122,18 @@ function SearchViewModel() {
     self.selectedRelease.subscribe(function (newValue) {
         if (self.filters() || newValue != undefined) {
             self.filters(true);
+            console.log("release " + newValue);
             self.filterSearch();
         }
     })
 
-    self.selectedFunctionalAreas.subscribe(function (newValue) {
+    self.selectedFunctionalArea.subscribe(function (newValue) {
         console.log(newValue);
-        console.log(self.selectedFunctionalAreas());
-        if (self.filters() || newValue != undefined) {
+        console.log(self.filters());
+        console.log(self.selectedFunctionalArea());
+        if (self.filters() || (newValue != undefined && newValue != 1 && newValue != 58)) {
             self.filters(true);
+            console.log("fa " + newValue);
             self.filterSearch();
         }
     })
@@ -138,11 +141,11 @@ function SearchViewModel() {
     self.selectedDocuType.subscribe(function (newValue) {
         if (self.filters() || newValue != undefined) {
             self.filters(true);
+            console.log("type " + newValue);
             self.filterSearch();
         }
         self.selectedDocuSubType(0);
         self.docuSubTypeOptions([]);
-        self.loadDocuSubTypes();
     })
 
     self.selectedDocuSubType.subscribe(function (newValue) {
@@ -153,9 +156,20 @@ function SearchViewModel() {
         }
     })
 
+
+    self.selectedLastModifiedFrom.subscribe(function (newValue) {
+        console.log("LastModified " + newValue);
+        if (self.filters() || newValue != undefined) {
+            self.filters(true);
+            console.log("LastModified " + newValue);
+            self.filterSearch();
+        }
+    })
+
+
     self.search = function () {
         $.ajax({
-            url: "/api/search/GetFreeTextSearch?query=" + self.query() + "&page=" + (self.page() - 1),
+            url: "/api/search/GetFreeTextSearch?query=" + self.query() + "&page=" + (self.page()),
             type: "GET",
             dataType: "json",
             contentType: "application/json; charset=utf-8",
@@ -177,14 +191,15 @@ function SearchViewModel() {
     self.filterSearch = function () {
         $.ajax({
             url: "/api/search/GetFilterSearch?query=" + self.query()
-                                            + "&page=" + (self.page() - 1)
-                                            + "&pageSize=10"
-                                            + "&titleOnly=false"
-                                            + "&DocuID=0"
-                                            + "&Release=" + self.selectedRelease()
-                                            /*+ "&FunctionalArea=null" + self.selectedFunctionalAreas()*/
-                                            + "&DocuType=" + self.selectedDocuType()
-                                            + "&DocuSubType=" + self.selectedDocuSubType(),
+                                           + "&page=" + (self.page())
+                                           + "&pageSize=10"
+                                           + "&titleOnly=false"
+                                           + "&DocuID=0"
+                                           + "&Release=" + self.selectedRelease()
+                                           + "&FunctionalArea=" + self.selectedFunctionalArea()
+                                           + "&DocuType=" + self.selectedDocuType()
+                                           + "&DocuSubType=" + self.selectedDocuSubType()
+                                           + "&LastModifiedFrom=" + self.selectedLastModifiedFrom(),
             type: "GET",
             dataType: "json",
             contentType: "application/json; charset=utf-8",
@@ -227,6 +242,10 @@ function SearchViewModel() {
 
     self.updateQuery = function () {
         self.search();
+    }
+
+    self.updateFilterQuery = function () {
+        self.filterSearch();
     }
 
     self.searchPackages = function () {
@@ -279,7 +298,7 @@ function SearchViewModel() {
             self.selectedPackageName("");
             self.selectedPackageDocuments([]);
         }
-        
+
     }
 
     self.selectPackage = function (pack) {
@@ -348,7 +367,6 @@ function SearchViewModel() {
         })
     }
 
-    // Can't download with ajax apparently - needs replaced
     self.downloadPackage = function () {
         $.ajax({
             url: "/api/package/DownloadPackage?packageId=" + self.selectedPackageId(),
@@ -367,28 +385,9 @@ function SearchViewModel() {
         })
     }
 
-    self.createPackage = function () {
-        $.ajax({
-            url: "/api/package/PostNewPackage?name=" + self.createPackageName(),
-            type: "POST",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                self.selectedPackageId(data);
-                self.selectedPackageName(self.createPackageName());
-                self.createPackageName("");
-                self.selectedPackageDocuments([]);
-                self.packageQuery(self.selectedPackageName());
-                self.packageSelected(true);
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log(thrownError);
-                console.log(ajaxOptions);
-                console.log(xhr);
-            }
-        })
-    }
+
 }
+
 
 $(document).ready(function () {
     var viewModelSearch = new SearchViewModel();
