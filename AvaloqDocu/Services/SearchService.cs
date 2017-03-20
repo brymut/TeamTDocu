@@ -92,7 +92,7 @@ namespace AvaloqDocu.Services
 
             if (Release != null)
             {
-                if (Release != "release independent")
+                if (Release != "Release Independent")
                 {
                     Release += ".0.0.0";
                 }

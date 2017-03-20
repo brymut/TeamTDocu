@@ -25,7 +25,7 @@ namespace AvaloqDocu.Services
                     if(metadata[1].Equals("en"))
                         document.Release = "Release Independent";
                     else document.Release = "Release " + metadata[1];
-                    document.LastModified = DateTime.Now;
+                    document.LastModified = DateTime.Today.Date;
                     document.FileSize = upload.ContentLength;
                     document.Title = upload.FileName;
                     document.Subtitle = metadata[4];
@@ -39,7 +39,7 @@ namespace AvaloqDocu.Services
                 {
                     document.SubType = "null";
                     document.Release = "null";
-                    document.LastModified = DateTime.Now;
+                    document.LastModified = DateTime.Today.Date;
                     document.FileSize = upload.ContentLength;
                     document.Title = upload.FileName;
                     document.Subtitle = "null";

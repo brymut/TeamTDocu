@@ -162,7 +162,9 @@
     <Compile Include="Attributes\OrderByAttribute.cs" />
     <Compile Include="ControllersAPI\FilterController.cs" />
     <Compile Include="ControllersAPI\PackageController.cs" />
+    <Compile Include="ControllersAPI\ReportController.cs" />
     <Compile Include="ControllersAPI\SearchController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -217,6 +219,7 @@
     <Compile Include="Services\PackageService.cs" />
     <Compile Include="PresentationTransferObjects\ResultPTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="App_Start\ElasticSearchConfig.cs" />
     <Compile Include="Services\UploadService.cs" />
@@ -251,6 +254,7 @@
     <Content Include="Content\Scripts\jquery.min.js" />
     <Content Include="Content\Scripts\jquery-ui.min.js" />
     <Content Include="Content\Scripts\notify.min.js" />
+    <Content Include="Content\Scripts\report.js" />
     <Content Include="Content\Scripts\resultsScripts.js" />
     <Content Include="Content\Scripts\home.js" />
     <Content Include="Content\Scripts\search.js" />
@@ -305,6 +309,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

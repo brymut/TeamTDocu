@@ -1,0 +1,35 @@
+﻿@{ 
+    ViewBag.Title = "Report - Avaloq Search";
+}
+
+
+<div id="reportPage">
+    <header>
+        <a href="/"><img id="avaloqLogo" src="~/Content/Logos/avaloqlogo.png"></a>
+        <a href="/"><img id="avaloqIcon" src="~/Content/Icons/logoicon.ico"></a>
+        <div id="searchDiv">
+            @*<form id="mainSearchForm" autocomplete="off">
+                <input id="mainSearchBox" @*data-bind="value: query" type="text" name="search" placeholder="Type in your Avaloq search..">
+                <input id="mainSubmitButton" data-bind="click: updateQuery" type="submit" value="">
+            </form>*@
+            <h1>Metadata Report</h1>
+        </div>
+    </header>
+    <!-- ko foreach: Results -->
+    <div class="resultdiv">
+        <h3 data-bind="html: Title" class="resultdivtitle"></h3>
+        <p data-bind="text: $root.formatDate(LastModified)" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p><p data-bind="html: Subtitle" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+        <hr class="resultsseparator" />
+    </div>
+    <!-- /ko -->
+</div>
+
+@section scripts {
+    @Scripts.Render("~/Content/Scripts/report.js")
+}
+
+@section styles{
+    @Styles.Render("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    @Styles.Render("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
+    @Styles.Render("~/Content/Styles/resultsStyles.css")
+}

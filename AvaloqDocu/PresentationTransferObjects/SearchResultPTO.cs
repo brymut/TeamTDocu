@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using AvaloqDocu.PresentationTransferObjects;
 
-namespace AvaloqDocu.Models
+namespace AvaloqDocu.PresentationTransferObjects
 {
     public class SearchResultPTO
     {
