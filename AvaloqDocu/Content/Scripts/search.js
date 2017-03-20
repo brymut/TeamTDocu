@@ -40,7 +40,7 @@ function SearchViewModel() {
     self.releaseOptions = ko.observableArray([]);
     self.selectedRelease = ko.observable(0);
     self.functionalAreaOptions = ko.observableArray([]);
-    self.selectedFunctionalArea = ko.observableArray(0);
+    self.selectedFunctionalAreas = ko.observableArray([]);
     self.docuTypeOptions = ko.observableArray([]);
     self.selectedDocuType = ko.observable(0);
     self.docuSubTypeOptions = ko.observableArray([]);
@@ -128,10 +128,10 @@ function SearchViewModel() {
         }
     })
 
-    self.selectedFunctionalArea.subscribe(function (newValue) {
+    self.selectedFunctionalAreas.subscribe(function (newValue) {
         console.log(newValue);
         console.log(self.filters());
-        console.log(self.selectedFunctionalArea());
+        console.log(self.selectedFunctionalAreas());
         if (self.filters() || (newValue != undefined && newValue != 1 && newValue != 58)) {
             self.filters(true);
             console.log("fa " + newValue);
@@ -147,6 +147,7 @@ function SearchViewModel() {
         }
         self.selectedDocuSubType(0);
         self.docuSubTypeOptions([]);
+        self.loadDocuSubTypes();
     })
 
     self.selectedDocuSubType.subscribe(function (newValue) {
@@ -190,19 +191,28 @@ function SearchViewModel() {
     }
 
     self.filterSearch = function () {
+        var yeah = {
+            query: self.query,
+            page: self.page,
+            pageSize: 10,
+            DocuId: 0,
+            Release: self.selectedRelease,
+            FunctionalAreas: self.selectedFunctionalAreas,
+            DocuType: self.selectedDocuType,
+            DocuSubType: self.selectedDocuSubType,
+            LastModifiedTo: null,
+            LastModifiedFrom: self.selectedLastModifiedFrom,
+            TitleOnly: false
+        };
+
+        var model = ko.toJSON(yeah);
+        console.log(model);
+
         $.ajax({
-            url: "/api/search/GetFilterSearch?query=" + self.query()
-                                           + "&page=" + (self.page())
-                                           + "&pageSize=10"
-                                           + "&titleOnly=false"
-                                           + "&DocuID=0"
-                                           + "&Release=" + self.selectedRelease()
-                                           + "&FunctionalArea=" + self.selectedFunctionalArea()
-                                           + "&DocuType=" + self.selectedDocuType()
-                                           + "&DocuSubType=" + self.selectedDocuSubType()
-                                           + "&LastModifiedFrom=" + self.selectedLastModifiedFrom(),
-            type: "GET",
+            url: "/api/search/GetFilterSearch",
+            type: "POST",
             dataType: "json",
+            data: model,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 self.results(data.Results);

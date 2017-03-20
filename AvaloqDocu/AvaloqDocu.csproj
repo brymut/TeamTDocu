@@ -222,6 +222,7 @@
     <Compile Include="Services\UploadService.cs" />
     <Compile Include="Enums\ReleaseEnum.cs" />
     <Compile Include="ViewModels\AddDocumentsViewModel.cs" />
+    <Compile Include="ViewModels\FilterSearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Icons\addtopackageicon.png" />

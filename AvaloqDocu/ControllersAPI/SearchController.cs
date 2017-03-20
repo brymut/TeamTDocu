@@ -9,6 +9,7 @@ using AvaloqDocu.Services;
 using AvaloqDocu.Models;
 using AvaloqDocu.Enums;
 using AvaloqDocu.Extensions;
+using AvaloqDocu.ViewModels;
 
 namespace AvaloqDocu.ControllersAPI
 {
@@ -24,32 +25,32 @@ namespace AvaloqDocu.ControllersAPI
             //return ss.TempSearch();
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("GetFilterSearch")]
-        public SearchResultPTO GetFilterSearch(string query, int page = 1, int pageSize = 10, bool titleOnly = false, int DocuID = 0, int Release = 0, string FunctionalArea = null, int DocuType = 0, int SubType = 0, DateTime? LastModifiedTo = null, DateTime? LastModifiedFrom = null)
+        public SearchResultPTO GetFilterSearch(FilterSearchViewModel model)
         {
             var ss = new SearchService();
-            string release = Release > 0 ? ((ReleaseEnum)Release).GetDisplayName() : null;
-            string functionalArea = null;
-            string docuType = DocuType > 0 ? ((DocuTypeEnum)DocuType).GetDisplayName() : null;
+            string release = model.Release > 0 ? ((ReleaseEnum)model.Release).GetDisplayName() : null;
+            string functionalAreas = null;
+            string docuType = model.DocuType > 0 ? ((DocuTypeEnum)model.DocuType).GetDisplayName() : null;
             string subType = null;
 
-            if (FunctionalArea != null)
+            if (model.FunctionalAreas != null)
             {
-                foreach (var f in FunctionalArea)
+                foreach (var f in model.FunctionalAreas)
                 {
-                    functionalArea = functionalArea + ((FunctionalAreaEnum)f).GetDisplayName() + " ";
+                    functionalAreas = functionalAreas + ((FunctionalAreaEnum)f).GetDisplayName() + " ";
                 }
             }
-            if (SubType > 0)
+            if (model.DocuSubType > 0)
             {
-                subType = DocuType == (int)DocuTypeEnum.AvaloqCore ? ((AvaloqCoreEnum)SubType).GetDisplayName() 
-                        : DocuType == (int)DocuTypeEnum.AvaloqTools ? ((AvaloqToolsEnum)SubType).GetDisplayName() 
-                        : DocuType == (int)DocuTypeEnum.AvalowFront ? ((AvaloqFrontEnum)SubType).GetDisplayName() 
-                        : DocuType == (int)DocuTypeEnum.ReleaseInfo ? ((ReleaseInfoEnum)SubType).GetDisplayName() 
-                        : ((SupportEnum)SubType).GetDisplayName();
+                subType = model.DocuType == (int)DocuTypeEnum.AvaloqCore ? ((AvaloqCoreEnum)model.DocuSubType).GetDisplayName() 
+                        : model.DocuType == (int)DocuTypeEnum.AvaloqTools ? ((AvaloqToolsEnum)model.DocuSubType).GetDisplayName() 
+                        : model.DocuType == (int)DocuTypeEnum.AvalowFront ? ((AvaloqFrontEnum)model.DocuSubType).GetDisplayName() 
+                        : model.DocuType == (int)DocuTypeEnum.ReleaseInfo ? ((ReleaseInfoEnum)model.DocuSubType).GetDisplayName() 
+                        : ((SupportEnum)model.DocuSubType).GetDisplayName();
             }
-            return ss.FilterSearch(query, page, pageSize, titleOnly, DocuID, release, functionalArea, docuType, subType, LastModifiedTo, LastModifiedFrom);
+            return ss.FilterSearch(model.query, model.page, model.pageSize, model.TitleOnly, model.DocuId, release, functionalAreas, docuType, subType, model.LastModifiedTo, model.LastModifiedFrom);
         }
     }
 }
