@@ -74,6 +74,7 @@ namespace AvaloqDocu.Services.Tests
             var Repository = new DocuRepository(MockContext);
             Assert.AreEqual(Repository.GetDocuments(), 2);
             Assert.AreEqual(Repository.GetDocumentByName("foo.bar"), 1);
+            Assert.AreEqual(Repository.GetDocumentByName("foo.bar").FileSize, 100);
 
             u.Delete("fileName/bar.foo");
             Assert.AreEqual(Repository.GetDocuments(), 1);

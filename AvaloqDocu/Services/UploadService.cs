@@ -12,17 +12,37 @@ namespace AvaloqDocu.Services
         [HttpPost]
         public void Create(HttpPostedFileBase upload)
         {
+            //Most of Avaloq's document filenames follow the format of ID-ReleaseNum-ClientNum-Subtype-Subtitle.pdf
+            //The service checks if the given file follows the same format, and if so, retrieves the metadata.
             using (var dc = new DocuContext())
             {
                 var document = new Models.Document { };
-                if (upload != null && upload.ContentLength > 0)
+                var fileName = upload.FileName;
+                String[] metadata = fileName.Split('-');
+                if (upload != null && upload.ContentLength > 0 && metadata.Length >= 5)
                 {
-                    document.Subtitle = "null";
-                    document.Release = "null";
+                    document.SubType = metadata[3];
+                    if(metadata[1].Equals("en"))
+                        document.Release = "Release Independent";
+                    else document.Release = "Release " + metadata[1];
                     document.LastModified = DateTime.Now;
-                    document.Subtitle = "null";
                     document.FileSize = upload.ContentLength;
                     document.Title = upload.FileName;
+                    document.Subtitle = metadata[4];
+                    var filepath = new Models.FilePath
+                    {
+                        FileName = Path.GetFileName(upload.FileName),
+                    };
+                    document.FilePath = filepath;
+                }
+                else if (upload != null && upload.ContentLength > 0)
+                {
+                    document.SubType = "null";
+                    document.Release = "null";
+                    document.LastModified = DateTime.Now;
+                    document.FileSize = upload.ContentLength;
+                    document.Title = upload.FileName;
+                    document.Subtitle = "null";
                     var filepath = new Models.FilePath
                     {
                         FileName = Path.GetFileName(upload.FileName),
