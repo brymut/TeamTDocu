@@ -61,12 +61,6 @@ namespace AvaloqDocu
                                                              .Text(s => s
                                                                   .Name(c => c.FilePath)
                                                                   .Index(false))
-                                                             .Boolean(s => s
-                                                                  .Name(c => c.InPackage)
-                                                                  .Index(false))
-                                                             .Boolean(s => s
-                                                                  .Name(c => c.PrevInPackage)
-                                                                  .Index(false))
                                                               )));
 
                 var response = client.CreateIndex(indexDescriptor);

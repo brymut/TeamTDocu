@@ -48,6 +48,7 @@ function SearchViewModel() {
     self.selectedLastModifiedFrom = ko.observable();
 
     self.filters = ko.observable(false);
+    self.createPackageName = ko.observable("");
 
     self.init = function () {
         $.ajax({
@@ -382,6 +383,28 @@ function SearchViewModel() {
                 console.log(xhr);
 
             }
+        })
+    }
+    
+    self.createPackage = function () {
+        $.ajax({
+                url: "/api/package/PostNewPackage?name=" + self.createPackageName(),
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                        self.selectedPackageId(data);
+                        self.selectedPackageName(self.createPackageName());
+                        self.createPackageName("");
+                        self.selectedPackageDocuments([]);
+                        self.packageQuery(self.selectedPackageName());
+                        self.packageSelected(true);
+                    },
+            error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(thrownError);
+                    console.log(ajaxOptions);
+                    console.log(xhr);
+                }
         })
     }
 
