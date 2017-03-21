@@ -13,7 +13,7 @@ namespace AvaloqDocu.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void HomeIndexTest()
         {
             // Arrange
             HomeController controller = new HomeController();
@@ -26,7 +26,7 @@ namespace AvaloqDocu.Tests.Controllers
         }
 
         [TestMethod]
-        public void About()
+        public void HomeAboutTest()
         {
             // Arrange
             HomeController controller = new HomeController();
@@ -39,7 +39,7 @@ namespace AvaloqDocu.Tests.Controllers
         }
 
         [TestMethod]
-        public void Contact()
+        public void HomeContactTest()
         {
             // Arrange
             HomeController controller = new HomeController();

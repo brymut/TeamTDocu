@@ -13,7 +13,7 @@ namespace AvaloqDocu.Tests.Controllers
     public class SearchControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void SearchIndexTest()
         {
             // Arrange
             SearchController controller = new SearchController();
