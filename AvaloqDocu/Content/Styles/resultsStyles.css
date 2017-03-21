@@ -82,6 +82,10 @@ a.ui-all {
 	transition: all 0.4s ease;
 }
 
+.resultdiv p {
+    font-size: 13px;
+}
+
 .resultcheckboxspan {
 	position: absolute;
 	float: left;
@@ -97,7 +101,7 @@ a.ui-all {
 .resultdivtitle {
 	margin-left: 60px;
 	font-weight: 900;
-	font-size: 35px;
+	font-size: 30px;
 	width: 70%;
 }
 
