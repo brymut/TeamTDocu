@@ -29,6 +29,11 @@ public class DocuRepository
         return Context.Documents.Where(m => m.Title == name).First();
     }
 
+    public Document GetDocumentByID(int n)
+    {
+        return Context.Documents.Where(m => m.DocumentID == n).First();
+    }
+
     public Package GetPackageByID(int n)
     {
         return Context.Packages.Where(m => m.PackageId == n).First();
