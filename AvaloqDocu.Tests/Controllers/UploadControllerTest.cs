@@ -16,7 +16,7 @@ namespace AvaloqDocu.Tests.Controllers
         public void UploadIndexTest()
         {
             // Arrange
-            HomeController controller = new UploadController();
+            UploadController controller = new UploadController();
 
             // Act
             ViewResult result = controller.Index() as ViewResult;
