@@ -85,6 +85,7 @@ namespace AvaloqDocu.Services
 
             if (FunctionalArea != null)
             {
+                //var selectedFunctionalAreas = FunctionalArea.Split(" ");
                 filters.Add(r2 => r2.Match(q2 => q2
                                             .Query(FunctionalArea)
                                                  .Field(f3 => f3.FunctionalArea)));
@@ -94,7 +95,8 @@ namespace AvaloqDocu.Services
             {
                 if (Release != "Release Independent")
                 {
-                    Release += ".0.0.0";
+                    Release = Release.Substring(8);
+                    Release += ".0.0";
                 }
                 filters.Add(r2 => r2.Match(q2 => q2
                                            .Query(Release)

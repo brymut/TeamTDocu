@@ -4,14 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using Nest;
+
 
 namespace AvaloqDocu.Services
 {
     public class UploadService
     {
+        private IElasticClient client;
+
         [HttpPost]
         public void Create(HttpPostedFileBase upload)
         {
+            // client to interact with elasticSearch
+            client = ElasticSearchConfig.GetClient();
+
             //Most of Avaloq's document filenames follow the format of ID-ReleaseNum-ClientNum-Subtype-Subtitle.pdf
             //The service checks if the given file follows the same format, and if so, retrieves the metadata.
             using (var dc = new DocuContext())
@@ -51,6 +58,8 @@ namespace AvaloqDocu.Services
                 }
                 dc.Documents.Add(document);
                 dc.SaveChanges();
+                document.FilePath = null;
+                var result = client.Index(document);
             }
         }
 
