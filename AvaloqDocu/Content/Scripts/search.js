@@ -43,6 +43,7 @@ function SearchViewModel() {
     self.selectedPackageDocuments = ko.observableArray([]);
     self.documentsToAdd = ko.observableArray([]);
 
+    self.searchDocuId = ko.observable("");
     self.releaseOptions = ko.observableArray([]);
     self.selectedRelease = ko.observable(0);
     self.functionalAreaOptions = ko.observableArray([]);
@@ -201,7 +202,7 @@ function SearchViewModel() {
             query: self.query,
             page: self.page,
             pageSize: 10,
-            DocuId: 0,
+            DocuId: self.searchDocuId,
             Release: self.selectedRelease,
             FunctionalAreas: self.selectedFunctionalAreas,
             DocuType: self.selectedDocuType,

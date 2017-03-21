@@ -71,6 +71,22 @@ namespace AvaloqDocu.Services
             };
         }
 
+        public void SetElasticDb()
+        {
+            client = ElasticSearchConfig.GetClient();
+
+            var docs = client.Search<Document>(x => x
+                            .Query(q => q
+                                .MultiMatch(mp => mp
+                                    .Query(" ")
+                                        .Fields(f => f
+                                            .Fields(f1 => f1.Title, f2 => f2.Subtitle))))
+                            .From(0)  
+                            .Size(0));
+            var y = 5;
+
+        }
+
         public SearchResultPTO FilterSearch(string query, int page = 1, int pageSize = 10, bool titleOnly = false, int DocuID = 0, string Release = null, string FunctionalArea = null, string DocuType = null, string SubType = null, DateTime? LastModifiedTo = null, DateTime? LastModifiedFrom = null, string sortBy = null)
         {
             var filters = new List<Func<QueryContainerDescriptor<Document>, QueryContainer>>();
@@ -93,12 +109,7 @@ namespace AvaloqDocu.Services
 
             if (Release != null)
             {
-                if (Release != "Release Independent")
-                {
-                    Release = Release.Substring(8);
-                    Release += ".0.0";
-                }
-                filters.Add(r2 => r2.Match(q2 => q2
+                filters.Add(r2 => r2.MatchPhrase(q2 => q2
                                            .Query(Release)
                                                 .Field(f3 => f3.Release)));
             }
@@ -118,7 +129,7 @@ namespace AvaloqDocu.Services
 
             if (DocuType != null)
             {
-                filters.Add(r2 => r2.Match(q2 => q2
+                filters.Add(r2 => r2.MatchPhrase(q2 => q2
                                              .Query(DocuType)
                                              .Field(f3 => f3.DocuType)));
             }
@@ -126,7 +137,7 @@ namespace AvaloqDocu.Services
 
             if (SubType != null)
             {
-                filters.Add(r2 => r2.Match(q2 => q2
+                filters.Add(r2 => r2.MatchPhrase(q2 => q2
                                           .Query(SubType)
                                           .Field(f3 => f3.SubType)));
             }

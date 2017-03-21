@@ -10,7 +10,7 @@
     self.docuSubTypeOptions = ko.observableArray([]);
     self.selectedDocuSubType = ko.observable(0);
 
-    self.init = function () {
+    self.init = function () {        
         $.ajax({
             url: "/api/filter/GetReleaseOptions",
             type: "GET",

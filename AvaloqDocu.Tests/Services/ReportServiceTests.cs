@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace AvaloqDocu.Tests.Services
 {
     [TestClass()]
-    class ReportServiceTests
+    public class ReportServiceTests
     {
 
         protected MockContext MockContext;
