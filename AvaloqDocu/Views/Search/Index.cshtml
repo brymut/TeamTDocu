@@ -167,8 +167,9 @@
                 <p class="packagetext" id="packageSHidden">s&nbsp;</p>
                 <p>for download.</p>
                 <button id="addToPackageButton" title="Add to package" class="packagedownload" data-bind="click: saveToPackage, visible: selectedPackageId() > 0 && documentsToAdd().length > 0"></button>
-                <button id="downloadPackageButton" title="Download package" class="packagedownload" data-bind="click: downloadPackage, visible: selectedPackageId() > 0 && selectedPackageDocuments().length > 0 && documentsToAdd().length == 0"></button>
+                <button id="downloadPackageButton" title="Download package" class="packagedownload" data-bind="attr: { href: '/Search/DownloadPackageAsZip' + selectedPackageId(), visible: selectedPackageId() > 0 && selectedPackageDocuments().length > 0 && documentsToAdd().length == 0"></button>
                 <button id="createNewPackageButton" title="Create new package" data-toggle="modal" data-target="#createNewPackageModal" data-backdrop="static" class="packagedownload"></button>
+                <a data-bind="attr: { href: '/Search/DownloadPackageAsZip?packageId=' + selectedPackageId() }, visible: selectedPackageId() > 0 && selectedPackageDocuments().length > 0 && documentsToAdd().length == 0">Download As Zip</a>
             </div>
         </div>
     </div>

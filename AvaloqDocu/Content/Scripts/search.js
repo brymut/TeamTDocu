@@ -324,8 +324,8 @@ function SearchViewModel() {
         self.packageSelected(true);
         ko.utils.arrayForEach(self.selectedPackageDocuments(), function (doc) {
             ko.utils.arrayForEach(self.results(), function (res) {
-                console.log(doc);
-                console.log(res);
+                //console.log(doc);
+                //console.log(res);
                 if (doc.DocumentID == res.DocumentID) {
                     console.log("found match");
                     res.PrevInPackage = true;

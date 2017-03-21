@@ -22,7 +22,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 App_Data/
-UploadFiles/*
+AvaloqDocu/UploadFiles/*
+AvaloqDocu/ExportFiles/*
 
 # Visual Studio 2015 cache/options directory
 .vs/
