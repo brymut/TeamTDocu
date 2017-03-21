@@ -59,9 +59,11 @@ namespace AvaloqDocu.Services.Tests
 
             //Assert
             Assert.AreEqual(result1.Results.Count(), 3);
+            Assert.AreEqual(result1.Total, 3);
             Assert.IsNotNull(Repository.GetDocumentByID(result1.Results.First().DocumentID));  
 
             Assert.AreEqual(result2.Results.Count(), 0);
+            Assert.AreEqual(result2.Total, 0);
         }
 
         [TestMethod()]
@@ -80,10 +82,19 @@ namespace AvaloqDocu.Services.Tests
 
             //Assert
             Assert.AreEqual(result1.Results.Count(), 2);
+            Assert.AreEqual(result1.Total, 2);
+
             Assert.AreEqual(result2.Results.Count(), 1);
+            Assert.AreEqual(result2.Total, 1);
+
             Assert.AreEqual(result3.Results.Count(), 2);
+            Assert.AreEqual(result3.Total, 2);
+
             Assert.AreEqual(result4.Results.Count(), 2);
+            Assert.AreEqual(result4.Total, 2);
+
             Assert.AreEqual(result5.Results.Count(), 0);
+            Assert.AreEqual(result5.Total, 0);
         }
     }
 }
