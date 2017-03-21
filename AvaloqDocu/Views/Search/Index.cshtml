@@ -21,7 +21,7 @@
                     <div id="titleDiv" class="row">
                         <label for="titleTextBox">Title / Subtitle / Keywords</label>
                         <input id="titleCheckbox" type="checkbox"><label id="titleOnly" for="titleCheckbox" class="form-text text-muted">title only</label>
-                        <input id="titleTextBox" type="text" class="form-control">     
+                        <input id="titleTextBox" type="text" class="form-control">
                     </div>
                     <div id="docuIDDiv" class="row">
                         <label for="docuIDTextBox">Docu ID</label>
@@ -35,7 +35,7 @@
                         <label class="" for="funcAreaMultiple">Functional Area</label>
                         <select id="funcAreaMultiple" name="funcarea" class="form-control" data-bind="options: functionalAreaOptions, optionsText: 'Name', selectedOptions: selectedFunctionalAreas, optionsValue: 'FilterId'" multiple></select>
                     </div>
-                        <div id="docuTypeDiv" class="row">
+                    <div id="docuTypeDiv" class="row">
                         <label for="docuTypeDropdown">Docu Type</label>
                         <select id="docuTypeDropdown" name="docutype" class="form-control" data-bind="options: docuTypeOptions, optionsText: 'Name', value: selectedDocuType, optionsCaption: 'Choose...', optionsValue: 'FilterId'"></select>
                     </div>
@@ -50,12 +50,12 @@
                         <p>To</p>
                         <input class="form-control" type="text" id="toDateInput">
                         <div class="col50percent">
-                            <input name="dateRadio" value="0" type="radio" class="form-check-input"><label>Custom Date</label><br/>
+                            <input name="dateRadio" value="0" type="radio" class="form-check-input"><label>Custom Date</label><br />
                             <input name="dateRadio" value="2" type="radio" class="form-check-input"><label>Last Month</label>
 
                         </div>
                         <div class="col50percent">
-                            <input name="dateRadio" value="1" type="radio" class="form-check-input"><label>Last Week</label><br/>
+                            <input name="dateRadio" value="1" type="radio" class="form-check-input"><label>Last Week</label><br />
                             <input name="dateRadio" value="3" type="radio" class="form-check-input"><label>Last Year</label>
                         </div>
                     </div>
@@ -78,7 +78,8 @@
                 <button id="resetButton"></button>
             </div>
             <div>
-                <button id="updateButton"></button>
+                <button id="updateButton" data-bind="click: updateFilterQuery"></button>
+
             </div>
         </div>
     </div>
@@ -99,35 +100,35 @@
         <div class="resultdiv">
             <span class="resultcheckboxspan"><input class="resultcheckbox" value="package" type="checkbox" data-bind="checked: InPackage, click: $root.addToPackage.bind($data)" /></span>
             <h3 data-bind="html: Title" class="resultdivtitle"></h3>
-            <p data-bind="text: $root.formatDate(LastModified)" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p><p data-bind="html: Subtitle" class="dateadded"></p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+            <p data-bind="text: $root.formatDate(LastModified)" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="html: Subtitle" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: Release" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: DocuID" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: FunctionalArea" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: DocuType" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: SubType" class="dateadded"></p>
             <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
             <button data-bind="attr: { 'href': FilePath }" class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
             <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
             <hr class="resultsseparator" />
         </div>
-    <!-- /ko -->
+        <!-- /ko -->
         @*<div class="resultdiv">
-            <span class="resultcheckboxspan"><input id="cb1" class="resultcheckbox" value="package" type="checkbox"></span>
-            <h3 id="title1" class="resultdivtitle">Financial trends in 2017</h3>
-            <p id="date1" class="dateadded">Added: 01.03.2016</p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
-            <p id="metadata1" class="metadata">More metadata here...</p>
-            <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
-            <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
-            <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
-        </div>
-        <div class="resultdiv">
-            <span class="resultcheckboxspan"><input id="cb2" class="resultcheckbox" value="package" type="checkbox"></span>
-            <h3 id="resultdiv2" class="resultdivtitle">Stock year in summary</h3>
-            <p id="date2" class="dateadded">Added: 10.12.2013</p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
-            <p id="metadata2" class="metadata">More metadata here...</p>
-            <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
-            <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
-            <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
-        </div>
-        <div class="resultdiv">
-        </div>
-        <div class="resultdiv">
-        </div>*@
+                <span class="resultcheckboxspan"><input id="cb1" class="resultcheckbox" value="package" type="checkbox"></span>
+                <h3 id="title1" class="resultdivtitle">Financial trends in 2017</h3>
+                <p id="date1" class="dateadded">Added: 01.03.2016</p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+                <p id="metadata1" class="metadata">More metadata here...</p>
+                <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
+                <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
+                <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
+            </div>
+            <div class="resultdiv">
+                <span class="resultcheckboxspan"><input id="cb2" class="resultcheckbox" value="package" type="checkbox"></span>
+                <h3 id="resultdiv2" class="resultdivtitle">Stock year in summary</h3>
+                <p id="date2" class="dateadded">Added: 10.12.2013</p><p class="spaces">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+                <p id="metadata2" class="metadata">More metadata here...</p>
+                <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
+                <button class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
+                <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
+            </div>
+            <div class="resultdiv">
+            </div>
+            <div class="resultdiv">
+            </div>*@
         <div id="resultsInfoBottom">
             <div id="infoDivBottom">
                 <p class="searchstats">Search for&nbsp;"</p>
@@ -146,9 +147,9 @@
             <h3>Current document package</h3>
             <div id="packageDiv">
                 @*<div id="onHoverPackageSidebarDiv">
-                    <input id="packageSearchBox" type="text" name="packagesearch" data-bind="visible: packageSelected() == false, value: packageQuery" placeholder="Type in package name..">
-                    <p id="removePackage">x</p>
-                </div>*@
+                        <input id="packageSearchBox" type="text" name="packagesearch" data-bind="visible: packageSelected() == false, value: packageQuery" placeholder="Type in package name..">
+                        <p id="removePackage">x</p>
+                    </div>*@
                 <div id="onHoverPackageSidebarDiv">
                     <input id="packageSearchBox" type="text" name="packageSearch" data-bind="attr: { disabled: packageSelected }, value: packageQuery" placeholder="Type in package name.." />
                     <p id="removePackage" data-bind="click: deselectPackage">x</p>
@@ -192,7 +193,7 @@
 
                 <div class="modal-footer">
 
-                    
+
                     <ul class="pagination">
                         <li><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
@@ -215,53 +216,53 @@
                 </div>
                 <div class="modal-body">
                     <!-- ko foreach: packages -->
-                        <button class="collapsebutton" data-bind="click: $root.expandPackage.bind($data), text: Name"></button>
-                        <ul class="packageContents tripleColUl" data-bind="foreach: Documents, visible: $root.selectedPackageId() == PackageId">
-                            <li data-bind="text: $data.Title"></li>
-                        </ul>
+                    <button class="collapsebutton" data-bind="click: $root.expandPackage.bind($data), text: Name"></button>
+                    <ul class="packageContents tripleColUl" data-bind="foreach: Documents, visible: $root.selectedPackageId() == PackageId">
+                        <li data-bind="text: $data.Title"></li>
+                    </ul>
                     <!-- /ko -->
                     @*<button id="packageCollapseButton1" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv1">Docu Package</button>
-                    <div id="packageCollapseDiv1" class="collapse">
-                        <ul class="packageContents tripleColUl">
-                            <li class="packageContent">avaloq.pdf</li>
-                            <li class="packageContent">2013-03-23.pdf</li>
-                            <li class="packageContent">projections.pdf</li>
-                            <li class="packageContent">earnings.pdf</li>
-                            <li class="packageContent">bonuses.pdf</li>
-                            <li class="packageContent">example.pdf</li>
-                            <li class="packageContent">glasgow-uni-project.pdf</li>
-                            <li class="packageContent">others.pdf</li>
-                            <li class="packageContent">summary.pdf</li>
-                            <li class="packageContent">bugs.pdf</li>
-                            <li class="packageContent">devices.pdf</li>
-                            <li class="packageContent">clients.pdf</li>
-                            <li class="packageContent">business.pdf</li>
-                            <li class="packageContent">boss.pdf</li>
-                            <li class="packageContent">letter.pdf</li>
-                            <li class="packageContent">executive-email.pdf</li>
-                        </ul>
-                    </div>
-                    <button id="packageCollapseButton2" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv2">Online Documents Backup Package</button>
-                    <div id="packageCollapseDiv2" class="collapse">
-                        <ul class="packageContents tripleColUl">
-                            <li class="packageContent">others.pdf</li>
-                            <li class="packageContent">summary.pdf</li>
-                            <li class="packageContent">bugs.pdf</li>
-                            <li class="packageContent">devices.pdf</li>
-                            <li class="packageContent">clients.pdf</li>
-                            <li class="packageContent">business.pdf</li>
-                        </ul>
-                    </div>
-                    <button id="packageCollapseButton3" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv3">Banking Package</button>
-                    <div id="packageCollapseDiv3" class="collapse">
-                        <ul class="packageContents tripleColUl">
-                            <li class="packageContent">earnings.pdf</li>
-                            <li class="packageContent">bonuses.pdf</li>
-                            <li class="packageContent">example.pdf</li>
-                            <li class="packageContent">glasgow-uni-project.pdf</li>
-                            <li class="packageContent">others.pdf</li>
-                        </ul>
-                    </div>*@
+                        <div id="packageCollapseDiv1" class="collapse">
+                            <ul class="packageContents tripleColUl">
+                                <li class="packageContent">avaloq.pdf</li>
+                                <li class="packageContent">2013-03-23.pdf</li>
+                                <li class="packageContent">projections.pdf</li>
+                                <li class="packageContent">earnings.pdf</li>
+                                <li class="packageContent">bonuses.pdf</li>
+                                <li class="packageContent">example.pdf</li>
+                                <li class="packageContent">glasgow-uni-project.pdf</li>
+                                <li class="packageContent">others.pdf</li>
+                                <li class="packageContent">summary.pdf</li>
+                                <li class="packageContent">bugs.pdf</li>
+                                <li class="packageContent">devices.pdf</li>
+                                <li class="packageContent">clients.pdf</li>
+                                <li class="packageContent">business.pdf</li>
+                                <li class="packageContent">boss.pdf</li>
+                                <li class="packageContent">letter.pdf</li>
+                                <li class="packageContent">executive-email.pdf</li>
+                            </ul>
+                        </div>
+                        <button id="packageCollapseButton2" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv2">Online Documents Backup Package</button>
+                        <div id="packageCollapseDiv2" class="collapse">
+                            <ul class="packageContents tripleColUl">
+                                <li class="packageContent">others.pdf</li>
+                                <li class="packageContent">summary.pdf</li>
+                                <li class="packageContent">bugs.pdf</li>
+                                <li class="packageContent">devices.pdf</li>
+                                <li class="packageContent">clients.pdf</li>
+                                <li class="packageContent">business.pdf</li>
+                            </ul>
+                        </div>
+                        <button id="packageCollapseButton3" class="collapsebutton" data-toggle="collapse" data-target="#packageCollapseDiv3">Banking Package</button>
+                        <div id="packageCollapseDiv3" class="collapse">
+                            <ul class="packageContents tripleColUl">
+                                <li class="packageContent">earnings.pdf</li>
+                                <li class="packageContent">bonuses.pdf</li>
+                                <li class="packageContent">example.pdf</li>
+                                <li class="packageContent">glasgow-uni-project.pdf</li>
+                                <li class="packageContent">others.pdf</li>
+                            </ul>
+                        </div>*@
                 </div>
                 <div class="modal-footer">
                     <div data-bind="visible: Math.ceil(packageCount() / 5) > 1">
@@ -272,12 +273,12 @@
                         </ul>
                     </div>
                     @*<ul class="pagination">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    </ul>*@
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                        </ul>*@
                     <button type="button" id="selectPackage" data-bind="click: selectPackage" class="btn btn-default">Select Package</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>

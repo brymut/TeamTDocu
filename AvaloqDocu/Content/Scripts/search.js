@@ -16,6 +16,12 @@ function PackageDocument(item) {
     self.DocumentID = ko.observable(item.DocumentID);
     self.Title = ko.observable(item.Title);
     self.Subtitle = ko.observable(item.Subtitle);
+    self.DocuID = ko.observable(item.DocuID);
+    self.Release = ko.observable(item.Release);
+    self.FunctionalArea = ko.observable(item.FunctionalArea);
+    self.DocuType = ko.observable(item.DocuType);
+    self.SubType = ko.observable(item.SubType);
+
 }
 
 function SearchViewModel() {
