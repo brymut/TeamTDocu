@@ -29,6 +29,7 @@ namespace AvaloqDocu.Services
                 if (upload != null && upload.ContentLength > 0 && metadata.Length >= 5)
                 {
                     document.SubType = metadata[3];
+                    document.DocuID = Convert.ToInt32(metadata[0]);
                     if(metadata[1].Equals("en"))
                         document.Release = "Release Independent";
                     else document.Release = "Release " + metadata[1];
@@ -45,6 +46,7 @@ namespace AvaloqDocu.Services
                 else if (upload != null && upload.ContentLength > 0)
                 {
                     document.SubType = "null";
+                    document.DocuID = 0;
                     document.Release = "null";
                     document.LastModified = DateTime.Today.Date;
                     document.FileSize = upload.ContentLength;
