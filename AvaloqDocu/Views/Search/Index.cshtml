@@ -21,7 +21,7 @@
                     <div id="titleDiv" class="row">
                         <label for="titleTextBox">Title / Subtitle / Keywords</label>
                         <input id="titleCheckbox" type="checkbox"><label id="titleOnly" for="titleCheckbox" class="form-text text-muted">title only</label>
-                        <input id="titleTextBox" data-bind="value: query" type="text" class="form-control">
+                        <input id="titleTextBox" type="text" class="form-control">
                     </div>
                     <div id="docuIDDiv" class="row">
                         <label for="docuIDTextBox">Docu ID</label>
@@ -99,7 +99,7 @@
         <!-- ko foreach: results -->
         <div class="resultdiv">
             <span class="resultcheckboxspan"><input class="resultcheckbox" value="package" type="checkbox" data-bind="checked: InPackage, click: $root.addToPackage.bind($data)" /></span>
-            <h3 data-bind="html: Title" class="resultdivtitle"></h3>
+            <a data-bind="attr: { 'href': '/Search/DownloadDocument?DocumentId=' + DocumentID }"><h3 data-bind="html: Title"></h3></a>
             <p data-bind="text: $root.formatDate(LastModified)" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="html: Subtitle" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: Release" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: DocuID" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: FunctionalArea" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: DocuType" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: SubType" class="dateadded"></p>
             <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
             <button data-bind="attr: { 'href': FilePath }" class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>

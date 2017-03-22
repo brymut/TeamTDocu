@@ -251,6 +251,7 @@ function SearchViewModel() {
     }
 
     self.setPageNumbers = function () {
+        self.page(1);
         self.pages(Math.ceil(self.total() / 10));
     }
 
@@ -433,17 +434,13 @@ function SearchViewModel() {
 
     self.getFilters = function (url) {
         var filts = url.split("&");
-        console.log(filts);
-        console.log(filts[0].split("=")[1]);
-        console.log(filts[1].split("=")[1]);
-        console.log(filts[2].split("=")[1]);
-        console.log(filts[4].split("=")[1]);
-        console.log(filts[5].split("=")[1]);
+        if (filts.length > 1) {
+            self.searchDocuId(filts[1].split("=")[1]);
+            self.selectedRelease(filts[2].split("=")[1]);
+            self.selectedDocuType(filts[4].split("=")[1]);
+            self.selectedDocuSubType(filts[5].split("=")[1]);
+        }
         self.query(filts[0].split("=")[1]);
-        self.searchDocuId(filts[1].split("=")[1]);
-        self.selectedRelease(filts[2].split("=")[1]);
-        self.selectedDocuType(filts[4].split("=")[1]);
-        self.selectedDocuSubType(filts[5].split("=")[1]);
     }
 }
 

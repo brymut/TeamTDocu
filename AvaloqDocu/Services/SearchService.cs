@@ -147,7 +147,7 @@ namespace AvaloqDocu.Services
 
             client = ElasticSearchConfig.GetClient();
 
-            int offset = 1;
+            int offset = 0;
             if (page > 1)
             {
                 offset = page * pageSize;

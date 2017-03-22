@@ -16,6 +16,15 @@ namespace AvaloqDocu.Controllers
             return View();
         }
 
+        public ActionResult DownloadDocument(int documentId)
+        {
+            using (var dc = new DocuContext())
+            {
+                var doc = dc.Documents.Find(documentId);
+                return File(Server.MapPath("~/UploadFiles/" + doc.FilePath.FileName), "application/pdf");
+            }
+        }
+
         public ActionResult DownloadPackageAsZip(int packageId)
         {
             using (var dc = new DocuContext())
