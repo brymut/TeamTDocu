@@ -99,10 +99,10 @@
         <!-- ko foreach: results -->
         <div class="resultdiv">
             <span class="resultcheckboxspan"><input class="resultcheckbox" value="package" type="checkbox" data-bind="checked: InPackage, click: $root.addToPackage.bind($data)" /></span>
-            <a data-bind="attr: { 'href': '/Search/DownloadDocument?DocumentId=' + DocumentID }"><h3 data-bind="html: Title"></h3></a>
+            <a target="_blank" data-bind="attr: { 'href': '/Search/DownloadDocument?DocumentId=' + DocumentID }"><h3 data-bind="html: Title"></h3></a>
             <p data-bind="text: $root.formatDate(LastModified)" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="html: Subtitle" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: Release" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: DocuID" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: FunctionalArea" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: DocuType" class="dateadded"></p><p class="spaces">&nbsp;|&nbsp;</p><p data-bind="text: SubType" class="dateadded"></p>
             <button class="previewbutton btn btn-sq-sm btn-danger" type="button" data-toggle="modal" data-target="#excerptModal" data-backdrop="static"><img class="previewicon" src="~/Content/Icons/previewicon.png"></button>
-            <button data-bind="attr: { 'href': FilePath }" class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
+            <button target="_blank" data-bind="attr: { 'href': '/Search/DownloadDocument?DocumentId=' + DocumentID }" class="downloadbutton btn btn-sq-sm btn-success" type="button"><img class="downloadicon" src="~/Content/Icons/downloadicon.png"></button>
             <button class="linkbutton btn btn-sq-sm btn-info" type="button"><img class="linkicon" src="~/Content/Icons/linkicon.png"></button>
             <hr class="resultsseparator" />
         </div>
