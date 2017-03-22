@@ -2,6 +2,7 @@
     ViewBag.Title = "Avaloq Search - Welcome";
 }
 
+<div id="homePage">
 <div id="switchModeDiv">
     <div id="searchMode" class="front">
         <div id="mainSearchDiv">
@@ -77,7 +78,7 @@
         <div id="row1" class="row">
             <div class="input-group width-90-percent">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <input id="advancedSearchBox" type="text" class="form-control" >
+                    <input id="advancedSearchBox" data-bind="value: query" type="text" class="form-control" >
                 </div>
                 <span class="input-group-addon"><input id="titleCheckbox" type="checkbox"></span>
             </div>
@@ -86,7 +87,7 @@
             <div class="input-group width-90-percent">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding-right-5">
                     <label for="docuIDBox">Docu ID</label>
-                    <input id="docuIDBox" type="text" class="form-control">
+                    <input id="docuIDBox" data-bind="value: docuId" type="text" class="form-control">
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding-left-5">
                     <label for="releaseDropdown">Release</label>
@@ -119,19 +120,21 @@
             <div class="input-group width-90-percent">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding-right-5">
                     <label for="docuTypeDropDown">Docu Type</label>
-                    <select id="docuTypeDropDown" name="docutype" class="form-control">
+                    <select id="docuTypeDropDown" name="docuType" class="form-control" data-bind="options: docuTypeOptions, optionsText: 'Name', value: selectedDocuType, optionsCaption: 'Choose...', optionsValue: 'FilterId'"></select>
+                    @*<select id="docuTypeDropDown" name="docutype" class="form-control">
                         <option value="0">-------------------------------</option>
                         <option value="1">PDF</option>
                         <option value="2">HTML</option>
-                    </select>
+                    </select>*@
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 padding-left-5">
                     <label for="subtypeDropDown">Subtype</label>
-                    <select id="subtypeDropDown" name="subtype" class="form-control">
+                    <select id="subtypeDropDown" name="subtype" class="form-control" data-bind="options: docuSubTypeOptions, optionsText: 'Name', value: selectedDocuSubType, optionsCaption: 'Choose...', optionsValue: 'FilterId'"></select>
+                    @*<select id="subtypeDropDown" name="subtype" class="form-control">
                         <option value="0">-------------------------------</option>
                         <option value="1">Team 1</option>
                         <option value="2">Team 2</option>
-                    </select>
+                    </select>*@
                 </div>
             </div>
         </div>
@@ -167,7 +170,7 @@
                     <button id="resetButton" class="hideme" type="button"></button>
                 </div>
                 <div id="submitDiv" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <button id="advancedSubmitButton" class="hideme" type="button" form="advancedSearchForm">Submit</button>
+                    <button id="advancedSubmitButton" data-bind="click: advancedSearch" class="hideme" type="button" form="advancedSearchForm">Submit</button>
                 </div>
             </div>
         </div>
@@ -242,6 +245,7 @@
     </tr>
     {% } %}
 </script>
+</div>
 @section scripts{
     @Scripts.Render("~/Content/Scripts/jquery.min.js")
     @Scripts.Render("~/Content/Scripts/jquery-ui.min.js")

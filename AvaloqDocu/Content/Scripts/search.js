@@ -57,6 +57,8 @@ function SearchViewModel() {
     self.filters = ko.observable(false);
     self.createPackageName = ko.observable("");
 
+    self.loading = ko.observable(false);
+
     self.init = function () {
         $.ajax({
             url: "/api/filter/GetReleaseOptions",
@@ -128,7 +130,7 @@ function SearchViewModel() {
     }
 
     self.selectedRelease.subscribe(function (newValue) {
-        if (self.filters() || newValue != undefined) {
+        if (!self.loading() && (self.filters() || newValue != undefined)) {
             self.filters(true);
             console.log("release " + newValue);
             self.filterSearch();
@@ -139,7 +141,7 @@ function SearchViewModel() {
         console.log(newValue);
         console.log(self.filters());
         console.log(self.selectedFunctionalAreas());
-        if (self.filters() || (newValue != undefined && newValue != 1 && newValue != 58)) {
+        if (!self.loading() && (self.filters() || (newValue != undefined && newValue != 1 && newValue != 58))) {
             self.filters(true);
             console.log("fa " + newValue);
             self.filterSearch();
@@ -147,7 +149,7 @@ function SearchViewModel() {
     })
 
     self.selectedDocuType.subscribe(function (newValue) {
-        if (self.filters() || newValue != undefined) {
+        if (!self.loading() && (self.filters() || newValue != undefined)) {
             self.filters(true);
             console.log("type " + newValue);
             self.filterSearch();
@@ -158,7 +160,7 @@ function SearchViewModel() {
     })
 
     self.selectedDocuSubType.subscribe(function (newValue) {
-        if (self.filters() || newValue != undefined) {
+        if (!self.loading() && (self.filters() || newValue != undefined)) {
             self.filters(true);
             console.log("subtype " + newValue);
             self.filterSearch();
@@ -168,7 +170,7 @@ function SearchViewModel() {
 
     self.selectedLastModifiedFrom.subscribe(function (newValue) {
         console.log("LastModified " + newValue);
-        if (self.filters() || newValue != undefined) {
+        if (!self.loading() && (self.filters() || newValue != undefined)) {
             self.filters(true);
             console.log("LastModified " + newValue);
             self.filterSearch();
@@ -177,6 +179,7 @@ function SearchViewModel() {
 
 
     self.search = function () {
+        self.loading(true);
         $.ajax({
             url: "/api/search/GetFreeTextSearch?query=" + self.query() + "&page=" + (self.page()),
             type: "GET",
@@ -195,9 +198,11 @@ function SearchViewModel() {
                 console.log(xhr);
             }
         });
+        self.loading(false);
     }
 
     self.filterSearch = function () {
+        self.loading(true);
         var yeah = {
             query: self.query,
             page: self.page,
@@ -233,6 +238,7 @@ function SearchViewModel() {
                 console.log(xhr);
             }
         })
+        self.loading(false);
     }
 
     self.formatDate = function (date) {
@@ -425,15 +431,31 @@ function SearchViewModel() {
         })
     }
 
-
+    self.getFilters = function (url) {
+        var filts = url.split("&");
+        console.log(filts);
+        console.log(filts[0].split("=")[1]);
+        console.log(filts[1].split("=")[1]);
+        console.log(filts[2].split("=")[1]);
+        console.log(filts[4].split("=")[1]);
+        console.log(filts[5].split("=")[1]);
+        self.query(filts[0].split("=")[1]);
+        self.searchDocuId(filts[1].split("=")[1]);
+        self.selectedRelease(filts[2].split("=")[1]);
+        self.selectedDocuType(filts[4].split("=")[1]);
+        self.selectedDocuSubType(filts[5].split("=")[1]);
+    }
 }
 
 
 $(document).ready(function () {
     var viewModelSearch = new SearchViewModel();
     ko.applyBindings(viewModelSearch, $('#searchPage')[0]);
+    viewModelSearch.loading(true);
     var url = window.location.href;
     viewModelSearch.init();
-    viewModelSearch.query(url.split("=")[1]);
-    viewModelSearch.search();
+    viewModelSearch.getFilters(url.split("?")[1]);
+    //viewModelSearch.query(url.split("=")[1]);
+    viewModelSearch.filterSearch();
+    viewModelSearch.loading(false);
 });

@@ -9,6 +9,7 @@
     self.selectedDocuType = ko.observable(0);
     self.docuSubTypeOptions = ko.observableArray([]);
     self.selectedDocuSubType = ko.observable(0);
+    self.docuId = ko.observable("");
 
     self.init = function () {        
         $.ajax({
@@ -33,6 +34,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (data) {
                 self.functionalAreaOptions(data);
+                self.selectedFunctionalAreas([]);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log(thrownError);
@@ -81,18 +83,20 @@
     }
 
     self.selectedDocuType.subscribe(function (newValue) {
-        self.selectedDocuSubType(0);
-        self.docuSubTypeOptions([]);
         self.loadDocuSubTypes();
     })
 
     self.search = function () {
         window.location.href = "/search?query=" + self.query();
     }
+
+    self.advancedSearch = function () {
+        window.location.href = "/search?query=" + self.query() + "&docuId=" + self.docuId() + "&release=" + self.selectedRelease() + "&functionalAreas=" + JSON.stringify(self.selectedFunctionalAreas()) + "&docuType=" + self.selectedDocuType() + "&docuSubType=" + self.selectedDocuSubType();
+    }
 }
 
 $(document).ready(function () {
     var viewModelHome = new HomeViewModel();
     viewModelHome.init();
-    ko.applyBindings(viewModelHome, $('#mainSearchDiv')[0]);
+    ko.applyBindings(viewModelHome, $('#homePage')[0]);
 });
